@@ -87,3 +87,40 @@ if (!customElements.get('story-row')) {
 
   customElements.define('story-row', StoryRow);
 }
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * COLOUR SWATCHES ON THE MAIN CARD
+ * ---------------------------------------------------------------------------------------------------------------------
+ *
+ * The colours of a bed are separate products, so the product page links from one to the next. On a collection that would
+ * throw away the row you were reading, so the card carries every colour as a face and the swatches switch between them.
+ *
+ * Each face holds its own swatch row with its own colour already marked as pressed, so there is no selected state to
+ * keep in sync here: showing the target face is the whole of it.
+ *
+ * This is delegated from the document rather than set up inside StoryRow, because StoryRow bails out early on touch
+ * devices — it exists to replace a mouse cursor — and the swatches have to work everywhere.
+ */
+document.addEventListener('click', (event) => {
+  if (!(event.target instanceof Element)) {
+    return;
+  }
+
+  const swatch = event.target.closest('.story-card__swatch');
+
+  if (!swatch) {
+    return;
+  }
+
+  const card = swatch.closest('product-card');
+  const handle = swatch.dataset.colorTarget;
+
+  if (!card || !handle) {
+    return;
+  }
+
+  card.querySelectorAll('.story-card__face').forEach((face) => {
+    face.hidden = face.dataset.colorFace !== handle;
+  });
+});

@@ -608,6 +608,53 @@
 
 /**
  * ---------------------------------------------------------------------------------------------------------------------
+ * COLOUR FACES
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+/**
+ * A bed whose colours are separate products holds one face per colour and shows one at a time. The face takes over the
+ * column layout that the figure and the content used to get straight from the card, so the image still stretches and
+ * the footer still sits at the foot.
+ */
+.story-card__face {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* The display above would otherwise beat the display:none the browser gives the hidden attribute */
+.story-card__face[hidden] {
+  display: none;
+}
+
+.story-card__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.story-card__swatch {
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
+  cursor: pointer;
+}
+
+/* Same outline the product page draws on the current colour, taken from the variable rather than its hardcoded hex */
+.story-card__swatch[aria-pressed='true'] .color-swatch {
+  border-color: rgb(var(--button-background-primary));
+}
+
+.story-card__swatch:focus-visible {
+  outline: 2px solid rgb(var(--text-primary));
+  outline-offset: 2px;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
  * RESPONSIVE
  * ---------------------------------------------------------------------------------------------------------------------
  */

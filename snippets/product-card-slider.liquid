@@ -7,6 +7,11 @@ The commercial card that opens a product story row. Unlike "product-card-new", t
 to choose which bed to click: image, category, title, rating, price and one call to action. Specifications,
 production claims and reassurances are told by the story cards that follow it in the row.
 
+Beds whose colours are separate products merged with "my_fields.mcolors" — the same list the product page reads at
+product-info.liquid — get a swatch row. Where the product page links away to the sibling's own page, the card keeps you
+on the collection: every colour is rendered as a face inside this one card and the swatches switch between them. The
+story cards after it are not touched, since they describe the bed rather than the fabric.
+
 ********************************************
 Supported variables
 ********************************************
@@ -18,149 +23,46 @@ Supported variables
 {%- endcomment -%}
 
 {%- liquid
-  assign card_kicker = product.metafields.custom.card_kicker.value | default: product.type
-  assign cta_text = cta_text | default: 'Se sengen'
-
-  if eager
-    assign card_loading = 'eager'
-    assign card_fetchpriority = 'high'
-  else
-    assign card_loading = 'lazy'
-    assign card_fetchpriority = 'auto'
-  endif
-
-  assign color_label_list = 'general.label.color' | t | replace: ', ', ',' | downcase | split: ','
-  assign color_option = nil
+  assign color_products = product.metafields.my_fields.mcolors.value
 
   comment
-    This is a matching list, not copy: it holds the option names the theme recognises as a colour option.
-    It stays as a locale lookup so a product using "Color" rather than "Farve" is still matched.
+    The merged list is expected to hold every colour including this one, which is how the product page decides which
+    swatch is current. If it does not — a colour left out of its own list — the card falls back to the single product
+    rather than rendering a swatch row that cannot show the bed you are looking at.
   endcomment
-  for color_label in color_label_list
-    if product.options_by_name[color_label] != blank
-      assign color_option = product.options_by_name[color_label]
-      break
-    endif
+  assign color_handles = ''
+  for color_product in color_products
+    assign color_handles = color_handles | append: ',' | append: color_product.handle | append: ','
   endfor
+
+  assign self_key = ',' | append: product.handle | append: ','
+  assign has_colors = false
+
+  if color_products.size > 1 and color_handles contains self_key
+    assign has_colors = true
+  endif
 -%}
 
 {%- comment -%}
-  Same label convention as product-card.liquid: a tag prefixed with __label: becomes the pill on the image.
+  The sold-out modifier is set per face, since it belongs to the colour rather than to the card.
 {%- endcomment -%}
-{%- capture product_labels -%}
-  {%- for tag in product.tags -%}
-    {%- if tag contains '__label' -%}
-      {{- tag | split: '__label:' | last -}}
-      {%- break -%}
-    {%- endif -%}
-  {%- endfor -%}
-{%- endcapture -%}
-
-{%- capture sizes -%}
-  (max-width: 699px) 78vw, (max-width: 999px) 52vw, 520px
-{%- endcapture -%}
-
-<product-card class="story-card story-card--product snap-start group {% unless product.available %}story-card--unavailable{% endunless %} {{ class }}" handle="{{ product.handle | escape }}">
-  {%- if product.media.size > 0 -%}
-    <div class="story-card__figure">
-      {%- render 'product-badges', product: product, vertical: true -%}
-
-      {%- comment -%}
-        The seals sit outside the media link, which is aria-hidden so the title carries the accessible name.
-        Inside it the label text would be hidden from screen readers along with the rest of the link.
-      {%- endcomment -%}
-      {%- if product_labels != blank or product.metafields.custom.dansk_produceret_kvalitetsseng_ikon != blank -%}
-        <div class="product-card--right-side">
-          {%- if product_labels != blank -%}
-            <div class="product-labels">
-              <span class="product-label">{{ product_labels | strip }}</span>
-            </div>
-          {%- endif -%}
-
-          {%- if product.metafields.custom.dansk_produceret_kvalitetsseng_ikon != blank -%}
-            <div class="product-card--right-side__icon">
-              {%- render 'icon' with 'dansk-kvalitet' -%}
-            </div>
-          {%- endif -%}
-
-          {%- if product.metafields.custom.lagen_ikon != blank -%}
-            <div class="product-card--right-side__icon2">
-              {%- render 'icon' with 'lagen' -%}
-            </div>
-          {%- endif -%}
-        </div>
+<product-card class="story-card story-card--product snap-start group {{ class }}" handle="{{ product.handle | escape }}">
+  {%- if has_colors -%}
+    {%- for color_product in color_products -%}
+      {%- assign is_active = false -%}
+      {%- if color_product.handle == product.handle -%}
+        {%- assign is_active = true -%}
       {%- endif -%}
 
-      <a href="{{ product.url }}" class="story-card__media" data-instant tabindex="-1" aria-hidden="true">
-        {%- capture image_classes -%}story-card__image zoom-image group-hover:zoom {% if settings.product_image_aspect_ratio contains 'crop' %}object-cover{% endif %}{%- endcapture -%}
-
-        {{- product.featured_media
-          | image_url: width: product.featured_media.width
-          | image_tag:
-            loading: card_loading,
-            fetchpriority: card_fetchpriority,
-            sizes: sizes,
-            widths: '300,400,500,600,700,800,1000,1200,1400,1600',
-            class: image_classes
-        -}}
-
-        {%- if settings.show_secondary_image and product.media.size > 1 -%}
-          {%- assign next_media = product.media[product.featured_media.position] | default: product.media[1] -%}
-
-          {{- next_media
-            | image_url: width: next_media.width
-            | image_tag:
-              loading: 'lazy',
-              fetchpriority: 'low',
-              sizes: sizes,
-              widths: '300,400,500,600,700,800,1000,1200,1400,1600',
-              class: 'story-card__image story-card__image--secondary'
-          -}}
-        {%- endif -%}
-      </a>
-    </div>
+      {%- render 'product-card-slider-face',
+        product: color_product,
+        swatch_products: color_products,
+        active: is_active,
+        eager: eager,
+        cta_text: cta_text
+      -%}
+    {%- endfor -%}
+  {%- else -%}
+    {%- render 'product-card-slider-face', product: product, active: true, eager: eager, cta_text: cta_text -%}
   {%- endif -%}
-
-  <div class="story-card__content">
-    <div class="v-stack gap-1">
-      {%- if card_kicker != blank -%}
-        <p class="smallcaps text-subdued">{{ card_kicker | escape }}</p>
-      {%- endif -%}
-
-      <a href="{{ product.url }}" class="story-card__title h5" data-instant>
-        {%- if product.title contains ' | ' -%}
-          {{- product.title | split: ' | ' | first | remove: ' -' -}}
-        {%- else -%}
-          {{- product.title -}}
-        {%- endif -%}
-      </a>
-    </div>
-
-    <div class="story-card__meta h-stack gap-2 wrap text-subdued">
-      {%- comment -%}
-        Reviews come from Yotpo, not from the native reviews.rating metafield that Prestige's product-rating
-        snippet reads. Markup mirrors snippets/product-card.liquid, without its onclick handler, which scrolls
-        to a product page tab that does not exist on a collection page.
-      {%- endcomment -%}
-      <a class="story-card__reviews reviewLink" href="{{ product.url }}" tabindex="-1">
-        <div class="yotpo yotpo-reviews bottomLine" data-product-id="{{ product.id }}"></div>
-      </a>
-
-      {%- if color_option != blank and color_option.values.size > 1 -%}
-        <p class="smallcaps">{{ color_option.values.size }} betræk</p>
-      {%- endif -%}
-    </div>
-
-    <div class="story-card__footer v-stack gap-3">
-      {%- if product.available -%}
-        {%- render 'price-list', product: product, context: 'card', show_compare_at_text: true -%}
-
-        {%- render 'button', href: product.url, content: cta_text, stretch: true -%}
-      {%- else -%}
-        <p class="h5 heading text-subdued">Udsolgt</p>
-
-        {%- render 'button', href: product.url, content: cta_text, style: 'outline', stretch: true -%}
-      {%- endif -%}
-    </div>
-  </div>
 </product-card>
