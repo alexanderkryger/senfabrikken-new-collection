@@ -356,6 +356,25 @@
 }
 
 /**
+ * Same idea as the summary card: no surface of its own, so the card sits directly on the row's ribbon and takes that
+ * ribbon's configured text colour. Light ribbons like Platin and Luksus get black, the dark series get white, and a
+ * row with no series falls back to ink on the page background. Used for the "Tryghed" card.
+ */
+.story-card--transparent {
+  color: rgb(var(--story-series-text, var(--text-primary)));
+}
+
+/* The scheme has to win over the .text-subdued utility applied to the kicker */
+.story-card--transparent .text-subdued,
+.story-card--transparent .smallcaps {
+  color: rgb(var(--story-series-text, var(--text-primary)) / 0.7);
+}
+
+.story-card--transparent .story-card__body {
+  opacity: 0.8;
+}
+
+/**
  * ---------------------------------------------------------------------------------------------------------------------
  * PHOTO OVERLAY
  * ---------------------------------------------------------------------------------------------------------------------
@@ -428,6 +447,11 @@
 .story-card--cream .story-card__list li,
 .story-card--paper .story-card__list li {
   border-color: rgb(var(--text-primary) / 0.16);
+}
+
+/* The rules follow the ribbon too, so they stay hairline on both the light and the dark series */
+.story-card--transparent .story-card__list li {
+  border-color: rgb(var(--story-series-text, var(--text-primary)) / 0.22);
 }
 
 /**
