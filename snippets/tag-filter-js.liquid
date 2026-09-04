@@ -1,0 +1,36 @@
+{%- assign path_segments = request.path | split: '/' -%}
+{%- assign is_specific_size_page = false -%}
+
+{%- if path_segments.size > 3 -%}
+  {%- assign is_specific_size_page = true -%}
+{%- endif -%}
+
+{%- if is_specific_size_page and collection.metafields.custom.default_filters == true -%}
+  <script>
+    function updateSizeFilter(newSize) {
+      const currentUrl = new URL(window.location.href);
+      const pathSegments = currentUrl.pathname.split('/');
+      if (pathSegments.length > 3) {
+        // Replace the size segment in the path
+        pathSegments[3] = newSize;
+      } else {
+        // If the size segment does not exist, add it
+        pathSegments.push(newSize);
+      }
+      const newPathname = pathSegments.join('/');
+  
+      // Construct the new URL
+      const newUrl = `${newPathname}${currentUrl.search}`;
+      window.location.href = newUrl;
+    }
+  
+    document.addEventListener('click', function(event) {
+      if (event.target.matches('.size-filter-link')) {
+        event.preventDefault();
+        const newSize = event.target.getAttribute('data-size');
+        updateSizeFilter(newSize);
+      }
+    });
+  </script>
+  
+{%- endif -%}

@@ -1,0 +1,394 @@
+{% capture arrowright %}
+<span class="breadcrumbs__arrowright">/</span>
+{% endcapture -%}
+
+{%- comment %}START - BREADCUMB FIND MATCHES{% endcomment -%}
+{%- assign pagetype = request.page_type -%}
+{%- case pagetype -%}
+  {%- when 'product' or 'collection' -%}
+  {%- comment %}Fetch main nav {% endcomment -%}
+  {%- assign main_menu_handle = settings.breadcrumb_navigation_menu | default: 'main-menu' -%}
+  {%- assign main_menu = linklists[main_menu_handle] -%}
+
+  {%- comment %}HACK for collection page - avoid seperate looping for collection page{% endcomment -%}
+  {%- if product.collections != blank -%}
+    {% assign each_collection = collection %}
+    {% assign all_collections = product.collections %}
+    {% assign for_loop_limit = 1000 %}
+  {%- else -%}
+    {% assign each_collection = product %}
+    {% assign all_collections = collection.products %}
+    {% assign collection_limit = 1 %}
+  {%- endif -%}
+
+  {%- comment %}Fetch url collection url when collection is defined in URL.
+  Insures the correct patth journey gets used {% endcomment -%}
+  {%- if collection -%}
+    {% assign collection_title = collection.title %}
+    {% assign collection_url = collection.url | escape %}
+    {% assign collection_in_url = true %}
+  {%- endif -%}
+
+  {%- comment %}Fetching navigation targets {% endcomment -%}
+  {%- capture navigation_menu_item_target -%}
+  {{ settings.breadcrumb_navigation_menu_item_target }}
+  {%- endcapture -%}
+  {% assign navigation_menu_item_target = navigation_menu_item_target | strip_newlines | split: ',' %}
+
+  {%- comment %}Loop collections {% endcomment -%}
+  {%- for each_collection in all_collections limit: collection_limit -%}
+
+    {%- if each_collection.template_suffix != 'variants' -%}
+      {%- if collection_in_url != true -%}
+        {%- if product.collections != blank -%}
+        {% assign collection_title = each_collection.title %}
+        {% assign collection_url = each_collection.url | escape %}
+        {%- else -%}
+        {% assign collection_title = collection.title %}
+        {% assign collection_url = collection.url | escape %}
+        {%- endif -%}
+      {%- endif -%}
+      {%- comment %}Start - First level nav looping{% endcomment -%}
+      {%- for link in main_menu.links -%}
+
+          {%- comment %}Checking if targets are defined.
+          if not targets are defined in editor, it can result in excessive looping through all items.
+          {% endcomment -%}
+          {%- if navigation_menu_item_target != blank -%}
+
+            {% assign first_level_navigation_target_found = false %}
+            {%- for navigation_menu_item_targets in navigation_menu_item_target -%}
+              {%- if link.title == navigation_menu_item_targets -%}
+                {% assign first_level_navigation_target_found = true %}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+
+          {%- else -%}
+          {% assign first_level_navigation_target_found = true %}
+          {%- endif -%}
+
+
+          {%- comment %}Checking for nav first level item targets if defined in editor{% endcomment -%}
+          {%- if first_level_navigation_target_found == true -%}
+
+            {%- comment %}Start - Second level nav item looping - looking for deepest match {% endcomment -%}
+            {%- for sub_link in link.links -%}
+
+
+              {% assign second_level_url_duplicate_check = sub_link.url %}
+              {% assign second_level_title_duplicate_check= sub_link.title %}
+              {%- comment %}Start - Third level nav item looping {% endcomment -%}
+              {%- for sub_sub_link in sub_link.links -%}
+                  {%- comment %}Checking third level nav for active url{% endcomment -%}
+                  {%- if sub_sub_link.url == collection_url and sub_sub_link.url != second_level_url_duplicate_check -%}
+                    {% assign third_level_url = sub_sub_link.url %}
+                    {% assign third_level_title = sub_sub_link.title %}
+                    {% assign third_level_url_found = true %}
+                    {%- break -%}
+                  {%- endif -%}
+
+              {%- endfor -%}
+              {%- comment %}END - Third level nav item looping {% endcomment -%}
+
+              {%- comment %}Assigning sub_link when finding match in sub_sub_link {% endcomment -%}
+              {%- if third_level_url_found == true -%}
+                  {% assign second_level_url_found_via_third = sub_link.url %}
+                  {% assign second_level_title_found_via_third = sub_link.title %}
+                  {%- break -%}
+              {%- endif -%}
+
+            {%- endfor -%}
+            {%- comment %}END - Second level nav item looping - looking for deepest match{% endcomment -%}
+
+
+            {%- comment %}START - Second level nav looping - looking for second level match{% endcomment -%}
+            {%- if third_level_url_found != true -%}
+
+
+              {%- for sub_link in link.links -%}
+
+                {%- if sub_link.url == collection_url -%}
+                  {% assign second_level_url = sub_link.url %}
+                  {% assign second_level_title = sub_link.title %}
+                  {% assign second_level_url_found = true %}
+
+                    {%- comment %}Checking if collection url has child match {% endcomment -%}
+                    {%- if collection_in_url == true -%}
+                      {%- for sub_sub_link in sub_link.links -%}
+                        {%- for collection in product.collections -%}
+                          {%- if sub_sub_link.url == collection.url -%}
+                            {% assign third_level_url_found_via_second = sub_sub_link.url %}
+                            {% assign third_level_title_found_via_second = sub_sub_link.title %}
+                            {% assign has_third_level_url_found_via_second = true %}
+                            {%- break -%}
+                          {%- endif -%}
+
+                          {%- if has_third_level_url_found_via_second -%}
+                          {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+
+                        {%- if has_third_level_url_found_via_second -%}
+                        {%- break -%}
+                        {%- endif -%}
+
+                        {%- endfor -%}
+                    {%- endif -%}
+
+                  {%- break -%}
+
+                {%- endif -%}
+
+              {%- endfor -%}
+
+            {%- endif -%}
+            {%- comment %}END - Second level nav looping - looking for second level match{% endcomment -%}
+
+
+          {%- if collection_url == link.url and second_level_url_found != true and third_level_url_found != true -%}
+            {% assign first_level_url_found_via_first = link.url %}
+            {% assign first_level_title_found_via_first = link.title %}
+          {%- endif -%}
+
+          {%- comment %}Assigning second level match - no match on third{% endcomment -%}
+          {%- if second_level_url_found == true and third_level_url_found != true -%}
+
+            {% assign second_level_url_found_via_second = second_level_url %}
+            {% assign second_level_title_found_via_second = second_level_title %}
+
+            {% assign first_level_url_found_via_second = link.url %}
+            {% assign first_level_title_found_via_second = link.title %}
+
+            {% assign has_second_level_url_found_via_second = true %}
+
+            {%- comment %}Breaking when finding linking via first and second level
+            (might affect finding most relevant via third level)
+            {% endcomment -%}
+            {%- break -%}
+          {%- endif -%}
+
+          {%- comment %}Assigning third level match{% endcomment -%}
+          {%- if third_level_url_found == true -%}
+            {% assign first_level_url = link.url %}
+            {% assign first_level_title = link.title %}
+
+            {% assign second_level_url = second_level_url_found_via_third %}
+            {% assign second_level_title = second_level_title_found_via_third %}
+
+            {%- break -%}
+          {%- endif -%}
+
+        {%- endif -%}
+      {%- endfor -%}
+      {%- comment %}END - First level nav item looping {% endcomment -%}
+
+
+      {%- comment %}FOUND CLOSEST MATCH - end looping of collections {% endcomment -%}
+      {%- if third_level_url_found == true -%}
+          {%- break -%}
+      {%- endif -%}
+
+    {%- endif -%}
+    {%- comment %}END - First level navigation target{% endcomment -%}
+
+
+  {%- endfor -%}
+  {%- comment %}END - Loop collections {% endcomment -%}
+
+
+  {%- comment %}Defining what to show if third level not found{% endcomment -%}
+  {%- if third_level_url_found == true -%}
+  {%- comment %}No need for assigning via, becase we break forloop code after deepest assigning is found{% endcomment -%}
+
+  {%- elsif has_second_level_url_found_via_second == true -%}
+
+    {%- if collection_in_url == true -%}
+      {% assign third_level_url = third_level_url_found_via_second %}
+      {% assign third_level_title = third_level_title_found_via_second %}
+    {%- endif -%}
+
+    {% assign second_level_url = second_level_url_found_via_second %}
+    {% assign second_level_title = second_level_title_found_via_second %}
+    {% assign first_level_url = first_level_url_found_via_second %}
+    {% assign first_level_title = first_level_title_found_via_second %}
+
+  {%- else -%}
+
+    {% assign first_level_url = first_level_url_found_via_first %}
+    {% assign first_level_title = first_level_title_found_via_first %}
+
+  {%- endif -%}
+
+  {%- comment %}Fallback if collection not found in nav links{% endcomment -%}
+  {%- if first_level_url == blank and second_level_url == blank and third_level_url == blank -%}
+    {%- if collection_in_url == true -%}
+      {% assign current_url = collection.url %}
+      {% assign current_title = collection.title %}
+    {%- else -%}
+      {%- for collection in product.collections limit: 1 -%}
+        {% assign current_url = collection.url %}
+        {% assign current_title = collection.title %}
+      {%- endfor -%}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- comment %}Excluding Duplicates{% endcomment -%}
+  {%- if first_level_url == second_level_url -%}
+    {% assign first_level_url = "" %}
+    {% assign first_level_title = "" %}
+  {%- endif -%}
+
+  {%- if second_level_url == third_level_url -%}
+    {% assign third_level_url = "" %}
+    {% assign third_level_title = "" %}
+  {%- endif -%}
+
+  {%- comment %}Exclude URL's with hashtag{% endcomment -%}
+
+  {%- if first_level_url == "#" -%}
+    {% assign first_level_url = "" %}
+    {% assign first_level_title = "" %}
+  {%- endif -%}
+  {%- if second_level_url == "#" -%}
+    {% assign second_level_url = "" %}
+    {% assign second_level_title = "" %}
+  {%- endif -%}
+  {%- if third_level_url == "#" -%}
+    {% assign third_level_url = "" %}
+    {% assign third_level_title = "" %}
+  {%- endif -%}
+
+  {%- comment %}Exclude URL's with product or collections all{% endcomment -%}
+
+  {%- if first_level_url contains "/products" or first_level_url == "/collections/all" -%}
+    {% assign first_level_url = "" %}
+    {% assign first_level_title = "" %}
+  {%- endif -%}
+  {%- if second_level_url contains "/products" or second_level_url == "/collections/all" -%}
+    {% assign second_level_url = "" %}
+    {% assign second_level_title = "" %}
+  {%- endif -%}
+  {%- if third_level_url contains "/products" or third_level_url == "/collections/all" -%}
+    {% assign third_level_url = "" %}
+    {% assign third_level_title = "" %}
+  {%- endif -%}
+
+
+  {%- comment %}Show first level check{% endcomment -%}
+
+  {%- if settings.show_breadcrumb_first_level == false -%}
+    {% assign first_level_url = "" %}
+    {% assign first_level_title = "" %}
+  {%- endif -%}
+
+  {%- comment %}Fallback if collection not found in nav links{% endcomment -%}
+  {%- if second_level_url == blank and third_level_url == blank -%}
+    {% assign first_level_url = current_url %}
+    {% assign first_level_title = current_title %}
+  {%- endif -%}
+
+
+
+
+  {%- when 'product' -%}
+    {% assign breadcrumb_main_class = "breadcrumbs--product" %}
+  {%- when 'collection' -%}
+    {% assign breadcrumb_main_class = "breadcrumbs--collection" %}
+  {%- when 'blog' -%}
+    {% assign breadcrumb_main_class = "breadcrumbs--page" %}
+  {%- when 'article' -%}
+    {% assign breadcrumb_main_class = "breadcrumbs--article" %}
+  {%- when 'page' -%}
+    {% assign breadcrumb_main_class = "breadcrumbs--page" %}
+{%- endcase -%}
+{%- comment %}END - BREADCUMB FIND MATCHES{% endcomment -%}
+
+<nav class="breadcrumbs {{breadcrumb_main_class}}" role="navigation" aria-label="breadcrumbs">
+  <ol class="breadcrumbs__list u-h8">
+    {%- comment %}
+    Home breadcrumb
+    {% endcomment -%}
+    {%- case pagetype -%}
+      {%- when 'product' or 'collection' -%}
+        {%- if collection.url == "/collections/all" -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ shop.url }}">{{ 'general.breadcrumb.home' | t }}</a>{{arrowright}}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="https://www.sengefabrikken.dk/">{{ 'general.breadcrumb.home' | t }}</a>{{arrowright}}
+        </li>
+        {%- else -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ shop.url }}">{{ 'general.breadcrumb.home' | t }}</a>{{arrowright}}
+        </li>
+    {%- endcase -%}
+
+
+    {%- case pagetype -%}
+      {%- when 'product' or 'collection'  -%}
+
+          {%- if first_level_url != blank -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ first_level_url }}" aria-current="product">{{ first_level_title }}</a>
+              {{arrowright}}
+            </li>
+          {%- endif -%}
+          {%- if second_level_url != blank -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ second_level_url }}" aria-current="product">{{ second_level_title }}</a>
+              {{arrowright}}
+            </li>
+          {%- endif -%}
+          {%- if third_level_url != blank -%}
+            <li class="breadcrumbs__item">
+              <a class="breadcrumbs__link" href="{{ third_level_url }}" aria-current="product">{{ third_level_title }}</a>
+              {{arrowright}}
+            </li>
+          {%- endif -%}
+
+        {%- comment %} Displaying current product URL in Breadcrumbs
+        {% endcomment -%}
+      {%- when 'product' -%}
+        {%- if settings.show_breadcrumb_current_url -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ product.url | within: collection }}" aria-current="product">{{ product.title }}</a>
+          </li>
+        {%- endif -%}
+      {%- when 'blog' -%}
+        {%- comment %}Show parent to third level when match is found{% endcomment -%}
+        {%- if first_level_collection_match_url != blank -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ first_level_collection_match_url }}" aria-current="product">{{ first_level_collection_match_title }}</a>
+            {{arrowright}}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ blog.url }}" aria-current="blog">{{ blog.title }}</a>
+        </li>
+      {%- when 'article' -%}
+        {%- comment %}Show parent to third level when match is found{% endcomment -%}
+        {%- if first_level_collection_match_url != blank -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ first_level_collection_match_url }}" aria-current="product">{{ first_level_collection_match_title }}</a>
+            {{arrowright}}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ blog.url }}" aria-current="article">{{ blog.title }}</a>
+        </li>
+      {%- when 'page' -%}
+        {%- comment %}Show parent to third level when match is found{% endcomment -%}
+        {%- if first_level_collection_match_url != blank -%}
+          <li class="breadcrumbs__item">
+            <a class="breadcrumbs__link" href="{{ first_level_collection_match_url }}" aria-current="product">{{ first_level_collection_match_title }}</a>
+            {{arrowright}}
+          </li>
+        {%- endif -%}
+        <li class="breadcrumbs__item">
+          <a class="breadcrumbs__link" href="{{ page.url }}" aria-current="article">{{ page.title }}</a>
+        </li>
+    {%- endcase -%}
+  </ol>
+</nav>

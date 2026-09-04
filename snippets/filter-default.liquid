@@ -1,0 +1,47 @@
+
+    <style>
+        .initial-hidden {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var currentUrl = new URL(window.location.href);
+      var pathSegments = currentUrl.pathname.split('/');
+      var paramsChanged = false;
+    
+      // Check if the URL is a product-specific size page
+      // Assuming the specific product size URL is in the format /collections/{collection-name}/{product-size}
+      var isProductSizePage = pathSegments.length === 4 && /^\d+x\d+$/.test(pathSegments[3]);
+    
+      if (!isProductSizePage) {
+        // Apply default filters for general collection pages
+        if (!currentUrl.searchParams.has('filter.p.m.custom.size_name')) {
+            currentUrl.searchParams.set('filter.p.m.custom.size_name', '180x200 cm.');
+            paramsChanged = true;
+        }
+        if (!currentUrl.searchParams.has('filter.p.m.custom.pris_filter_')) {
+            currentUrl.searchParams.set('filter.p.m.custom.pris_filter_', 'Alle');
+            paramsChanged = true;
+        }
+      }
+    
+      // This will apply for both product-specific size pages and general collection pages
+      if (!currentUrl.searchParams.has('filter.p.m.custom.farve')) {
+          currentUrl.searchParams.set('filter.p.m.custom.farve', 'Sand');
+          paramsChanged = true;       
+      }
+    
+      if (paramsChanged) {
+          window.location.replace(currentUrl.toString().replace(/%20/g, '+'));
+          return; // Exit the function here to avoid removing the 'initial-hidden' class
+      }
+    
+      // This will execute for both normal and product-specific size pages
+      document.body.classList.remove('initial-hidden');
+    });
+    </script>
+
+    

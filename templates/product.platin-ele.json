@@ -1,0 +1,1196 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_navigation_JqCyzg": {
+      "type": "product-navigation",
+      "blocks": {
+        "menu_dwAcKT": {
+          "type": "menu",
+          "settings": {
+            "menu": "Topmadras",
+            "link": "#topmadras"
+          }
+        },
+        "menu_7YMpzd": {
+          "type": "menu",
+          "settings": {
+            "menu": "Springmadras",
+            "link": "#springmadras"
+          }
+        },
+        "menu_ck7URW": {
+          "type": "menu",
+          "settings": {
+            "menu": "Elevationsbund",
+            "link": "#boxmadras"
+          }
+        },
+        "menu_XJRhkM": {
+          "type": "menu",
+          "settings": {
+            "menu": "Specifikationer",
+            "link": "#specification"
+          }
+        },
+        "menu_qQKn6j": {
+          "type": "menu",
+          "settings": {
+            "menu": "FAQ",
+            "link": "#faq"
+          }
+        }
+      },
+      "block_order": [
+        "menu_dwAcKT",
+        "menu_7YMpzd",
+        "menu_ck7URW",
+        "menu_XJRhkM",
+        "menu_qQKn6j"
+      ],
+      "settings": {
+        "bg": "#f1eeeb",
+        "lcl": "#2f1300",
+        "lclh": "#ffffff",
+        "iscart": true,
+        "btnlbl": "{{ product.metafields.custom.product_title.value.product_title.value }}",
+        "btn": "Køb"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "container_size": "xl",
+        "product_info_size": 40,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 4,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-dansk-flag",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Danskproducerede senge",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-garanti",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "25 års garanti",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-trustpilot",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "[trustscore] på Trustpilot",
+            "content": ""
+          }
+        },
+        "42d6c851-d149-4627-924e-90d392395f2a": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-use-truck",
+            "custom_icon": "shopify://shop_images/Repeat_icon_e9f12ecd-44e8-42e9-9587-e8e2a7ea7c6c.svg",
+            "icon_width": 48,
+            "mobile_icon_width": 48,
+            "title": "100 dages prøve",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3",
+        "42d6c851-d149-4627-924e-90d392395f2a"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "c1baf670-3902-4f77-aa26-4134d56631dd": {
+      "type": "space",
+      "settings": {
+        "size_mobile": "small",
+        "size": "small",
+        "background": "rgba(0,0,0,0)"
+      }
+    },
+    "256e6989-2111-4e6e-bf03-a115550a6497": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Oversigt over Platin",
+            "heading_tag": "h1"
+          }
+        },
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Platin-serien er kronjuvelen blandt vores danskproducerede kvalitetssenge. Skabt til den ultimative luksussøgende, kombinerer denne serie fejlfri komfort med førsteklasses materialer og udsøgt design.</p>",
+            "text_color": "#2f1300"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-heading-1",
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-richtext-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "remove_padding": false,
+        "content_width": "xs",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "703a6e05-5daa-47fa-b345-a27ec04be1b8": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "c75d37a6-c174-4457-8b91-61d19d27a8e2": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/Natur Elevation.mp4",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "c75d37a6-c174-4457-8b91-61d19d27a8e2"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Derfor er Platin det fornuftige valg",
+        "show_icon": true,
+        "show_color_swatch": false,
+        "content": "<p><strong>Hvis du køber Platin får du:</strong></p><ul><li>60 mm. naturlatex topmadras.</li><li>7 unikke komfortzoner.</li><li>25 mm latexpolstring.</li><li>25 års garanti.</li></ul>",
+        "content_border_top": true,
+        "content_border_bottom": true,
+        "content_color": "",
+        "content_border_color": "#e0dcd9",
+        "content_below": "<p><strong>Vores mest luksuriøse seng til dig, der søger elegance og ekstraordinær komfort</strong></p>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#650621",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "693b1468-7de5-4787-ae86-2761a5615352": {
+      "type": "media-grid",
+      "blocks": {
+        "a0c88671-3b6c-4fe7-9cf6-80d314858bbd": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/9X16_1A-2_low.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Bliv klogere på levering",
+            "content": "<p>0:25m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-end-center text-center",
+            "text_color": "#2f1300",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "26fa3eec-426a-4bbd-b1d5-8660f2ad7429": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/9X16_1C.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Bliv klogere på vores danske kvalitet",
+            "content": "<p>0:23m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "451aea16-3e04-4741-874c-a748e992ea1f": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/9X16_1I.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Bliv klogere på Luksus Topmadras",
+            "content": "<p>0:48m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "fc5fc82f-f7ab-405f-b144-c0e6aecd6632": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/9X16_1E.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Bliv klogere på sengens certifikater",
+            "content": "<p>0:34m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "a0c88671-3b6c-4fe7-9cf6-80d314858bbd",
+        "26fa3eec-426a-4bbd-b1d5-8660f2ad7429",
+        "451aea16-3e04-4741-874c-a748e992ea1f",
+        "fc5fc82f-f7ab-405f-b144-c0e6aecd6632"
+      ],
+      "settings": {
+        "margin_bottom": 50,
+        "desktop_row_height": 290,
+        "mobile_row_height": 180,
+        "section_width": "xl",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "Hør mere om vores {{ product.metafields.custom.product_title.value.product_title.value }}",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "d97ec032-fc2e-4e24-8528-edb8b59287c6": {
+      "type": "custom-html",
+      "settings": {
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "html": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"da-DK\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5c1d6cc06af40c00013d7c52\" data-style-height=\"140px\" data-style-width=\"100%\" data-theme=\"light\" data-tags=\"SelectedReview\" data-review-languages=\"da\" data-font-family=\"Montserrat\">\n  <a href=\"https://dk.trustpilot.com/review/sengefabrikken.dk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->",
+        "text_alignment": "center"
+      }
+    },
+    "442e8c65-776f-4c77-b60e-e29d3b38af8b": {
+      "type": "hotspot-section",
+      "blocks": {
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Sengens opbygning",
+            "heading_tag": "h1"
+          }
+        },
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Vores elevationssenge består af en funktionel elevationsbund med motor og lameller, en fleksibel springmadras og en luksuriøs topmadras. Bliv klogere på sengens forskellige lag herunder.</p>"
+          }
+        },
+        "631ec3bb-190d-461e-b6cc-cb14d4705e49": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.metafields.custom.specifikationer_billede.value.produkt_senge_specifikationer_billede.value }}",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400,
+            "hotspot_1_title": "Topmadras",
+            "hotspot_1_url": "#topmadras",
+            "hotspot_1_horizontal": 34,
+            "hotspot_1_vertical": 18,
+            "hotspot_2_title": "Springmadras",
+            "hotspot_2_url": "#springmadras",
+            "hotspot_2_horizontal": 58,
+            "hotspot_2_vertical": 42,
+            "hotspot_3_title": "Elevationsbund",
+            "hotspot_3_url": "#boxmadras",
+            "hotspot_3_horizontal": 47,
+            "hotspot_3_vertical": 67,
+            "dimensions_1_title": "B: {{ product.metafields.custom.specifikationer_billede.value.bredde.value }}",
+            "dimensions_1_horizontal": 62,
+            "dimensions_1_vertical": 96,
+            "dimensions_2_title": "H: {{ product.metafields.custom.specifikationer_billede.value.hojde.value }}",
+            "dimensions_2_horizontal": 97,
+            "dimensions_2_vertical": 44,
+            "dimensions_3_title": "D: {{ product.metafields.custom.specifikationer_billede.value.dybde.value }}",
+            "dimensions_3_horizontal": 0,
+            "dimensions_3_vertical": 87
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-heading-1",
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-richtext-1",
+        "631ec3bb-190d-461e-b6cc-cb14d4705e49"
+      ],
+      "settings": {
+        "remove_padding": false,
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "background": ""
+      }
+    },
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Topmadras",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1"
+      ],
+      "settings": {
+        "custom_id": "topmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "rgba(0,0,0,0)",
+        "background_gradient": "linear-gradient(0deg, rgba(247, 241, 235, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Luksus_Ele_Top_Badge.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "end",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_topmadras.value.oversigt | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "{{ product.metafields.custom.product_description_topmadras.value.bullets | metafield_tag }}",
+        "content_border_below_top": true,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_description_topmadras.value.image_1.value }}",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "{{ product.metafields.custom.product_description_topmadras.value.video_1.value }}",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "{{ product.metafields.custom.product_description_topmadras.value.heading_1.value }}",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_topmadras.value.text_1 | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_description_topmadras.value.image_kerne.value }}",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "{{ product.metafields.custom.product_description_topmadras.value.video_2.value }}",
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "{{ product.metafields.custom.product_description_topmadras.value.heading_2.value }}",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_topmadras.value.text_2 | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "0a421696-9383-455d-91b1-076d21202d15": {
+      "type": "rich-text",
+      "blocks": {
+        "a8b73aef-8da6-40da-a0a5-6a77b10a96a5": {
+          "type": "heading",
+          "settings": {
+            "text": "Springmadrassen",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "a8b73aef-8da6-40da-a0a5-6a77b10a96a5"
+      ],
+      "settings": {
+        "custom_id": "springmadras",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "rgba(0,0,0,0)",
+        "background_gradient": "linear-gradient(180deg, rgba(247, 241, 235, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "bfb92b4d-8654-40b4-9867-38baba4ea89f": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__bfb92b4d-8654-40b4-9867-38baba4ea89f-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Luksus_Ele_Spring_Badge.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__bfb92b4d-8654-40b4-9867-38baba4ea89f-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_springmadras.value.oversigt | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "{{ product.metafields.custom.product_description_springmadras.value.bullets | metafield_tag }}",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "962d15b3-3bf2-477c-8f8c-35221f438d60": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "e88f73a0-3efa-4fde-ae7f-9a98c676152c": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.metafields.custom.product_description_springmadras.value.video_polstring.value }}",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "e88f73a0-3efa-4fde-ae7f-9a98c676152c"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "image": "{{ product.metafields.custom.product_description_springmadras.value.image_polstring_luksus.value }}",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "{{ product.metafields.custom.product_description_springmadras.value.heading_polstring.value }}",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_springmadras.value.text_polstring | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "rgba(0,0,0,0)",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "1b160276-c6e1-400e-ad45-cd3cfff22df4": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "621275b6-7622-4da3-90d8-83cbda732078": {
+          "type": "video",
+          "settings": {
+            "video": "{{ product.metafields.custom.product_description_springmadras.value.video_kerne.value }}",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "621275b6-7622-4da3-90d8-83cbda732078"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "image": "{{ product.metafields.custom.product_description_springmadras.value.image_kerne_luksus.value }}",
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "{{ product.metafields.custom.product_description_springmadras.value.heading_kerne.value }}",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "{{ product.metafields.custom.product_description_springmadras.value.text_kerne | metafield_tag }}",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Elevationsbund",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1"
+      ],
+      "settings": {
+        "custom_id": "boxmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "#f7f6f5",
+        "background_gradient": "linear-gradient(0deg, rgba(247, 241, 235, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "4fce2e9c-74df-4aea-a1a6-16bda2da4336": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "992e9bb4-0d2d-4c64-8e5a-40edaa341027": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Luksus_Ele_Bund_Badge.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "992e9bb4-0d2d-4c64-8e5a-40edaa341027"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Denne elevationsbund består af en solid og robust træramme i FSC-certificeret fyrretræ, der måler 20  cm i højden og 4 cm i tykkelsen. Bunden er monteret med 42 fleksible elevationslameller (28 ekstra brede lameller ved 105x210, 120x00 og 140x200 cm). Bunden styres af en kraftfuld OKIN RF-motor, der er lydsvag og justerer sengen gnidningsfrit.</p>",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "<p><strong>5 fine facts om Elevationsbunden</strong></p><ul><li>20 cm høj træramme i massiv FSC-certificeret fyrretræ.</li><li>42 fleksible elevationslameller.  <br/>(28  ved 105x210, 120x200 og 140x200 cm).</li><li>Inkl. trådløs fjernbetjening, fodstopper og sidebremse.</li><li>Flot, slidstærkt og OEKO-TEX®-certificeret møbeltekstil.</li><li>25 års garanti på rammebrud & 5 års garanti på motor.</li></ul>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/traeramme.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/01.-Trykaflastende_Boxmadras(1).mp4",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Kun de bedste kvalitetsmaterialer",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Rammen er lavet med fyrretræ fra Sverige, der er FSC-certificeret. Hos Sengefabrikken udvikler vi nemlig kun senge med materialer af højeste kvalitet, og derfor er certificeringen også vores garanti for, at træet kommer fra skove med fokus på bæredygtighed. OKIN RF-motoren er tysk, pålidelig og klarer problemfrit at hæve og sænke bundens hoved- og fodende. Slutteligt  er elevationsbunden betrukket med et OEKO-TEX®-certificeret møbeltekstil.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "76ddf418-e3f0-4ba3-a4d4-7226013b21f3": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "2dfe5e49-3e4c-4c49-922c-3a5a2d987edc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Luksus_Ele_Bund.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "2dfe5e49-3e4c-4c49-922c-3a5a2d987edc"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/Luksus_Ele.mp4",
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Nem justering af fasthed og ender",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Bundens 42 elevationslameller er fleksible og sørger for, at sengens spring- og topmadras ligger godt og har de bedste forudsætninger for at iværksætte deres individuelle kompetencer. Med den medfølgende trådløse fjernbetjening hæver OKIN RF-motoren lydsvagt hovedenden helt op til 65 grader og fodenden op til 45 grader.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f7f1eb",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f": {
+      "type": "bed-specifications",
+      "blocks": {
+        "fb15c212-ff68-4f45-b99f-769065787bfc": {
+          "type": "accordion",
+          "repeater": "{{ product.metafields.custom.sengens_specifikationer.value }}",
+          "settings": {
+            "title": "{{ block.repeater.title.value }}",
+            "content": "<p>{{ block.repeater.content | metafield_tag }}</p>",
+            "icon": "{{ block.repeater.icon.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "fb15c212-ff68-4f45-b99f-769065787bfc"
+      ],
+      "settings": {
+        "title": "Sengens specifikationer",
+        "content": "<p>Tag et deep-dive ned i sengens specifikationer. Vi står inde for kvaliteten og spiller med helt åbne kort, så du ved, hvad du får. </p>",
+        "background": "#f7f1eb",
+        "text_color": "#2f1300",
+        "border_color": "#e0dcd9",
+        "image": "{{ product.metafields.custom.stregtegning.value }}"
+      }
+    },
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a": {
+      "type": "faq",
+      "blocks": {
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad betyder 100 dages prøve?",
+            "answer": "<p>Med vores koncept \"100 dages prøve\" i ryggen er du sikker på at gøre en god og tryg handel. Hvis du ikke er tilfreds, så kommer vi og henter varen igen på din adresse - og refunderer dig hele købsbeløbet. </p><p>Det kan være svært at vælge ny seng, dyne eller topmadras. Derfor giver vi dig 100 nætter til at prøve produktet af - hvis du ikke er tilfreds, så kan du enten ombytte til noget andet kvit og frit eller returnere. Nemt, trygt og sikkert. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Har I en butik eller et showroom?",
+            "answer": "<p>Nej, vi er 100% online - og har ingen butikker eller showrooms. Dette er et helt bevidst valg, da vi ved at holde vores faste omkostninger på et absolut minimum, har mulighed for at optimere både fleksibilitet og priser. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 100 dages gratis retur samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster levering?",
+            "answer": "<p>Leveringsprisen afhænger af den valgte leveringsform samt leveringsadressen, og den endelige pris vises altid tydeligt på bestillingssiden, inden du gennemfører dit køb.</p> <p>Mindre varer, herunder sengetøj, dyner og puder, leveres til din adresse med GLS, mens større varer som senge og madrasser leveres med DSV.</p> <p>Standardlevering sker til kantsten. Ønsker du en mere bekvem levering, har du mulighed for at tilkøbe ekstra serviceydelser, så leveringen tilpasses dine behov. Vi tilbyder blandt andet opbæring/indbæring, montering samt bortskaffelse af din nuværende seng. Alle tilkøb kan vælges direkte på bestillingssiden.</p>"
+          }
+        },
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor lang er jeres leveringstid?",
+            "answer": "<p>Leveringstiden på vores produkter spænder vidt og bredt. Leveringstiden på et produkt vil altid fremgå af produktsiden samt på din ordrebekræftelse. </p><p>Som udgangspunkt vil små varer, som dyner, puder og sengetøj, altid kunne leveres indenfor 1-3 hverdage. Senge, vi har færdigproduceret og stående klar på lager, vil typisk have en leveringstid på op til 15 hverdage, imens senge i ukurante størrelser samt specialmål har en leveringstid på 3-7 uger. </p>"
+          }
+        },
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Ja, det kan du. Hvis du ønsker levering en bestemt dag, så skal du blot notere det som ordrekommentar. Herefter vil vi videreformidle den ønskede dag til både vores pakkeri samt det eksterne leveringsfirma, der står for den endelige levering. </p><p>Vi kan ikke garantere levering den ønskede dag, men vi vil altid forsøge at imødekomme det bedst muligt - og det lykkes heldigvis også i 95% af alle tilfælde. Skulle vi mod forventning ikke være i stand til at levere den ønskede dag, så vil leveringen som regel finde sted dagen efter i stedet.</p><p>Uanset hvad, så vil din ordre aldrig blive leveret, uden at du har godkendt leveringsdag og tidsinterval over SMS. </p>"
+          }
+        },
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg afdrage beløbet over en periode?",
+            "answer": "<p>At investere i en ny seng er en stor udgift i de flestes privatøkonomi. Derfor tilbyder vi finansiering gennem Anyday, hvor du kan splitte din betaling op i 4 lige store rater – helt uden renter og gebyrer.</p><p>Du ser altid de præcise omkostninger, inden du gennemfører købet, og der tilføjes ingen skjulte gebyrer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3",
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2",
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021",
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe digalle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    },
+    "521a67c7-8c08-4f21-a20f-76217086071b": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "custom_icon": "shopify://shop_images/ordre-modtaget.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Bestilt</strong>",
+            "content": "<p>Når du har lavet en ordre via vores hjemmeside, går vi straks i gang med at forberede afsendelsen. Leveringstiden oplyses altid af hjemmesiden og din ordrebekræftelse. </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "custom_icon": "shopify://shop_images/Home-alt-2_dfd1c0c1-ff90-43f3-b420-ac164c7e9077.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Afsendt</strong>",
+            "content": "<p>Når din ordre er produceret og pakket, sender vi den til fragtfirmaet, der tager direkte kontakt til dig med henblik på at aftale en leveringsdag og et tidsinterval (over SMS). </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "custom_icon": "shopify://shop_images/Layers.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Leveret</strong>",
+            "content": "<p>På leveringsdagen vil fragtfirmaet sende dig en SMS ca. 30 minutter før ankomst. Intervallet vil typisk være 2-4 timer. Bemærk at mindre pakker sendes med GLS. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "product_navigation_JqCyzg",
+    "main",
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95",
+    "c1baf670-3902-4f77-aa26-4134d56631dd",
+    "256e6989-2111-4e6e-bf03-a115550a6497",
+    "703a6e05-5daa-47fa-b345-a27ec04be1b8",
+    "693b1468-7de5-4787-ae86-2761a5615352",
+    "d97ec032-fc2e-4e24-8528-edb8b59287c6",
+    "442e8c65-776f-4c77-b60e-e29d3b38af8b",
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556",
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6",
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee",
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3",
+    "0a421696-9383-455d-91b1-076d21202d15",
+    "bfb92b4d-8654-40b4-9867-38baba4ea89f",
+    "962d15b3-3bf2-477c-8f8c-35221f438d60",
+    "1b160276-c6e1-400e-ad45-cd3cfff22df4",
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f",
+    "4fce2e9c-74df-4aea-a1a6-16bda2da4336",
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe",
+    "76ddf418-e3f0-4ba3-a4d4-7226013b21f3",
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f",
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a",
+    "521a67c7-8c08-4f21-a20f-76217086071b"
+  ]
+}

@@ -1,0 +1,75 @@
+<!-- Topmadras Modal HTML -->
+<div id="topmadrasModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Topmadras Detaljer</h2>
+    <p>Her kan du udforske de unikke fordele ved vores topmadrasser, herunder:</p>
+    <ul>
+      <li>Øget komfort og støtte</li>
+      <li>Forbedret holdbarhed og levetid for din madras</li>
+      <li>Let at rengøre og vedligeholde</li>
+    </ul>
+  </div>
+</div>
+
+<!-- CSS for Modal -->
+<style>
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+}
+</style>
+
+<!-- JavaScript for Modal -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var modal = document.getElementById("topmadrasModal");
+  var span = document.getElementsByClassName("close")[0];
+
+  // Function to open modal
+  window.openModal = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
+</script>

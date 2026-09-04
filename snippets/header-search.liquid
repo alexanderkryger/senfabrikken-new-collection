@@ -1,0 +1,97 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+HEADER SEARCH (takeover layout)
+----------------------------------------------------------------------------------------------------------------------
+
+Full-viewport takeover search. Replaces the legacy dropdown-style header search.
+
+Structure:
+- Top bar:  store logo (left) | centered search input | close button (right)
+- Body:     <search-takeover> results slot (AJAX-swapped). The idle state is
+            rendered INSIDE the results slot on first paint. The custom
+            <search-takeover> element (assets/search-takeover.js) caches this
+            initial HTML and restores it when the user clears the input.
+
+Filters inside the overlay are sourced from the Shopify Search & Discovery app
+and rendered by sections/predictive-search.liquid — which is fetched via
+/search?section_id=predictive-search (not /search/suggest) so the `search`
+drop is populated with filter groups.
+
+The idle state content is controlled by theme settings (see config/settings_schema.json):
+    settings.search_idle_collection, settings.search_idle_heading,
+    settings.search_idle_subheading, settings.search_idle_count
+
+********************************************
+Supported variables
+********************************************
+
+Nothing
+{%- endcomment -%}
+
+{{ 'search-takeover.css' | asset_url | stylesheet_tag }}
+{{ 'search-takeover.js' | asset_url | script_tag }}
+
+<header-search id="header-search-{{ section.id }}" class="header-search header-search--takeover">
+  <div class="header-search__topbar">
+    {%- comment -%} LOGO (left) {%- endcomment -%}
+    <a href="{{ routes.root_url }}" class="header-search__logo" aria-label="{{ shop.name | escape }}">
+      {%- if section.settings.logo -%}
+        {%- capture sizes -%}{{ section.settings.logo_max_width }}px{%- endcapture -%}
+        {%- capture widths -%}{{ section.settings.logo_max_width | times: 2 | at_most: section.settings.logo.width }}, {{ section.settings.logo_max_width | times: 3 | at_most: section.settings.logo.width }}{%- endcapture -%}
+        {{- section.settings.logo | image_url: width: section.settings.logo.width | image_tag: sizes: sizes, widths: widths, class: 'header-search__logo-image' -}}
+      {%- else -%}
+        <span class="heading">{{ shop.name }}</span>
+      {%- endif -%}
+    </a>
+
+    {%- comment -%} SEARCH INPUT (centered). onsubmit disables Enter-key submission
+      so the overlay stays open and predictive results drive the experience. {%- endcomment -%}
+    <form id="predictive-search-form" action="{{ routes.search_url }}" method="GET" aria-owns="header-predictive-search" class="header-search__form" role="search" onsubmit="event.preventDefault();">
+      <div class="header-search__input-wrapper">
+        {%- render 'icon' with 'search', width: 18 -%}
+        <input
+          type="search"
+          name="q"
+          spellcheck="false"
+          autocomplete="off"
+          autocorrect="off"
+          class="header-search__input"
+          aria-label="{{ 'search.general.title' | t | escape }}"
+          placeholder="{{ 'search.general.search_placeholder' | t | escape }}"
+        >
+        <button type="reset" class="header-search__clear tap-area" aria-label="{{ 'search.general.clear' | t | escape }}">
+          {%- render 'icon' with 'close', width: 12 -%}
+        </button>
+      </div>
+    </form>
+
+    {%- comment -%} MOBILE-ONLY FILTER TRIGGER (right of input row, hidden on desktop)
+      Opens an in-overlay filter sheet. Filter content is rendered inside
+      predictive-search.liquid into a hidden container — the JS toggles the
+      visibility of the mobile sheet on click. {%- endcomment -%}
+    <button type="button" class="header-search__filter-trigger tap-area" data-mobile-filter-trigger aria-label="Filtre" aria-expanded="false" aria-controls="mobile-filter-sheet">
+      {%- comment -%} Filter/sliders icon — render inline since theme may not have it {%- endcomment -%}
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M4 6h12M4 12h8M4 18h16M18 4v4M14 10v4M20 16v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    {%- comment -%} CLOSE (right on desktop, left on mobile via CSS) {%- endcomment -%}
+    <button type="button" is="dialog-close-button" class="header-search__close tap-area" aria-label="{{ 'general.accessibility.close' | t | escape }}">
+      {%- render 'icon' with 'close', width: 18 -%}
+    </button>
+  </div>
+
+  <div class="header-search__body">
+    <search-takeover id="header-predictive-search" class="predictive-search">
+      {%- comment -%}
+        IDLE STATE — rendered server-side into the results slot on first paint.
+        The <search-takeover> element caches this HTML on connection, replaces
+        it with AJAX results as the user types, and restores it on reset.
+      {%- endcomment -%}
+      <div class="predictive-search__content" slot="results">
+        {%- render 'search-idle-state' -%}
+      </div>
+    </search-takeover>
+  </div>
+</header-search>

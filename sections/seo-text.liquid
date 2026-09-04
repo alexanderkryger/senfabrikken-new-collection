@@ -1,0 +1,104 @@
+<!-- SEO Text Section -->
+{%- for filter in collection.filters -%}
+  {%- for filter_value in filter.active_values -%}
+{% assign pageValues = filter_value.value %}
+{%- if section.settings.title != blank -%}
+<h2>{% if pageValues == blank %}{{ collection.title}} - {% else %}{{ collection.title }} - {{ pageValues |  remove_last: '.' | join: " - " }} – {% endif %}{{ section.settings.title }}</h2>
+{% endif %}
+<div id="seoTxt" class="content-indent">
+  <div class="section-spacing ">
+    <div class="container">
+  <div class="text-columns-seo">
+    <div class="multi-column__item  snap-center group">
+  <div class="prose text-start"> 
+    {% for block in section.blocks %} 
+    {% if pageValues == block.settings.title %}{{ block.settings.text}}{% endif %}
+    {% endfor %}
+  {% endfor %}
+{% endfor %}
+  </div>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
+
+<style>
+  .text-columns-seo {
+  column-count: 2;
+  column-gap: 4.375rem; /* Adjust the gap as needed */
+  padding: 10px; /* Optional: adds padding around the text */
+  
+}
+
+@media only screen and (max-width: 641px) {
+  .text-columns-seo {
+    column-count: 1; /* Switches to a single column for smaller screens */
+  }
+}
+
+  .p_ttl{ color:{{section.settings.questions}}; border-bottom:1px solid {{section.settings.borders}}; }
+  .p_con{color:{{section.settings.answers}};}
+  .p_ttl:before {color:{{section.settings.icons}}; }
+  
+  .fullwidth-{{section.id}} { padding-left:{{ section.settings.pad-mbl}}px; padding-right:{{ section.settings.pad-mbl}}px; }
+  @media only screen and (min-width: 768px){
+    .fullwidth-{{section.id}} { padding-left:{{ section.settings.pad-desk}}px; padding-right:{{ section.settings.pad-desk}}px; }
+  }
+  </style>
+
+{% schema %}
+  {
+    "name": "SEO Text",
+    "settings": [
+	 {
+        "type": "textarea",
+        "id": "title",
+        "label": "Heading",
+        "default": "Heading",
+		"info":"Use <strong>text here</strong> to make headings bold"
+      },
+ 	  {
+        "type": "textarea",
+        "id": "subtitle",
+        "label": "Sub Heading",
+        "default": "Describe your products, collection, content etc..."
+      },
+	 {
+		 "type": "paragraph",
+		 "content":"Section==="
+      }
+	],
+   "blocks":[
+	  {
+	    "type":"text",
+		"name":"Text",
+		"settings":[
+			{
+              "type":"text",
+              "id":"title",
+              "label":"tag name"
+			},
+			{
+              "type":"textarea",
+              "id":"text",
+              "label":"content"
+			}
+		 ]
+      }
+	],
+   "presets": [
+      {
+        "name": "5 - SEO Text",            
+        "blocks": [
+          {
+            "type": "text"
+          },
+          {
+            "type": "text"
+          }          	  
+        ]
+      }
+    ]
+ }
+{% endschema %}

@@ -1,0 +1,1286 @@
+/* =============================================================================
+   SEARCH TAKEOVER
+   Full-viewport search overlay that replaces the legacy dropdown.
+   Scoped with class modifiers (.header-search--takeover, .main-search__*) so
+   it composes cleanly with the Prestige theme.css without overriding globals.
+   ============================================================================= */
+
+
+/* ------------------------------------------------------------------ TAKEOVER SHELL
+   theme.css sets .header-search to position:absolute + z-index:-1 + inset-block-start:100%
+   so in takeover mode we have to override those ON THE HOST, not just on ::part().
+   A shadow-DOM descendant with position:fixed still inherits its host's stacking
+   context, so without these overrides the takeover renders behind the page.
+
+   The bounded-height chain is critical for scroll:
+     Host (100vh via position:fixed + inset:0)
+       → ::part(base) (height: 100%)
+         → ::part(content) (height: 100%) + overflow-y: auto
+   Break any link with min-height and scroll silently fails.
+------------------------------------------------------------------ */
+
+.header-search--takeover {
+  position: fixed;
+  inset: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  z-index: 999;
+}
+
+.header-search--takeover::part(base) {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.header-search--takeover::part(overlay) {
+  display: none;
+}
+
+.header-search--takeover::part(content) {
+  width: 100%;
+  height: 100vh;
+  min-height: 0;
+  max-height: none;
+  background: #F9EFE3;
+  color: rgb(var(--text-primary));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0;
+}
+
+/* Prefer dynamic viewport height where supported (handles mobile URL-bar
+   show/hide correctly). Browsers without dvh fall back to the 100vh above. */
+@supports (height: 100dvh) {
+  .header-search--takeover::part(base),
+  .header-search--takeover::part(content) {
+    height: 100dvh;
+  }
+}
+
+
+/* ------------------------------------------------------------------ TOP BAR
+   Shared shell for both the overlay (header-search) and the /search page
+   (main-search) so the transition from typing → submit is seamless.
+------------------------------------------------------------------ */
+
+.header-search__topbar,
+.main-search__topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: #F9EFE3;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 10;
+}
+
+@media screen and (min-width: 700px) {
+  .header-search__topbar,
+  .main-search__topbar {
+    gap: 2rem;
+    padding: 1.25rem 2rem;
+  }
+}
+
+.header-search__logo,
+.main-search__logo {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.25rem;
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.header-search__logo-image,
+.main-search__logo-image {
+  max-height: 36px;
+  width: auto;
+}
+
+@media screen and (max-width: 699px) {
+  .header-search__logo span,
+  .main-search__logo span {
+    font-size: 1rem;
+  }
+}
+
+
+/* ------------------------------------------------------------------ SEARCH INPUT (pill) */
+
+.header-search__form,
+.main-search__form {
+  max-width: 640px;
+  width: 100%;
+  justify-self: center;
+}
+
+.header-search__input-wrapper,
+.main-search__input-wrapper {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .75rem;
+  padding: .625rem 1rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 999px;
+  background: rgb(var(--background-primary));
+  transition: border-color .2s ease;
+}
+
+.header-search__input-wrapper:focus-within,
+.main-search__input-wrapper:focus-within {
+  border-color: rgb(var(--text-primary));
+}
+
+.header-search__input,
+.main-search__input {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  background: none;
+  font-size: 1rem;
+  line-height: 1.4;
+  min-width: 0;
+  color: rgb(var(--text-primary));
+}
+
+.header-search__input:focus,
+.main-search__input:focus {
+  outline: none;
+}
+
+.header-search__input::-webkit-search-decoration,
+.header-search__input::-webkit-search-cancel-button,
+.header-search__input::-webkit-search-results-button,
+.header-search__input::-webkit-search-results-decoration,
+.main-search__input::-webkit-search-decoration,
+.main-search__input::-webkit-search-cancel-button,
+.main-search__input::-webkit-search-results-button,
+.main-search__input::-webkit-search-results-decoration {
+  display: none;
+}
+
+.header-search__clear,
+.main-search__clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgb(var(--text-primary) / 0.08);
+  color: rgb(var(--text-primary));
+  cursor: pointer;
+  transition: background-color .15s ease;
+}
+
+.header-search__clear:hover,
+.main-search__clear:hover {
+  background: rgb(var(--text-primary) / 0.14);
+}
+
+
+/* ------------------------------------------------------------------ CLOSE BUTTON */
+
+.header-search__close,
+.main-search__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 999px;
+  color: rgb(var(--text-primary));
+  background: rgb(var(--background-primary));
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.header-search__close:hover,
+.main-search__close:hover {
+  background: rgb(var(--text-primary) / 0.06);
+  border-color: rgb(var(--text-primary));
+}
+
+
+/* ------------------------------------------------------------------ BODY */
+
+.header-search__body,
+.main-search__body {
+  padding-block: 2.5rem 4rem;
+}
+
+@media screen and (max-width: 699px) {
+  .header-search__body,
+  .main-search__body {
+    padding-block: 1.5rem 3rem;
+  }
+}
+
+/* Show idle state only when predictive-search results slot is empty.
+   theme.js sets innerHTML="" on reset, so :empty becomes true and idle returns. */
+.header-search__body:has(predictive-search [slot="results"]:not(:empty)) .search-idle {
+  display: none;
+}
+
+
+/* =============================================================================
+   IDLE STATE — Top produkter
+   ============================================================================= */
+
+.search-idle__container {
+  display: block;
+}
+
+.search-idle__header {
+  max-width: 720px;
+  margin-inline: auto;
+  margin-block-end: 2rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 700px) {
+  .search-idle__header {
+    margin-block-end: 3rem;
+  }
+}
+
+
+/* =============================================================================
+   PREDICTIVE SEARCH (AJAX-swapped)
+   ============================================================================= */
+
+.predictive-search__takeover {
+  display: grid;
+  gap: 2rem;
+}
+
+.predictive-search__suggestions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .75rem 1.25rem;
+  padding-block-end: 1.5rem;
+  border-block-end: 1px solid rgb(var(--border-color));
+}
+
+.predictive-search__suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .75rem;
+}
+
+.predictive-search__suggestions a {
+  display: inline-flex;
+  align-items: center;
+  padding: .375rem .875rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.predictive-search__suggestions a:hover {
+  background: rgb(var(--text-primary) / 0.06);
+  border-color: rgb(var(--text-primary));
+}
+
+.predictive-search__suggestions mark {
+  background: none;
+  font-weight: 700;
+  color: inherit;
+}
+
+.predictive-search__view-all {
+  display: flex;
+  justify-content: center;
+  padding-block-start: 1rem;
+}
+
+/* No-results fallback — show the message, then offer Top produkter as a soft landing */
+.predictive-search__no-results-wrap {
+  padding-block: 2rem 1rem;
+  border-block-end: 1px solid rgb(var(--border-color));
+  margin-block-end: 2.5rem;
+}
+
+.predictive-search__no-results-message {
+  font-size: var(--text-lg);
+  color: rgb(var(--text-primary));
+  margin: 0;
+}
+
+
+/* =============================================================================
+   LAYOUT — Sidebar + Main (shared by predictive overlay & main-search page)
+   ============================================================================= */
+
+.predictive-search__layout,
+.main-search__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .predictive-search__layout,
+  .main-search__layout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .predictive-search__layout,
+  .main-search__layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 4rem;
+  }
+}
+
+/* When the sidebar isn't rendered (no matching collections), place main in
+   column 2 so it keeps its usual position rather than expanding into the
+   empty sidebar slot. */
+@media screen and (min-width: 1000px) {
+  .predictive-search__layout:not(:has(.predictive-search__sidebar)) .predictive-search__main,
+  .main-search__layout:not(:has(.main-search__sidebar)) .main-search__main {
+    grid-column: 2;
+  }
+}
+
+
+/* =============================================================================
+   MOBILE TAB TOGGLE — switches between Produkter and Kategorier on mobile.
+   Hidden on desktop where both sidebar + main render side-by-side.
+   ============================================================================= */
+
+.predictive-search__mobile-tabs {
+  display: none;
+}
+
+@media screen and (max-width: 999px) {
+  .predictive-search__mobile-tabs {
+    display: flex;
+    gap: 1.5rem;
+    padding-block-end: .75rem;
+    margin-block-end: 1rem;
+    border-block-end: 1px solid rgb(var(--border-color));
+  }
+
+  .predictive-search__mobile-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: .375rem;
+    padding: .375rem 0;
+    background: transparent;
+    border: 0;
+    border-block-end: 2px solid transparent;
+    margin-block-end: -.75rem;
+    padding-block-end: .75rem;
+    color: rgb(var(--text-primary) / 0.5);
+    font-size: var(--text-base);
+    font-weight: 500;
+    cursor: pointer;
+    transition: color .15s ease, border-color .15s ease;
+  }
+
+  .predictive-search__mobile-tab.is-active {
+    color: rgb(var(--text-primary));
+    font-weight: 700;
+    border-block-end-color: rgb(var(--text-primary));
+  }
+
+  .predictive-search__mobile-tab-count {
+    font-size: var(--text-sm);
+    color: rgb(var(--text-primary) / 0.6);
+    font-weight: 400;
+  }
+
+  /* On mobile: layout shows ONE tab's content at a time. Sidebar and main
+     are toggled by data-active-tab. Hide whichever isn't active. */
+  .predictive-search__layout[data-active-tab="products"] .predictive-search__sidebar {
+    display: none;
+  }
+
+  .predictive-search__layout[data-active-tab="categories"] .predictive-search__main {
+    display: none;
+  }
+}
+
+
+/* ------------------------------------------------------------------ SIDEBAR */
+
+.predictive-search__sidebar,
+.main-search__sidebar {
+  display: grid;
+  gap: 2rem;
+  align-content: start;
+}
+
+.predictive-search__sidebar-heading,
+.main-search__sidebar-heading {
+  margin: 0;
+}
+
+.predictive-search__collection-list,
+.main-search__collection-list,
+.predictive-search__page-list {
+  display: grid;
+  gap: .5rem;
+}
+
+.predictive-search__collection-link,
+.main-search__collection-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 6px;
+  background: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.predictive-search__collection-link:hover,
+.main-search__collection-link:hover,
+.main-search__collection-link.is-active {
+  background: rgb(var(--text-primary) / 0.04);
+  border-color: rgb(var(--text-primary) / 0.3);
+}
+
+.predictive-search__collection-link svg,
+.main-search__collection-link svg {
+  flex-shrink: 0;
+  opacity: .5;
+}
+
+/* On mobile, sidebar appears as the active "Kategorier" tab content —
+   vertical list (same as desktop), full width. No special overrides needed
+   beyond the data-active-tab visibility toggle above. */
+
+
+/* =============================================================================
+   MOBILE FILTER SHEET — toolbar becomes a slide-up sheet when trigger is active
+   The toolbar (filter pills + active facets) is normally rendered inline above
+   the product grid. On mobile we hide it by default and reveal it as a
+   fullscreen sheet when the user taps the filter button.
+   ============================================================================= */
+
+@media screen and (max-width: 999px) {
+  /* Hide the inline toolbar on mobile by default — it's reachable via
+     the filter button only. */
+  .predictive-search__toolbar {
+    display: none;
+  }
+
+  /* When [data-mobile-filter-open] is set on <header-search>, show the
+     toolbar as a full-screen sheet. */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: #F9EFE3;
+    padding: 5rem 1.25rem 6rem; /* top space for close affordance, bottom for apply button */
+    overflow-y: auto;
+    margin: 0;
+  }
+
+  /* Real close button — fixed-position top-right when sheet open.
+     Default state (display: none) is set outside this media query so it
+     also applies on desktop. Below: positioning + visibility when open. */
+  header-search[data-mobile-filter-open="true"] .predictive-search__mobile-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 1rem;
+    inset-inline-end: 1rem;
+    z-index: 100;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgb(var(--border-color));
+    border-radius: 999px;
+    background: rgb(var(--background-primary));
+    color: rgb(var(--text-primary));
+    cursor: pointer;
+  }
+
+  header-search[data-mobile-filter-open="true"] .predictive-search__mobile-close:hover {
+    background: rgb(var(--text-primary) / 0.06);
+  }
+
+  /* "Filter" heading at the top of the sheet, rendered via ::before on the form */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .facets::before {
+    content: "Filter";
+    display: block;
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-block-end: 1.25rem;
+    color: rgb(var(--text-primary));
+  }
+
+  /* Inside the sheet, pills stack vertically — fixed 33% width, left-aligned */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .accordion-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem !important;
+    flex-wrap: nowrap;
+  }
+
+  /* Each pill = 65% width, left-aligned */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .accordion {
+    width: 65%;
+    min-width: 120px;
+  }
+
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .accordion summary {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Make toggle (label + arrow) span full width inside summary so arrow
+     gets pushed to the right edge regardless of label length */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .accordion__toggle {
+    width: 100%;
+    justify-content: space-between !important;
+  }
+
+  /* Dropdown content: inline (not absolute-positioned) inside the sheet so
+     the open list pushes content below rather than overlaying.
+     Hvid baggrund, rounded så det ligner desktop dropdown'en. */
+  header-search[data-mobile-filter-open="true"] .predictive-search__toolbar .facets-horizontal .accordion-list .accordion .accordion__content {
+    position: static;
+    box-shadow: none;
+    border: 0;
+    margin-block-start: .5rem;
+    padding: 1rem;
+    min-width: 0;
+    max-width: none;
+    background: rgb(var(--background-primary));
+    border-radius: 8px;
+  }
+
+  /* Active facets in the sheet — full width below the pill list */
+  header-search[data-mobile-filter-open="true"] .predictive-search__active-facets {
+    margin-block-start: 1.5rem;
+    padding-block-start: 1.5rem;
+    border-block-start: 1px solid rgb(var(--border-color) / 0.4);
+  }
+}
+
+
+/* ------------------------------------------------------------------ MAIN */
+
+.predictive-search__main,
+.main-search__main {
+  display: grid;
+  gap: 0;
+  align-content: start;
+  min-width: 0;
+}
+
+
+/* =============================================================================
+   MAIN SEARCH (/search?q=…) specific bits
+   ============================================================================= */
+
+.main-search__results-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+}
+
+.main-search__results-header p {
+  margin: 0;
+}
+
+.main-search__results-header .text-subdued {
+  font-size: var(--text-sm);
+}
+
+
+/* ------------------------------------------------------------------ TOOLBAR (horizontal filter pills + sort) */
+
+.main-search__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem 1.5rem;
+  padding-block: .75rem;
+  border-block: 1px solid rgb(var(--border-color));
+  background: rgb(var(--background-primary));
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 5;
+}
+
+.main-search__filters-desktop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Override the existing .facets-horizontal spacing — pills should sit snug. */
+.main-search__filters-desktop .facets-horizontal .accordion-list {
+  margin-left: 0;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+
+/* Pill-style the horizontal facet triggers without mutating theme.css */
+.main-search__filters-desktop .facets-horizontal .accordion {
+  border: 0 !important;
+}
+
+.main-search__filters-desktop .facets-horizontal .accordion__toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .5rem !important;
+  padding: .5rem 1rem !important;
+  border: 1px solid rgb(var(--border-color)) !important;
+  border-radius: 999px !important;
+  font-size: var(--text-sm) !important;
+  background: rgb(var(--background-primary)) !important;
+  transition: border-color .15s ease, background-color .15s ease !important;
+}
+
+.main-search__filters-desktop .facets-horizontal .accordion__toggle:hover,
+.main-search__filters-desktop .facets-horizontal .accordion[open] .accordion__toggle {
+  border-color: rgb(var(--text-primary)) !important;
+  background: rgb(var(--text-primary) / 0.03) !important;
+}
+
+.main-search__filter-button,
+.main-search__sort-button {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .625rem 1.25rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 999px;
+  font-size: var(--text-sm);
+  background: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+  transition: border-color .15s ease;
+}
+
+.main-search__filter-button:hover,
+.main-search__sort-button:hover {
+  border-color: rgb(var(--text-primary));
+}
+
+.main-search__sort {
+  position: relative;
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+
+/* =============================================================================
+   RESPONSIVE PRODUCT GRID
+   1 card on phone, 3 everywhere else. We force these values so the theme's
+   .product-list max-items-per-row cap doesn't override.
+
+   theme.css sets --product-list-default-row-gap: 0 at ≥700px and ≥1000px
+   (which zeros out the clamp() calculation), so we set row-gap directly
+   on the search grids to restore vertical spacing between rows.
+   ============================================================================= */
+
+.search-idle__grid,
+.predictive-search__products,
+.main-search__products {
+  --product-list-max-items-per-row-allowed: 3;
+  row-gap: 2rem !important;
+}
+
+@media screen and (max-width: 699px) {
+  .search-idle__grid,
+  .predictive-search__products,
+  .main-search__products {
+    --product-list-items-per-row: 1 !important;
+    row-gap: 1.25rem !important;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .search-idle__grid,
+  .predictive-search__products,
+  .main-search__products {
+    --product-list-items-per-row: 3 !important;
+  }
+}
+
+
+/* =============================================================================
+   MOBILE HEADER TWEAKS
+   ============================================================================= */
+
+@media screen and (max-width: 699px) {
+  /* Two-row mobile layout per design mockup:
+     Row 1: close button (left) | logo (center) | spacer (right, balances close)
+     Row 2: search input | filter trigger button
+     The close button moves from right (desktop) to left (mobile) via grid-area. */
+  .header-search__topbar,
+  .main-search__topbar {
+    grid-template-columns: 40px minmax(0, 1fr) 40px;
+    grid-template-areas:
+      "close   logo    spacer"
+      "form    form    filter";
+    row-gap: .75rem;
+    column-gap: .5rem;
+    padding: .75rem 1rem;
+  }
+
+  .header-search__close,
+  .main-search__close {
+    grid-area: close;
+    justify-self: start;
+    width: 36px;
+    height: 36px;
+    /* Override desktop's circular border styling for a cleaner mobile look */
+    border: 0;
+    background: transparent;
+  }
+
+  .header-search__logo,
+  .main-search__logo {
+    grid-area: logo;
+    justify-self: center;
+    font-size: .875rem;
+  }
+
+  .header-search__form,
+  .main-search__form {
+    grid-area: form;
+    max-width: none;
+  }
+
+  .header-search__input-wrapper,
+  .main-search__input-wrapper {
+    padding: .5rem .75rem;
+  }
+
+  /* Filter trigger — visible only on mobile, AND only when a query is active.
+     Without a query there are no results and no filters to interact with. */
+  .header-search__filter-trigger {
+    grid-area: filter;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgb(var(--border-color));
+    border-radius: 999px;
+    background: rgb(var(--background-primary));
+    color: rgb(var(--text-primary));
+    cursor: pointer;
+  }
+
+  header-search[data-has-query="true"] .header-search__filter-trigger {
+    display: inline-flex;
+  }
+
+  .header-search__filter-trigger[aria-expanded="true"] {
+    background: rgb(var(--text-primary));
+    color: rgb(var(--background-primary));
+  }
+}
+
+/* Filter trigger is mobile-only — fully hidden on desktop */
+@media screen and (min-width: 700px) {
+  .header-search__filter-trigger {
+    display: none;
+  }
+}
+
+/* Mobile filter sheet close button — fully hidden on desktop (sheet itself
+   isn't available there). On mobile, default to hidden; the media query above
+   shows it when [data-mobile-filter-open] is set. */
+.predictive-search__mobile-close {
+  display: none;
+}
+
+
+/* =============================================================================
+   PRODUCT-CARD-MENU — overrides for narrow search grids
+   Scoped to the three search grids only so collection pages and the header
+   mega-menu (which also use product-card-menu) are completely untouched.
+   ============================================================================= */
+
+/* Reduce outer card padding from theme's .85rem → .25rem */
+.search-idle__grid .product-card,
+.predictive-search__products .product-card,
+.main-search__products .product-card {
+  padding: 0.25rem !important;
+}
+
+/* Restore top padding above the title (theme zeros it out at ≥700px) */
+.search-idle__grid .product-card__info,
+.predictive-search__products .product-card__info,
+.main-search__products .product-card__info {
+  padding-block-start: 1rem !important;
+}
+
+/* Stack title/price vertically (cancel the 50/50 two-column layout at ≥1000px) */
+.search-idle__grid .product-card__info--grouped,
+.predictive-search__products .product-card__info--grouped,
+.main-search__products .product-card__info--grouped {
+  flex-direction: column !important;
+  gap: 0.25rem !important;
+}
+
+.search-idle__grid .product-card__info--grouped > div,
+.predictive-search__products .product-card__info--grouped > div,
+.main-search__products .product-card__info--grouped > div {
+  width: 100% !important;
+}
+
+/* Kill the 14px margin theme.css puts below the title inside --grouped */
+.search-idle__grid .product-card__info--grouped .product-card-product-title,
+.predictive-search__products .product-card__info--grouped .product-card-product-title,
+.main-search__products .product-card__info--grouped .product-card-product-title {
+  margin-bottom: 0 !important;
+}
+
+/* --- TITLE + SIZE inline on the same line, truncate gracefully if too long --- */
+.search-idle__grid .product-card-product-title,
+.predictive-search__products .product-card-product-title,
+.main-search__products .product-card-product-title {
+  word-break: normal;
+  overflow-wrap: break-word;
+}
+
+.search-idle__grid .product-card-product-title > .text-font,
+.predictive-search__products .product-card-product-title > .text-font,
+.main-search__products .product-card-product-title > .text-font {
+  display: block !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* --- PRICE + COMPARE-AT on the same line, left-aligned --- */
+.search-idle__grid .price-list,
+.predictive-search__products .price-list,
+.main-search__products .price-list {
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: baseline;
+  gap: 0.5rem;
+  justify-content: flex-start !important;
+}
+
+/* Prevent individual price elements from wrapping internally */
+.search-idle__grid .price-list > *,
+.predictive-search__products .price-list > *,
+.main-search__products .price-list > * {
+  white-space: nowrap;
+}
+
+
+/* =============================================================================
+   PREDICTIVE SEARCH TOOLBAR — horizontal filter pills inside the overlay
+   Mirrors the .main-search__toolbar treatment so the overlay and /search page
+   feel visually unified. The filter form carries both .predictive-search__filters
+   and .facets-horizontal on the SAME element, so selectors target the toolbar
+   parent rather than chaining descendants through a shared element.
+   ============================================================================= */
+
+.predictive-search__toolbar {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 5;
+  padding-block: .75rem;
+  margin-block: 1rem 1.5rem;
+}
+
+.predictive-search__toolbar .facets {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+  min-width: 0;
+}
+
+/* The accordion-list (filter pill row) keeps horizontal pill layout —
+   only the form-level container is column. */
+
+/* Override .facets-horizontal default row-gap since we're in a narrower container */
+.predictive-search__toolbar .accordion-list {
+  margin-left: 0 !important;
+  gap: .5rem !important;
+  flex-wrap: wrap;
+}
+
+/* Remove default accordion borders (theme's .facets-horizontal already does this,
+   but we belt-and-brace here to protect against cascade changes) */
+.predictive-search__toolbar .accordion {
+  border: 0 !important;
+}
+
+/* Pill-style the summary button */
+.predictive-search__toolbar .accordion summary,
+.predictive-search__toolbar .accordion summary * {
+  list-style: none;
+  /* !important on color cascading to ALL descendants defends against page-specific
+     CSS (campaign pages, landing pages) targeting inner span/text classes
+     directly. Without the universal selector, a rule like
+     `.scrolling-content_text * { color: #fff }` wins over our parent rule. */
+  color: rgb(var(--text-primary)) !important;
+}
+
+.predictive-search__toolbar .accordion summary {
+  cursor: pointer;
+  padding: .5rem 1rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 6px;
+  background: rgb(var(--background-primary)) !important;
+  transition: border-color .15s ease, background-color .15s ease;
+}
+
+.predictive-search__toolbar .accordion summary::-webkit-details-marker,
+.predictive-search__toolbar .accordion summary::marker {
+  display: none;
+}
+
+.predictive-search__toolbar .accordion summary:hover,
+.predictive-search__toolbar .accordion[open] summary {
+  border-color: rgb(var(--text-primary));
+  background: rgb(var(--text-primary) / 0.03);
+}
+
+.predictive-search__toolbar .accordion__toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: .5rem !important;
+  padding: 0 !important;
+  font-size: var(--text-sm) !important;
+  /* !important defends against page-specific CSS (e.g. campaign landing
+     pages with their own button color overrides) — without this, the
+     filter pill text can render in unexpected colors on those pages. */
+  color: rgb(var(--text-primary)) !important;
+}
+
+/* Rotate chevron when open */
+.predictive-search__toolbar .accordion[open] .accordion__toggle svg {
+  transform: rotate(180deg);
+}
+
+/* Dropdown content positioning */
+.predictive-search__toolbar .facets-horizontal .accordion-list .accordion .accordion__content {
+  position: absolute;
+  z-index: 10;
+  min-width: 230px;
+  max-width: 320px;
+  margin-block-start: 10px;
+  padding: 1rem;
+  background: rgb(var(--background-primary));
+  border: 1px solid rgb(var(--border-color));
+  border-top: 1px solid rgb(var(--border-color));
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.predictive-search__results-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1.5rem;
+  padding-block-end: 0.75rem;
+}
+
+.predictive-search__results-header p {
+  margin: 0;
+}
+
+
+/* =============================================================================
+   FILTER VALUE LIST — single column, scrollable
+   Replaces the theme's default .filter-wrapper flex-wrap layout which produces
+   an uneven 2-column grid. Cap height so long lists (sizes, colors) don't
+   push the dropdown off-screen.
+   ============================================================================= */
+
+.predictive-search__filter-values {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  max-height: 300px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  /* Tighten the scrollbar on WebKit browsers to keep the dropdown compact */
+  scrollbar-width: thin;
+}
+
+.predictive-search__filter-values::-webkit-scrollbar {
+  width: 6px;
+}
+
+.predictive-search__filter-values::-webkit-scrollbar-thumb {
+  background: rgb(var(--text-primary) / 0.18);
+  border-radius: 3px;
+}
+
+.predictive-search__filter-values::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.predictive-search__filter-values .checkbox-control {
+  min-width: 0;
+  /* Keep each row on one line; ellipsis if the label is very long */
+  white-space: nowrap;
+}
+
+.predictive-search__filter-values .checkbox-control label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* =============================================================================
+   IDLE STATE MENU — Kategorier shown before the Top produkter grid.
+   Inherits the same pill-button language as the results-sidebar collection
+   list. Horizontal scroll-row on mobile, grid on desktop.
+   ============================================================================= */
+
+.search-idle__menu {
+  margin-block-end: 2.5rem;
+}
+
+.search-idle__menu-heading {
+  display: none;
+}
+
+.search-idle__menu-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: .5rem;
+}
+
+.search-idle__menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: .75rem 1rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 6px;
+  background: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.search-idle__menu-link:hover {
+  background: rgb(var(--text-primary) / 0.04);
+  border-color: rgb(var(--text-primary) / 0.3);
+}
+
+.search-idle__menu-link svg {
+  flex-shrink: 0;
+  opacity: .5;
+}
+
+/* Mobile: collapse to a horizontal scroll row to keep the fold usable */
+@media screen and (max-width: 699px) {
+  .search-idle__menu-list {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    grid-template-columns: none;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(-1 * var(--container-gutter, 1.25rem));
+    padding-inline: var(--container-gutter, 1.25rem);
+  }
+
+  .search-idle__menu-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .search-idle__menu-link {
+    white-space: nowrap;
+  }
+}
+
+
+/* =============================================================================
+   FILTER PILL COUNT BADGE
+   Small circular badge on the top-right of each filter pill indicating
+   how many values are active in that group. Mirrors standard e-commerce
+   pattern — see screenshot reference.
+   ============================================================================= */
+
+.predictive-search__toolbar .accordion summary {
+  position: relative;
+}
+
+.filter-pill__count {
+  position: absolute;
+  inset-block-start: -8px;
+  inset-inline-end: -8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 .3rem;
+  background: rgb(var(--theme-color, 109 25 25));
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+
+/* =============================================================================
+   ACTIVE FACETS ROW — chips + clear-all link
+   Rendered below the filter pills when at least one filter is active.
+   ============================================================================= */
+
+.predictive-search__active-facets {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .625rem;
+  margin-block-end: .5rem;
+}
+
+.predictive-search__active-facets .removable-facet {
+  display: inline-flex;
+  align-items: center;
+  gap: .375rem;
+  padding: .375rem .625rem;
+  background: rgb(var(--theme-color, 109 25 25));
+  color: #fff;
+  font-size: var(--text-sm);
+  border-radius: 4px;
+}
+
+.predictive-search__active-facets .removable-facet a {
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+}
+
+.predictive-search__active-facets .facets-clear-all {
+  display: inline-flex;
+  align-items: center;
+  margin-inline-start: .5rem;
+  padding: .375rem .625rem;
+  font-size: var(--text-sm);
+  color: rgb(var(--text-primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.predictive-search__active-facets .facets-clear-all:hover {
+  text-decoration: none;
+  color: rgb(var(--theme-color, 109 25 25));
+}
+
+.predictive-search__active-facets .facets-clear-all .link {
+  pointer-events: none;
+}
+
+
+/* =============================================================================
+   PRICE RANGE FILTER — inside the toolbar dropdown
+   The theme's price-range snippet uses .range-group (dual-thumb slider) and
+   .input-group (min/max number fields side-by-side). Both need adjustments
+   when rendered inside the narrow 230–320px dropdown content.
+   ============================================================================= */
+
+.predictive-search__toolbar .price-range {
+  display: block;
+  min-width: 0;
+}
+
+.predictive-search__toolbar .price-range .range-group {
+  margin-block-end: 1rem;
+}
+
+.predictive-search__toolbar .price-range .input-group {
+  column-gap: .5rem;
+  align-items: center;
+}
+
+.predictive-search__toolbar .price-range .input-prefix {
+  /* Shrink padding so two price inputs + separator fit the dropdown width */
+  padding: .35rem .5rem;
+  min-width: 0;
+}
+
+.predictive-search__toolbar .price-range .input-prefix .field {
+  margin-inline-start: .25rem;
+  font-size: var(--text-sm);
+}
+
+.predictive-search__toolbar .price-range .input-prefix .prefix {
+  font-size: var(--text-sm);
+  flex-shrink: 0;
+}
+
+
+/* =============================================================================
+   "SE ALLE" nudge link — beneath product grid
+   Routes the user to /search where they can access the full result set with
+   server-side filtering. Visually distinct from primary filter chips.
+   ============================================================================= */
+
+.predictive-search__see-all {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(var(--border-color));
+  text-align: center;
+}
+
+.predictive-search__see-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.25rem;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 6px;
+  background: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+  font-size: var(--text-base);
+  text-decoration: none;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+
+.predictive-search__see-all-link:hover {
+  background: rgb(var(--text-primary) / 0.04);
+  border-color: rgb(var(--text-primary) / 0.3);
+}
+
+.predictive-search__see-all-link strong {
+  font-weight: 600;
+}
+
+.predictive-search__see-all-link svg {
+  flex-shrink: 0;
+  opacity: .5;
+}

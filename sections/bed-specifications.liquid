@@ -1,0 +1,108 @@
+<div class="section-spacing {% if section.settings.separate_section_with_border %}bordered-section{% endif %}">
+  <div class="container container--xl">
+    <div id="specification" class="section-stack section-spacing--padded section-stack--bed-specifications" style="{% render 'surface', background: section.settings.background, text_color: section.settings.text_color, border_color: section.settings.border_color %} background-image:url({{ 'dot-bg.svg' | asset_url }});">
+      {%- render 'section-header', heading: section.settings.title, content: section.settings.content -%}
+      <div class="bed-specifications">
+
+        {%- if section.settings.image != blank -%}
+          <div class="bed-specifications--image">
+            {%- capture sizes_attribute -%}(max-width: 699px) 50vw, 500px{%- endcapture -%}
+            {{- section.settings.image | image_url: width: section.settings.image.width | image_tag: loading: 'lazy', sizes: sizes_attribute, widths: '200,300,400,500,600,800,1000,1200' -}}
+          </div>
+        {%- endif -%}
+
+        <div class="bed-specifications--accordion">
+          <div class="align-self-start">
+        {%- for block in section.blocks -%}
+          {%- render 'accordion', title: block.settings.title, content: block.settings.content, show_title_as_text: true, custom_icon: block.settings.icon -%}
+        {%- endfor -%}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+@media screen and (max-width: 699px) {
+  .shopify-section--bed-specifications {
+    background: {{- section.settings.background-}};
+  }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Bed specifications",
+  "class": "shopify-section--bed-specifications",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "t:global.text.title",
+      "default": "Sengens specifikationer"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "t:global.text.content",
+      "default": "<p>Ur, sitae. Cerio. Et aut haria veria nisitae nonsed que sed quid modiorepudae reped et estionsecte volent, cum quo tectesequate pe litiur atet plitatqui in con renet.</p>"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "t:global.colors.background",
+      "default": "#f2f7fc"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "t:global.colors.text",
+      "default": "#2f1300"
+    },
+    {
+      "type": "color",
+      "id": "border_color",
+      "label": "t:global.colors.border",
+      "default": "#e0dcd9"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:global.image.image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "accordion",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "t:global.text.title",
+          "default": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:global.text.content",
+          "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "t:global.icons.icon"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bed specifications"
+    }
+  ]
+}
+{% endschema %}

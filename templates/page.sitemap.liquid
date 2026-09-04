@@ -1,0 +1,39 @@
+<style>
+  .sitemap-section {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .sitemap-column {
+    flex: 1 0 50%; /* Giver hver kolonne halvdelen af containerens bredde */
+    min-width: 300px; /* Sikrer, at kolonnerne ikke bliver for smalle på små skærme */
+    padding: 100px;
+  }
+</style>
+
+
+
+<div class="sitemap-section">
+  <!-- Pages Column -->
+  <div class="sitemap-column">
+    <h2>Sider</h2>
+    <ul>
+    {% for page in pages %}
+      <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Collections Column -->
+  <div class="sitemap-column">
+    <h2>Kategorier</h2>
+    <ul>
+    {% for collection in collections %}
+      {% unless collection.title contains 'menu' or collection.title contains 'Menu' %}
+        <li><a href="{{ collection.url }}">{{ collection.title }}</a></li>
+      {% endunless %}
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+
+

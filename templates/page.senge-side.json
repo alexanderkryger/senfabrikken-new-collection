@@ -1,0 +1,507 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "529b8d49-ac7b-43bb-a34a-3abe0e142071": {
+      "type": "slideshow",
+      "blocks": {
+        "4f1776c0-f14d-4c71-a6e9-a93cdf48c58b": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/0a26f74cce08611d6124be8eb42d65f7.jpg",
+            "subheading": "Bevarer de danske traditioner",
+            "title": "Et univers fyldt med danskproducerede kvalitetssenge",
+            "mobile_text_position": "place-self-end-start text-start",
+            "desktop_text_position": "sm:place-self-end-start sm:text-start",
+            "content_max_width": 580,
+            "button_1_text": "",
+            "button_1_link": "",
+            "button_1_style": "solid",
+            "button_1_background": "#ffffff",
+            "button_1_text_color": "#000000",
+            "button_2_text": "",
+            "button_2_link": "",
+            "button_2_style": "outline",
+            "button_2_background": "#ffffff",
+            "button_2_text_color": "#000000",
+            "background": "",
+            "background_opacity": 10,
+            "text_color": "#ffffff",
+            "border_color": "",
+            "gradient_overlay": "linear-gradient(180deg, rgba(NaN, NaN, NaN, 0), rgba(4, 4, 4, 0.65) 100%)"
+          }
+        }
+      },
+      "block_order": [
+        "4f1776c0-f14d-4c71-a6e9-a93cdf48c58b"
+      ],
+      "settings": {
+        "allow_transparent_header": false,
+        "show_next_section_button": false,
+        "media_size": "xs",
+        "autoplay": false,
+        "autoplay_pause_on_video": false,
+        "cycle_speed": 5,
+        "background": "#000000",
+        "controls_color": "#ffffff"
+      }
+    },
+    "58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-dansk-flag",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Danskproducerede senge",
+            "content": ""
+          }
+        },
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-garanti",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "25 års garanti",
+            "content": ""
+          }
+        },
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-trustpilot",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "[trustscore] på Trustpilot",
+            "content": ""
+          }
+        },
+        "8ed55587-dec4-4638-8cd6-f7bbb7a14ba9": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-use-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Gratis levering & returnering",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-1",
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-2",
+        "template--20149231321436__58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa-item-3",
+        "8ed55587-dec4-4638-8cd6-f7bbb7a14ba9"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "cac94294-4ab8-4bd2-93c6-941e63e8ddd5": {
+      "type": "collection-list",
+      "blocks": {
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/c1dc800b936256923ffe9a45cecc176d.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken",
+            "subheading": "",
+            "title": "Kontinentalsenge",
+            "save_label": "Spar op til 58%",
+            "button_text": "Se vores kontinentalsenge",
+            "button_link": "shopify://collections/kontinental-senge",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "button_text_color": ""
+          }
+        },
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/eadc4b8c812881675ccf903a0abe2a12.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken",
+            "subheading": "",
+            "title": "Elevationssenge",
+            "save_label": "Spar op til 58%",
+            "button_text": "Se vores elevationssenge",
+            "button_link": "shopify://collections/elevationssenge",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "button_text_color": ""
+          }
+        },
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/0a26f74cce08611d6124be8eb42d65f7.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken",
+            "subheading": "",
+            "title": "Boxmadrasser",
+            "save_label": "Spar op til 58%",
+            "button_text": "Se vores boxmadrasser",
+            "button_link": "shopify://collections/boxmadrasser",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "button_text_color": ""
+          }
+        },
+        "6dc5b7ca-bd80-4ce3-8f1a-890c636f2a7a": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/c1dc800b936256923ffe9a45cecc176d.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken",
+            "subheading": "",
+            "title": "Sengerammer",
+            "save_label": "Spar op til 58%",
+            "button_text": "Se vores sengerammer",
+            "button_link": "shopify://collections/sengerammer",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 40,
+            "button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-1",
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-2",
+        "template--20149231321436__cac94294-4ab8-4bd2-93c6-941e63e8ddd5-collection-3",
+        "6dc5b7ca-bd80-4ce3-8f1a-890c636f2a7a"
+      ],
+      "settings": {
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": true,
+        "collections_per_row_desktop": 2,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "button_text": "Se senge på tilbud",
+        "button_link": "shopify://collections/elevationssenge",
+        "circle_button_background": "#ffffff",
+        "circle_button_text_color": "#1c1c1c",
+        "label_background": "#c87d0a",
+        "label_color": "#ffffff"
+      }
+    },
+    "1b384e54-dcec-4775-8084-4bd72b8ffa8e": {
+      "type": "media-grid-default",
+      "blocks": {
+        "template--20177880088924__1b384e54-dcec-4775-8084-4bd72b8ffa8e-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Image_seperator_section-tree.png",
+            "column_count": "12",
+            "row_count": 1,
+            "content": "<p>Bevarer de danske traditioner</p>",
+            "title": "Vi planter 100 træer i Danmark, hver gang du køber en seng",
+            "heading_tag": "h1",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880088924__1b384e54-dcec-4775-8084-4bd72b8ffa8e-image-1"
+      ],
+      "settings": {
+        "desktop_row_height": 420,
+        "mobile_row_height": 300,
+        "section_width": "xl",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "53dcc0cc-f5da-4aaa-b1fd-1e5576ca12d9": {
+      "type": "custom-html",
+      "settings": {
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "html": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"da-DK\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5c1d6cc06af40c00013d7c52\" data-style-height=\"140px\" data-style-width=\"100%\" data-theme=\"light\" data-tags=\"SelectedReview\" data-review-languages=\"da\" data-font-family=\"Montserrat\">\n  <a href=\"https://dk.trustpilot.com/review/sengefabrikken.dk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->",
+        "text_alignment": "center"
+      }
+    },
+    "2e6763ff-da6a-4293-b079-d4d6f7e24948": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20149231321436__2e6763ff-da6a-4293-b079-d4d6f7e24948-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Senge du ikke bare sover godt i",
+            "heading_tag": "h1"
+          }
+        },
+        "template--20149231321436__2e6763ff-da6a-4293-b079-d4d6f7e24948-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Ur, sitae. Cerio. Et aut haria veria nisitae nonsed que sed quid modiorepudae repedet estionsecte volent, cum quo tectesequate pe litiur atet plitatqui in con renet.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20149231321436__2e6763ff-da6a-4293-b079-d4d6f7e24948-heading-1",
+        "template--20149231321436__2e6763ff-da6a-4293-b079-d4d6f7e24948-richtext-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "remove_padding": false,
+        "content_width": "xs",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "73314142-c408-438e-adfe-7597611bb912": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--20177880088924__73314142-c408-438e-adfe-7597611bb912-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Koelende-Boxmadras-Sort-90x200-3_90c4c532-474e-4c0f-b3f1-0610e964bea7.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880088924__73314142-c408-438e-adfe-7597611bb912-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "image": "shopify://shop_images/Tenselcopy.jpg",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Danske materialer",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Hos Sengefabrikken er vi din garanti for kvalitetsmaterialer, vi laver altid dybdegående tests af materialer før de indgår i vores senge. Det kommer blandt andet til udtryk ved vores Trykaflastende topmadras der består af en skumkerne produceret hos vores samarbejdspartner i Tyskland med mere end 70 års erfaring indenfor produktion af skum.<br/><br/>Den trykaflastende skum omkranses af et topmadrasbetræk produceret i Modal tekstil, Modal er en tekstil type produceret på fibre fra bøgetræer og blev opfundet i Japan i 1950’erne, den er særligt velegnet til topmadrasser da den er blød og holdbar, men samtidig kan absorbere 50% mere vand end bomuld og derfor ikke klæber til svedig hud.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "47332bab-afda-433d-a0d0-c74690407c08": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--20177880088924__47332bab-afda-433d-a0d0-c74690407c08-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Koelende-Boxmadras-Sort-90x200-3.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880088924__47332bab-afda-433d-a0d0-c74690407c08-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "image": "shopify://shop_images/2023-10-3015.44.37.jpg",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Komfort i topklasse",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Opskriften til vores trykaflastende skum er baseret på den viskoelastiske skum NASA opfandt i 1960’erne, med det formål at forbedre komfort for piloter og astronauter når de blev udsat for kraftige G-kræfter under opsendelse og landing.<br/><br/>Når man sover på vores trykaflastende skum, så vil man opleve at kroppens tryk distribueres jævnt over hele madrassens overflade. Det mindsker trykpunkter som sikrer en bedste støtte til hele kroppen og er især gavnligt for dig som oplever smerter i led og muskler. En anden stor fordel ved den trykaflastende topmadras, er at den sikrer en neutral rygradsstilling som fremmer en sund søvnposition.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d": {
+      "type": "collection-list",
+      "blocks": {
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/Bed_navigation_card.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken-two",
+            "subheading": "Sengeguide",
+            "title": "Kontinentalsenge",
+            "save_label": "",
+            "button_text": "Læs vores sengeguide",
+            "button_link": "shopify://pages/sengeguide-kontinentalsenge",
+            "text_color": "#2f1300",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "button_text_color": ""
+          }
+        },
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/tromso_kontinental_baltimore_sort_fritlagt_1_1300x_19a3dc3d-b8aa-49e2-9289-a7774f126961.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken-two",
+            "subheading": "Sengeguide",
+            "title": "Elevationsseng",
+            "save_label": "",
+            "button_text": "Læs vores sengeguide",
+            "button_link": "shopify://pages/sengeguide-elevationssenge",
+            "text_color": "#2f1300",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "button_text_color": ""
+          }
+        },
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "image": "shopify://shop_images/trondheim_boxmadras_180x200_2_bf7f5ee8-51e3-4636-bc9c-ea530ec49ab5.jpg",
+            "expand_collection": false,
+            "content_position": "custom-sengefabrikken-two",
+            "subheading": "Sengeguide",
+            "title": "Boxmadrasser",
+            "save_label": "",
+            "button_text": "Læs vores sengeguide",
+            "button_link": "shopify://pages/sengeguide-boxmadras",
+            "text_color": "#2f1300",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-1",
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-2",
+        "template--20149231321436__090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d-collection-3"
+      ],
+      "settings": {
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "image_size": "auto",
+        "show_text_outside": false,
+        "space_items": true,
+        "stack_collections": true,
+        "collections_per_row_desktop": 3,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "button_text": "",
+        "button_link": "",
+        "circle_button_background": "#ffffff",
+        "circle_button_text_color": "#1c1c1c",
+        "label_background": "#c87d0a",
+        "label_color": "#ffffff"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "529b8d49-ac7b-43bb-a34a-3abe0e142071",
+    "58a5c398-fd3c-43ae-ad4d-fdc7dc0bdffa",
+    "cac94294-4ab8-4bd2-93c6-941e63e8ddd5",
+    "1b384e54-dcec-4775-8084-4bd72b8ffa8e",
+    "53dcc0cc-f5da-4aaa-b1fd-1e5576ca12d9",
+    "2e6763ff-da6a-4293-b079-d4d6f7e24948",
+    "73314142-c408-438e-adfe-7597611bb912",
+    "47332bab-afda-433d-a0d0-c74690407c08",
+    "090ea2d5-5fd2-4d1b-9a0a-4a511af0de4d"
+  ]
+}

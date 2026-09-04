@@ -1,0 +1,68 @@
+<style media="screen">
+  #shopify-section-{{ section.id }} {
+    height:
+    {%- case section.settings.size -%}
+      {%- when 'small' -%}
+      0.1rem
+      {%- when 'medium' -%}
+      1.5rem
+      {%- when 'large' -%}
+      3rem
+    {%- endcase -%};
+    background: {{ section.settings.background }};
+  }
+  @media screen and (max-width: 749px) {
+    #shopify-section-{{ section.id }} {
+      height:
+      {%- case section.settings.size_mobile -%}
+        {%- when 'small' -%}
+        0.1rem
+        {%- when 'medium' -%}
+        1.5rem
+        {%- when 'large' -%}
+        3rem
+      {%- endcase -%};
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Spacing",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "radio",
+      "id": "size_mobile",
+      "label": "Spacing size mobile",
+      "default": "medium",
+      "options": [
+      {"value": "small", "label": "Small"},
+      {"value": "medium", "label": "Medium"},
+      {"value": "large", "label": "Large"}
+      ]
+    },
+    {
+      "type": "radio",
+      "id": "size",
+      "label": "Spacing size desktop",
+      "default": "medium",
+      "options": [
+      {"value": "small", "label": "Small"},
+      {"value": "medium", "label": "Medium"},
+      {"value": "large", "label": "Large"}
+      ]
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "t:global.colors.background"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Spacing"
+    }
+  ]
+}
+{% endschema %}

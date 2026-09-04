@@ -1,0 +1,27 @@
+{% case context %}
+  {% when 'menu' %}
+    {% assign limit = 3 %}
+  {% else %}
+    {% assign limit = 2 %}
+{% endcase %}
+
+{% assign promo_collection = collections[collection] %}
+
+{% if promo_collection %}
+  <div class="mega-menu__collection-wrap mega-menu__collection-wrap--{{ context | default: 'menu' }}" 
+    {% unless first %}aria-hidden="true"{% endunless %} data-promo-handle={{ promo_collection.handle | json }}>
+    {% if title != blank %}
+      <h4 class="promo-heading">{{ 'header.general.our_most_popular_products' | t: type: title }}</h4>
+    {% endif %}
+
+    <div class="mega-menu__collection mega-menu__collection--{{ context | default: 'menu' }}" >
+      {% for product in promo_collection.products %}
+        {% if forloop.index > limit %}
+          {% break %}
+        {% endif %}
+  
+        {% render 'product-card-menu', product: product, show_badges: true, show_quick_buy: false, show_secondary_image: false, show_rating: false %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

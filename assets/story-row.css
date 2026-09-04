@@ -1,0 +1,631 @@
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * STORY ROW
+ * ---------------------------------------------------------------------------------------------------------------------
+ *
+ * Styles the modular collection grid: one product per horizontally scrollable row, made of a commercial product card
+ * followed by story cards. Loaded only on collections where the "Slider Style" metafield is on.
+ *
+ * Colour tokens are consumed as RGB triplets, matching snippets/css-variables.liquid:
+ *   --text-primary              ink
+ *   --background-primary        paper
+ *   --theme-background          cream
+ *   --button-background-primary burgundy
+ *   --button-text-primary       text on burgundy
+ *
+ * Note: --border-color is defined as a hex in this theme, not a triplet, so hairlines here derive from --text-primary.
+ */
+
+.story-rows {
+  --story-row-gap: 0.625rem;
+  --story-card-height: 28rem;
+
+  /* Story cards are 4:5 portrait, capped so a narrow screen still shows the next card peeking in */
+  --story-card-width: min(calc(var(--story-card-height) * 0.8), 68vw);
+  --story-card-product-width: 78vw;
+  --story-card-radius: 0.75rem;
+  --story-card-padding: 1.5rem;
+  --story-row-spacing: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--story-row-spacing);
+
+  /**
+   * .collection__main is a grid without an explicit column, so its items size to their content.
+   * Without min-width: 0 the track widens to fit the row and the scroll container never overflows,
+   * which leaves the cards clipped by the page instead of scrollable.
+   */
+  min-width: 0;
+
+  /**
+   * Run the rows off the right edge of the viewport so the frames continue past the screen, which is what tells
+   * the eye there is more to scroll. --distance-to-bleed cannot be used here: its 50% resolves against this
+   * element's containing block, which is already the container width, so it collapses to the gutter. 50vw is
+   * measured against the viewport instead and gives the true distance to the edge.
+   */
+  margin-inline-end: calc(50% - 50vw);
+}
+
+.story-row {
+  display: block;
+  position: relative;
+  min-width: 0;
+  border-radius: var(--story-card-radius);
+  overflow: hidden;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * POINTER
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-row__cursor {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: var(--rounded-full);
+  background: rgb(var(--background-primary));
+  color: rgb(var(--text-primary));
+  box-shadow: 0 4px 16px rgb(var(--text-primary) / 0.22);
+  opacity: 0;
+  scale: 0.7;
+  pointer-events: none;
+  transition: opacity 0.15s ease-out, scale 0.15s ease-out;
+}
+
+.story-row__cursor--back svg {
+  rotate: 180deg;
+}
+
+.story-row--pointing .story-row__cursor {
+  opacity: 1;
+  scale: 1;
+}
+
+/* The arrow stands in for the cursor, but links and buttons keep their own so the row stays obviously clickable */
+.story-row--pointing .story-row__scroll {
+  cursor: none;
+}
+
+.story-row__scroll a,
+.story-row__scroll button {
+  cursor: pointer;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-row__cursor {
+    transition: none;
+  }
+}
+
+/* The whole row is the ribbon: the series colour frames it and names it across the top */
+.story-row--series {
+  background: rgb(var(--story-series-color));
+  padding-block-end: 0.75rem;
+  padding-inline: 0.75rem;
+}
+
+.story-row__series {
+  color: rgb(var(--story-series-text));
+  text-align: center;
+  padding-block: 0.5rem;
+  font-size: var(--text-sm);
+  line-height: 1.2;
+}
+
+.story-row--series .story-row__scroll {
+  scrollbar-color: rgb(var(--story-series-text) / 0.45) rgb(var(--story-series-text) / 0.15);
+  scroll-padding-inline: 0;
+}
+
+.story-row--series .story-row__scroll::-webkit-scrollbar-track {
+  background: rgb(var(--story-series-text) / 0.15);
+}
+
+.story-row--series .story-row__scroll::-webkit-scrollbar-thumb {
+  background: rgb(var(--story-series-text) / 0.45);
+}
+
+.story-row--series .story-row__scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--story-series-text) / 0.7);
+}
+
+.story-row + .story-row {
+  padding-block-start: 0;
+}
+
+.story-row__scroll {
+  display: flex;
+  align-items: stretch;
+  gap: var(--story-row-gap);
+  min-width: 0;
+
+  /* Proximity rather than mandatory: a short drag settles where it lands instead of being pulled to a snap point */
+  scroll-snap-type: x proximity;
+
+  padding-block-start: 0.75rem;
+
+  /* .scroll-area hides the scrollbar, but this row is the only way to reach the rest of the story */
+  padding-block-end: 0.875rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--text-primary) / 0.3) rgb(var(--text-primary) / 0.08);
+}
+
+.story-row__scroll::-webkit-scrollbar {
+  display: block;
+  height: 6px;
+}
+
+.story-row__scroll::-webkit-scrollbar-track {
+  background: rgb(var(--text-primary) / 0.08);
+  border-radius: var(--rounded-full);
+}
+
+.story-row__scroll::-webkit-scrollbar-thumb {
+  background: rgb(var(--text-primary) / 0.3);
+  border-radius: var(--rounded-full);
+}
+
+.story-row__scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--text-primary) / 0.45);
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * STICKY BOTTOM FILTER BUTTON
+ * ---------------------------------------------------------------------------------------------------------------------
+ *
+ * Slider collections set filter_layout to 'drawer', so neither the sidebar nor the horizontal facet bar renders and the
+ * existing facets-drawer becomes available on desktop. The toolbar is reduced to a single floating pill that opens it.
+ *
+ * theme.css pins .collection-toolbar with position: sticky and top: calc(100% - 60px), which only holds while its
+ * container is in view. A fixed pill stays reachable for the whole page. This file loads after theme.css at matching
+ * specificity, so the later rules win without !important, and it only loads where Slider Style is on.
+ */
+
+.collection-toolbar {
+  position: fixed;
+  top: auto;
+  inset-block-start: auto;
+  inset-block-end: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  inset-inline: 0;
+  z-index: 4;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  min-height: 0;
+  margin-inline: auto;
+  border-radius: var(--rounded-full);
+  background-color: rgb(var(--button-background-primary));
+  color: rgb(var(--button-text-primary));
+  box-shadow: 0 6px 24px rgb(var(--text-primary) / 0.28);
+}
+
+.collection-toolbar__button-container {
+  display: flex;
+}
+
+.collection-toolbar__button {
+  color: inherit;
+  white-space: nowrap;
+  padding-block: 0.9375rem;
+  padding-inline: 1.75rem;
+}
+
+/* The layout switch drives <product-list>, which slider collections do not render, and the count needs no pill space */
+.collection-toolbar__layout-switch-list,
+.collection-toolbar__products-count {
+  display: none;
+}
+
+/* The pill floats over the page, so the last row needs room to clear it */
+.story-rows {
+  padding-block-start: 2rem;
+  padding-block-end: 5.5rem;
+}
+
+@media screen and (min-width: 1000px) {
+  .story-rows {
+    padding-block-start: 3rem;
+  }
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * CARD SHELL
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-card {
+  flex: 0 0 auto;
+  width: var(--story-card-width);
+  height: var(--story-card-height);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--story-card-radius);
+  position: relative;
+  color: rgb(var(--text-primary));
+  text-decoration: none;
+}
+
+.story-card__figure {
+  flex: 1 1 auto;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Vector diagrams are rendered without the zoom classes, and must be contained rather than cropped */
+.story-card__image:not(.zoom-image) {
+  object-fit: contain;
+  padding: 1.25rem;
+  background: rgb(var(--theme-background));
+}
+
+.story-card__content {
+  flex: 0 0 auto;
+  padding: var(--story-card-padding);
+}
+
+.story-card .prose > * + * {
+  margin-block-start: 0.5rem;
+}
+
+/**
+ * Story cards carry one idea, so the kicker and heading anchor the top and the body sits at the foot of the card
+ * with the space between them left open. The product card keeps its own compact stack.
+ */
+.story-card:not(.story-card--product) .story-card__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.story-card:not(.story-card--product) .prose {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.story-card:not(.story-card--product) .story-card__body {
+  margin-block-start: auto;
+  padding-block-start: 1.5rem;
+}
+
+.story-card:not(.story-card--product) .prose .h5 {
+  font-size: 1.5rem;
+  line-height: 1.15;
+}
+
+.story-card:not(.story-card--product) .smallcaps {
+  font-size: var(--text-sm);
+}
+
+.story-card__body {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  opacity: 0.72;
+}
+
+.story-card:not(.story-card--product) .story-card__body {
+  font-size: 1rem;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * COLOUR SCHEMES
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-card--cream {
+  background: rgb(var(--theme-background));
+}
+
+.story-card--paper {
+  background: rgb(var(--background-primary));
+  box-shadow: inset 0 0 0 1px rgb(var(--text-primary) / 0.14);
+}
+
+.story-card--burgundy {
+  background: rgb(var(--button-background-primary));
+  color: rgb(var(--button-text-primary));
+}
+
+/* The scheme has to win over the .text-subdued utility applied to the kicker */
+.story-card--burgundy .text-subdued,
+.story-card--burgundy .smallcaps {
+  color: rgb(var(--button-text-primary) / 0.65);
+}
+
+.story-card--burgundy .story-card__body {
+  opacity: 0.8;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * PHOTO OVERLAY
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-card--photo-overlay {
+  background: rgb(var(--theme-background));
+}
+
+.story-card--photo-overlay .content-over-media {
+  height: 100%;
+  --content-over-media-gap: var(--story-card-padding);
+  --content-over-media-content-max-width: 100%;
+  /* Text now sits at both ends of the card, so the scrim has to darken the top as well as the foot */
+  --content-over-media-gradient-overlay: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.6) 0%,
+    rgb(0 0 0 / 0.15) 32%,
+    rgb(0 0 0 / 0.2) 58%,
+    rgb(0 0 0 / 0.8) 100%
+  );
+  color: rgb(255 255 255);
+}
+
+.story-card--photo-overlay .content-over-media > .prose {
+  place-self: stretch;
+  height: 100%;
+}
+
+.story-card--photo-overlay .smallcaps {
+  color: rgb(255 255 255 / 0.78);
+}
+
+.story-card--photo-overlay .story-card__body {
+  opacity: 0.85;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * TYPOGRAPHIC
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-card--typographic .story-card__content {
+  padding: var(--story-card-padding);
+}
+
+.story-card__highlight {
+  font-family: var(--heading-font-family, inherit);
+  font-size: 3.5rem;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+.story-card__list {
+  margin-block-start: auto;
+  padding-block-start: 1rem;
+  font-size: var(--text-xs);
+}
+
+.story-card__list li {
+  padding-block: 0.5rem;
+  border-block-start: 1px solid currentcolor;
+}
+
+.story-card--burgundy .story-card__list li {
+  border-color: rgb(var(--button-text-primary) / 0.22);
+}
+
+.story-card--cream .story-card__list li,
+.story-card--paper .story-card__list li {
+  border-color: rgb(var(--text-primary) / 0.16);
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * BADGES
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+/**
+ * The summary card has no surface of its own: it sits directly on the row's ribbon colour, so it takes that ribbon's
+ * configured text colour. Light ribbons like Platin and Luksus are set to black in theme settings and get it here
+ * too, without a rule per series. Rows with no series fall back to ink on the page background.
+ */
+.story-card--summary {
+  color: rgb(var(--story-series-text, var(--text-primary)));
+}
+
+.story-card--summary .text-subdued,
+.story-card--summary .smallcaps {
+  color: rgb(var(--story-series-text, var(--text-primary)) / 0.7);
+}
+
+.story-card--summary .story-card__body {
+  opacity: 1;
+}
+
+/**
+ * The metaobject's content is a flat run: checkmark, text, <br>. There are no list elements to hang borders on, so
+ * the rhythm comes from line-height. icon.liquid hardcodes stroke="#2F1300" on the checkmark, which disappears on a
+ * dark ribbon — a CSS declaration beats the presentation attribute, so the icon follows the card's own colour.
+ */
+.story-card__checklist {
+  line-height: 2.2;
+}
+
+.story-card__checklist svg {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  margin-inline-end: 0.375rem;
+  vertical-align: -0.1875em;
+}
+
+.story-card__checklist svg path {
+  stroke: currentColor;
+}
+
+.story-card__step {
+  position: absolute;
+  inset-block-start: 0.75rem;
+  inset-inline-end: 0.75rem;
+  z-index: 2;
+  font-size: var(--text-xs);
+  line-height: 1;
+  min-width: 1.5rem;
+  padding-block: 0.375rem;
+  text-align: center;
+  border-radius: var(--rounded-full);
+  background: rgb(var(--button-background-primary));
+  color: rgb(var(--button-text-primary));
+}
+
+.story-card__add {
+  position: absolute;
+  inset-block-end: 0.75rem;
+  inset-inline-end: 0.75rem;
+  z-index: 2;
+  background: rgb(var(--button-background-primary));
+  color: rgb(var(--button-text-primary));
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * PRODUCT CARD
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+.story-card--product {
+  width: var(--story-card-product-width);
+  background: rgb(var(--theme-background));
+  padding: 0.75rem;
+}
+
+/* The figure clips: without it the hover zoom scales the image past the card's rounded corners */
+.story-card--product .story-card__figure {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/**
+ * theme.css hangs .splash-collection off the corner with top: -45px. That cannot survive here, because the scroll
+ * container clips on both axes: overflow-x: auto forces overflow-y to compute as auto. The badge keeps its theme
+ * size and sits inside the image instead, lifted above the hover image, which comes later in the DOM.
+ */
+.story-card--product .splash-collection {
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 3;
+}
+
+.story-card--product .product-card--right-side {
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 3;
+}
+
+.story-card--product .story-card__media {
+  display: block;
+  height: 100%;
+}
+
+.story-card--product .story-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.875rem 0.25rem 0.25rem;
+}
+
+.story-card--product .story-card__title {
+  color: inherit;
+  text-decoration: none;
+}
+
+.story-card--product .story-card__meta {
+  font-size: var(--text-xs);
+}
+
+/* Yotpo injects its stars asynchronously, so the row is reserved to avoid a shift on load */
+.story-card__reviews {
+  display: block;
+  min-height: 1.125rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.story-card--product .story-card__footer {
+  margin-block-start: 0.25rem;
+}
+
+.story-card__image--secondary {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.story-card--product:hover .story-card__image--secondary {
+  opacity: 1;
+}
+
+.story-card--unavailable .story-card__figure {
+  opacity: 0.55;
+}
+
+/**
+ * ---------------------------------------------------------------------------------------------------------------------
+ * RESPONSIVE
+ * ---------------------------------------------------------------------------------------------------------------------
+ */
+
+@media screen and (max-width: 699px) {
+  /* Body copy is not readable while swiping, so story cards lead with kicker and heading only */
+  .story-card:not(.story-card--product) .story-card__body {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .story-rows {
+    --story-card-height: 34rem;
+    --story-card-product-width: 52vw;
+    --story-row-spacing: 1.75rem;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .story-rows {
+    --story-card-height: 39rem;
+    --story-card-product-width: 32.5rem;
+    --story-card-padding: 1.875rem;
+    --story-row-spacing: 2rem;
+  }
+
+  .story-card__highlight {
+    font-size: 4.5rem;
+  }
+
+  .story-card:not(.story-card--product) .prose .h5 {
+    font-size: 1.875rem;
+  }
+
+  .story-card:not(.story-card--product) .story-card__body {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-card__image--secondary {
+    transition: none;
+  }
+}

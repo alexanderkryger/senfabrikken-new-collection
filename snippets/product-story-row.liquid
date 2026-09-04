@@ -1,0 +1,149 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT STORY ROW
+----------------------------------------------------------------------------------------------------------------------
+
+Renders one product as a horizontally scrollable row: the commercial card first, then the story cards that explain
+why the bed is built the way it is.
+
+Cards attached to the product itself come first, because they are what makes this bed different from the next one.
+The collection's default cards fill the remaining slots, so a product with no cards of its own still tells a story.
+A card present in both lists renders once.
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product to render (required)
+* results: the collection the row belongs to, used for the default story cards
+* max_cards: how many story cards to render after the main card. Defaults to 6
+* eager: if set to true, the main image loads eagerly. Only use on the first row of the page
+* cta_text: the call to action label on the main card
+{%- endcomment -%}
+
+{%- liquid
+  assign product_cards = product.metafields.custom.story_cards.value
+  assign default_cards = results.metafields.custom.default_story_cards.value
+  assign max_cards = max_cards | default: 6
+
+  assign cards_rendered = 0
+  assign used_handles = ','
+
+  comment
+    The right-side text metaobject already exists on every product and reads as a summary of the bed, so it opens
+    the story as "Kort om sengen". It predates story_card and has its own fields, so the row renders it directly
+    rather than through story-card.liquid. It counts against max_cards like any other card in the row.
+  endcomment
+  assign summary_card = product.metafields.custom.product_card_h_jre_side_tekst.value
+
+  if summary_card != blank
+    assign cards_rendered = 1
+  endif
+
+  comment
+    The bed series is configured as a ribbon tag in theme settings. Resolving its index gives access to the
+    --ribbon_color_N and --ribbon__text_color_N variables css-variables.liquid already publishes, so the series
+    colour follows the customizer. It sits on the row rather than the card, so the whole slider reads as the ribbon.
+  endcomment
+  assign series_label = ''
+  assign series_index = 0
+
+  for i in (1..7)
+    assign series_key = 'ribbon_text_' | append: i
+    assign series_candidate = settings[series_key]
+
+    if series_candidate != blank and product.tags contains series_candidate
+      assign series_label = series_candidate
+      assign series_index = i
+      break
+    endif
+  endfor
+-%}
+
+{%- capture series_variables -%}
+  {%- if series_index > 0 -%}
+    --story-series-color: var(--ribbon_color_{{ series_index }}); --story-series-text: var(--ribbon__text_color_{{ series_index }});
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture story_cards -%}
+  {%- for entry in product_cards -%}
+    {%- if cards_rendered >= max_cards -%}
+      {%- break -%}
+    {%- endif -%}
+
+    {%- assign handle_key = ',' | append: entry.system.handle | append: ',' -%}
+
+    {%- unless used_handles contains handle_key -%}
+      {%- render 'story-card', card: entry -%}
+
+      {%- liquid
+        assign used_handles = used_handles | append: entry.system.handle | append: ','
+        assign cards_rendered = cards_rendered | plus: 1
+      -%}
+    {%- endunless -%}
+  {%- endfor -%}
+
+  {%- for entry in default_cards -%}
+    {%- if cards_rendered >= max_cards -%}
+      {%- break -%}
+    {%- endif -%}
+
+    {%- assign handle_key = ',' | append: entry.system.handle | append: ',' -%}
+
+    {%- unless used_handles contains handle_key -%}
+      {%- render 'story-card', card: entry -%}
+
+      {%- liquid
+        assign used_handles = used_handles | append: entry.system.handle | append: ','
+        assign cards_rendered = cards_rendered | plus: 1
+      -%}
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<story-row
+  class="story-row {% if series_index > 0 %}story-row--series{% endif %} {% if cards_rendered == 0 %}story-row--solo{% endif %}"
+  {% if series_variables != blank %}style="{{ series_variables | strip }}"{% endif %}
+>
+  {%- if series_label != blank -%}
+    <p class="story-row__series">{{ series_label }}</p>
+  {%- endif -%}
+
+  {%- comment -%}
+    A plain scroll container rather than <scroll-carousel allow-drag>: that component realigns to its stored cell
+    index on mouse release and assumes equal cell widths, so a short drag jumps to the end when the main card is
+    wider than the story cards. Native scroll with snap points behaves correctly and needs no JavaScript.
+  {%- endcomment -%}
+  <div class="story-row__scroll scroll-area">
+    {%- render 'product-card-slider', product: product, eager: eager, cta_text: cta_text -%}
+
+    {%- if summary_card != blank -%}
+      {%- capture checkmark -%}{%- render 'icon' with 'checkmark' -%}{%- endcapture -%}
+
+      <article class="story-card story-card--summary snap-start">
+        <div class="story-card__content">
+          <div class="prose">
+            <p class="smallcaps text-subdued">Kort om sengen</p>
+
+            {%- if summary_card.title.value != blank -%}
+              <p class="h5">{{ summary_card.title.value }}</p>
+            {%- endif -%}
+
+            <div class="story-card__body story-card__checklist">
+              {{- summary_card.content.value | replace: '**', checkmark -}}
+            </div>
+          </div>
+        </div>
+      </article>
+    {%- endif -%}
+
+    {{- story_cards -}}
+  </div>
+
+  <span class="story-row__cursor" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+      <path d="M4 12h15M13 6l6 6-6 6" />
+    </svg>
+  </span>
+</story-row>

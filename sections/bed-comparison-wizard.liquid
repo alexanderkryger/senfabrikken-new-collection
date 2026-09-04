@@ -1,0 +1,1557 @@
+{% comment %}
+  =============================================================================
+  SECTION: bed-comparison-wizard.liquid
+  PURPOSE: Two-step continental bed comparison widget
+    Step 1 — Card-based model selector (up to 3 picks)
+    Step 2 — Full comparison table (reuses old widget block logic)
+  =============================================================================
+{% endcomment %}
+
+{% assign checkbox_icon = '<svg class="icon-check" viewBox="0 0 16 16" fill="currentColor"><path d="M6.0 11.0l-3.5-3.5 1.5-1.5L6.0 8.0l6.0-6.0 1.5 1.5z"/></svg>' %}
+
+<section id="section-{{ section.id }}" class="bcw">
+
+  {%- comment -%}────────────────────────────────────────
+    STEP 0 — Bed Type Selection
+  ────────────────────────────────────────{%- endcomment -%}
+  <div class="bcw__step bcw__step--0" data-step="0" {% if section.settings.skip_step0 %}hidden{% endif %}>
+
+    <div class="bcw__orb bcw__orb--tl"></div>
+    <div class="bcw__orb bcw__orb--br"></div>
+
+    <div class="bcw__step1-inner">
+
+      <h2 class="bcw__heading">
+        {{ section.settings.step0_heading | default: 'Vælg hvilken type seng ønsker I jer?' }}
+      </h2>
+
+      <div class="bcw__divider-wrap">
+        <div class="bcw__divider-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249.4 80.35" aria-hidden="true">
+            <path fill="currentColor" d="M215.82,59.52V7.43c0-4.79-3.89-7.43-8.68-7.43H42.78c-4.79,0-8.68,2.64-8.68,7.43l-.06,36.98c5.83-.47,12.33-.75,19.57-.71v-13.33c0-5.99,4.86-10.84,10.84-10.84l44.72-.04c5.99,0,10.84,4.85,10.84,10.84v21.79c1.45.34,9.79,2.24,9.79,2.24v-23.99c0-5.99,4.85-10.84,10.84-10.84h44.75c5.99,0,10.84,4.86,10.84,10.84v30.88c7.27-.27,13.72-.91,19.57-1.74"/>
+            <path fill="currentColor" d="M0,57.3v3.8s45.34-7.03,124.93,12.84c79.59,19.88,124.47-12.84,124.47-12.84v-3.8s-44.88,22.33-124.47,2.49C45.34,39.94,0,57.3,0,57.3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="bcw__cards bcw__cards--type" role="group" aria-label="Vælg sengtype">
+
+        {%- comment -%} Kontinentalseng {%- endcomment -%}
+        <div class="bcw__card bcw__type-card" data-type="kontinental" role="button" tabindex="0">
+          <div class="bcw__card-img-wrap">
+            {% if section.settings.type_img_kontinental != blank %}
+              <img src="{{ section.settings.type_img_kontinental | image_url: width: 480, height: 360, crop: 'center' }}"
+                   alt="Kontinentalseng" width="480" height="360" loading="lazy" draggable="false">
+            {% else %}
+              <div class="bcw__card-img-placeholder"></div>
+            {% endif %}
+            <div class="bcw__card-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <span class="bcw__card-label">{{ section.settings.type_label_kontinental | default: 'Kontinentalseng' }}</span>
+        </div>
+
+        {%- comment -%} Elevationsseng {%- endcomment -%}
+        <div class="bcw__card bcw__type-card" data-type="elevation"
+             data-url="{{ section.settings.type_url_elevation }}"
+             role="button" tabindex="0">
+          <div class="bcw__card-img-wrap">
+            {% if section.settings.type_img_elevation != blank %}
+              <img src="{{ section.settings.type_img_elevation | image_url: width: 480, height: 360, crop: 'center' }}"
+                   alt="Elevationsseng" width="480" height="360" loading="lazy" draggable="false">
+            {% else %}
+              <div class="bcw__card-img-placeholder"></div>
+            {% endif %}
+            <div class="bcw__card-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <span class="bcw__card-label">{{ section.settings.type_label_elevation | default: 'Elevationsseng' }}</span>
+        </div>
+
+        {%- comment -%} Boxmadras {%- endcomment -%}
+        <div class="bcw__card bcw__type-card" data-type="boxmadras"
+             data-url="{{ section.settings.type_url_boxmadras }}"
+             role="button" tabindex="0">
+          <div class="bcw__card-img-wrap">
+            {% if section.settings.type_img_boxmadras != blank %}
+              <img src="{{ section.settings.type_img_boxmadras | image_url: width: 480, height: 360, crop: 'center' }}"
+                   alt="Boxmadras" width="480" height="360" loading="lazy" draggable="false">
+            {% else %}
+              <div class="bcw__card-img-placeholder"></div>
+            {% endif %}
+            <div class="bcw__card-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+          <span class="bcw__card-label">{{ section.settings.type_label_boxmadras | default: 'Boxmadras' }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="bcw__nav-bar">
+      <div class="bcw__nav-bar-left">
+        <button class="bcw__nav-arrow" aria-label="Tilbage" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="bcw__nav-bar-center">
+        <span class="bcw__nav-title">{{ section.settings.nav_title_0 | default: 'Sengetype' }}</span>
+        <span class="bcw__nav-step">Trin 1 af 3</span>
+      </div>
+      <div class="bcw__nav-bar-right">
+        <button class="bcw__nav-arrow bcw__nav-arrow--next" aria-label="Næste" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>{%- comment -%} /step-0 {%- endcomment -%}
+
+
+  {%- comment -%}────────────────────────────────────────
+    STEP 1 — Model Selection
+  ────────────────────────────────────────{%- endcomment -%}
+  <div class="bcw__step bcw__step--1" data-step="1" {% unless section.settings.skip_step0 %}hidden{% endunless %}>
+
+    <div class="bcw__orb bcw__orb--tl"></div>
+    <div class="bcw__orb bcw__orb--br"></div>
+
+    <div class="bcw__step1-inner">
+
+      <h2 class="bcw__heading">
+        {{ section.settings.step1_heading | default: 'Vælg hvilken type seng ønsker I jer?' }}
+      </h2>
+
+      <div class="bcw__divider-wrap">
+        <div class="bcw__divider-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 249.4 80.35" aria-hidden="true">
+            <path fill="currentColor" d="M215.82,59.52V7.43c0-4.79-3.89-7.43-8.68-7.43H42.78c-4.79,0-8.68,2.64-8.68,7.43l-.06,36.98c5.83-.47,12.33-.75,19.57-.71v-13.33c0-5.99,4.86-10.84,10.84-10.84l44.72-.04c5.99,0,10.84,4.85,10.84,10.84v21.79c1.45.34,9.79,2.24,9.79,2.24v-23.99c0-5.99,4.85-10.84,10.84-10.84h44.75c5.99,0,10.84,4.86,10.84,10.84v30.88c7.27-.27,13.72-.91,19.57-1.74"/>
+            <path fill="currentColor" d="M0,57.3v3.8s45.34-7.03,124.93,12.84c79.59,19.88,124.47-12.84,124.47-12.84v-3.8s-44.88,22.33-124.47,2.49C45.34,39.94,0,57.3,0,57.3"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="bcw__cards" role="group" aria-label="Vælg sengmodeller">
+        {% for i in (1..5) %}
+          {% assign prod_key   = 'product_' | append: i %}
+          {% assign title_key  = 'product_title_' | append: i %}
+          {% assign p          = section.settings[prod_key] %}
+          {% assign override   = section.settings[title_key] %}
+          {% if p != blank %}
+            {% assign title = override | default: p.title %}
+            <div
+              class="bcw__card"
+              data-index="{{ i }}"
+              data-title="{{ title | escape }}"
+              role="checkbox"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <div class="bcw__card-img-wrap">
+                {% if p.featured_image %}
+                  <img
+                    src="{{ p.featured_image | image_url: width: 480, height: 360, crop: 'center' }}"
+                    alt="{{ title | escape }}"
+                    width="480" height="360"
+                    loading="lazy"
+                    draggable="false">
+                {% else %}
+                  <div class="bcw__card-img-placeholder"></div>
+                {% endif %}
+                <div class="bcw__card-check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+              </div>
+              <span class="bcw__card-label">{{ title }}</span>
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="bcw__step1-footer">
+        <p class="bcw__hint" data-hint>Vælg op til 3 modeller</p>
+        <button class="bcw__cta" data-cta disabled>
+          {{ section.settings.cta_label | default: 'Sammenlign valgte' }}
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    {%- comment -%} Bottom nav bar {%- endcomment -%}
+    <div class="bcw__nav-bar">
+      <div class="bcw__nav-bar-left">
+        <button class="bcw__nav-arrow" aria-label="Tilbage"
+          {% if section.settings.skip_step0 %}
+            data-nav-back-url="{{ section.settings.step0_url | default: '/pages/sammenlign-kontinentalsenge' }}"
+          {% else %}
+            data-nav-back-to-0
+          {% endif %}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="bcw__nav-bar-center">
+        <span class="bcw__nav-title">{{ section.settings.nav_title_1 | default: 'Sengemodel' }}</span>
+        <span class="bcw__nav-step">Trin 2 af 3</span>
+      </div>
+      <div class="bcw__nav-bar-right">
+        <button class="bcw__nav-arrow bcw__nav-arrow--next" aria-label="Næste" data-nav-next disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>{%- comment -%} /step-1 {%- endcomment -%}
+
+
+  {%- comment -%}────────────────────────────────────────
+    STEP 2 — Comparison Table
+  ────────────────────────────────────────{%- endcomment -%}
+  <div class="bcw__step bcw__step--2" data-step="2" hidden>
+
+    <div class="bcw__step2-inner">
+
+      <div class="bcw__step2-header">
+        {% if section.settings.heading != blank %}
+          <h2 class="comparison-heading">{{ section.settings.heading }}</h2>
+        {% endif %}
+        <button class="bcw__back-btn" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          Skift modeller
+        </button>
+      </div>
+
+      {%- comment -%} Header cards {%- endcomment -%}
+      <div class="comparison-table">
+        <div class="row row--header">
+          {% for i in (1..5) %}
+            {% assign prod_key  = 'product_' | append: i %}
+            {% assign title_key = 'product_title_' | append: i %}
+            {% assign p         = section.settings[prod_key] %}
+            {% assign override  = section.settings[title_key] %}
+            {% if p != blank %}
+              <div class="cell cell--product product-col product-{{ i }}">
+                {% if section.settings.show_images and p.featured_image %}
+                  <div class="product-thumb">
+                    <img
+                      src="{{ p.featured_image | image_url: width: 360, height: 360, crop: 'center' }}"
+                      alt="{{ override | default: p.title | escape }}"
+                      width="360" height="360" loading="lazy">
+                  </div>
+                {% endif %}
+                <h3 class="product-title">{{ override | default: p.title }}</h3>
+                <div class="product-price">
+                  <span class="current">{{ p.price | money_without_trailing_zeros }}</span>
+                  {% if p.compare_at_price > p.price %}
+                    <span class="compare">{{ p.compare_at_price | money_without_trailing_zeros }}</span>
+                  {% endif %}
+                </div>
+                <a href="{{ p.url }}" class="product-link">Læs mere</a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+
+      {%- comment -%} Per-product bullet blocks {%- endcomment -%}
+      {% for block in section.blocks %}
+        {% if block.type == 'product_bullets' %}
+          <div class="row row--bullets" {{ block.shopify_attributes }}>
+            {% if block.settings.bullets_heading != blank %}
+              <div class="bullets-heading">{{ block.settings.bullets_heading }}</div>
+            {% endif %}
+            {% for i in (1..5) %}
+              {% assign prod_key = 'product_' | append: i %}
+              {% if section.settings[prod_key] != blank %}
+                <div class="cell cell--product product-col product-{{ i }}">
+                  <ul class="product-bullets">
+                    {% for j in (1..3) %}
+                      {% assign bullet_key = 'bullet_product_' | append: i | append: '_' | append: j %}
+                      {% assign bullet = block.settings[bullet_key] %}
+                      {% if bullet != blank %}
+                        <li>{{ bullet | replace: 'xx', checkbox_icon }}</li>
+                      {% endif %}
+                    {% endfor %}
+                  </ul>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      {%- comment -%} Accordion comparison rows {%- endcomment -%}
+      {% assign groups_str = "|" %}
+      {% for block in section.blocks %}
+        {% assign g      = block.settings.group | strip %}
+        {% assign needle = "|" | append: g | append: "|" %}
+        {% unless groups_str contains needle %}
+          {% assign groups_str = groups_str | append: g | append: "|" %}
+        {% endunless %}
+      {% endfor %}
+      {% assign groups_array = groups_str | split: "|" %}
+
+      {% for g in groups_array %}
+        {% if g != blank %}
+          <details class="group-accordion" {% if section.settings.expand_first and forloop.first %}open{% endif %}>
+            <summary class="group-summary">
+              <span class="group-name">{{ g }}</span>
+              <span class="group-toggle"></span>
+            </summary>
+            <div class="group-rows">
+              {% for block in section.blocks %}
+                {% assign bg = block.settings.group | strip | default: "Generelt" %}
+                {% if bg == g %}
+                  <div class="row" {{ block.shopify_attributes }}>
+                    <div class="cell cell--label desktop-only">{{ block.settings.label }}</div>
+                    {% for i in (1..5) %}
+                      {% assign prod_key = 'product_' | append: i %}
+                      {% if section.settings[prod_key] != blank %}
+                        {% assign val_key = 'value_product_' | append: i %}
+                        {% assign img_key = 'image_product_' | append: i %}
+                        {% assign val     = block.settings[val_key] %}
+                        {% assign val_img = block.settings[img_key] %}
+                        <div class="cell cell--product product-col product-{{ i }}" data-label="{{ block.settings.label }}">
+                          <div class="value-wrapper">
+                            {% if val_img != blank %}
+                              <div class="value-image">
+                                <img
+                                  src="{{ val_img | image_url: width: 420, height: 320, crop: 'center' }}"
+                                  alt="{{ block.settings.label | escape }}"
+                                  width="420" height="320" loading="lazy">
+                              </div>
+                            {% endif %}
+                            {% if val != blank %}
+                              <span class="value">{{ val }}</span>
+                            {% else %}
+                              <span class="value value--empty">&mdash;</span>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </details>
+        {% endif %}
+      {% endfor %}
+
+      {%- comment -%} Shared equal bullets {%- endcomment -%}
+      {% for block in section.blocks %}
+        {% if block.type == 'product_bullets_equal' %}
+          <div class="row row--bullets-equal" {{ block.shopify_attributes }}>
+            <div class="cell cell--label">
+              {% if block.settings.equal_bullets_heading != blank %}
+                {{ block.settings.equal_bullets_heading }}
+              {% endif %}
+            </div>
+            <div class="cell cell--equal">
+              <ul class="product-bullets-equal">
+                {% for i in (1..8) %}
+                  {% assign bullet_key = 'equal_bullet_' | append: i %}
+                  {% assign bullet = block.settings[bullet_key] %}
+                  {% if bullet != blank %}
+                    <li>{{ bullet | replace: 'xx', checkbox_icon }}</li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+
+    </div>{%- comment -%} /step2-inner {%- endcomment -%}
+
+    <div class="bcw__nav-bar bcw__nav-bar--step2">
+      <div class="bcw__nav-bar-left">
+        <button class="bcw__nav-arrow" aria-label="Tilbage" data-back>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+      <div class="bcw__nav-bar-center">
+        <span class="bcw__nav-title">{{ section.settings.nav_title_2 | default: 'Sammenlign' }}</span>
+        <span class="bcw__nav-step">Trin 3 af 3</span>
+      </div>
+      <div class="bcw__nav-bar-right">
+        <button class="bcw__nav-arrow bcw__nav-arrow--next" aria-label="Næste" disabled>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14">
+            <polyline points="9 6 15 12 9 18"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>{%- comment -%} /step-2 {%- endcomment -%}
+
+</section>
+
+
+{%- comment -%}══════════════════════════════════════════════════════════════
+  STYLES
+══════════════════════════════════════════════════════════════{%- endcomment -%}
+<style>
+/* ─── Design tokens ─────────────────────────────── */
+#section-{{ section.id }} {
+  --bcw-bg:          #1e0b03;
+  --bcw-bg-card:     rgba(255,220,180,0.07);
+  --bcw-bg-card-sel: rgba(232, 115, 74, 0.18);
+  --bcw-border:      rgba(255,200,140,0.14);
+  --bcw-border-sel:  #E8734A;
+  --bcw-accent:      #E8734A;
+  --bcw-accent-dim:  rgba(232, 115, 74, 0.18);
+  --bcw-text:        #f5ede3;
+  --bcw-text-muted:  rgba(245,237,227,0.5);
+  --bcw-nav-bg:      rgba(18, 6, 1, 0.88);
+  --bcw-radius-card: 18px;
+  --bcw-radius-btn:  50px;
+  --bcw-font:        'Vicky', 'Georgia', serif;
+
+  /* Step 2 — dark warm (matches Step 1) */
+  --cmp-bg:          rgba(255,200,140,0.08);
+  --cmp-header-bg:   rgba(255,200,140,0.08);
+  --cmp-border:      rgba(255,200,140,0.14);
+  --cmp-accent:      #f09340;
+  --cmp-text:        #f5ede3;
+}
+
+/* ─── Section wrapper ───────────────────────────── */
+#section-{{ section.id }} {
+  margin: 0;
+  font-family: var(--bcw-font);
+}
+
+/* ─── Steps ─────────────────────────────────────── */
+#section-{{ section.id }} .bcw__step {
+  position: relative;
+  overflow: hidden;
+}
+
+#section-{{ section.id }} .bcw__step--0,
+#section-{{ section.id }} .bcw__step--1 {
+  background: radial-gradient(ellipse at 50% 10%, #7a2d08 0%, #3d1204 35%, #1e0b03 70%);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 20px 120px;
+}
+
+#section-{{ section.id }} .bcw__step--2 {
+  background: radial-gradient(ellipse at 50% 0%, #6a2506 0%, #3a1003 40%, #1e0b03 80%);
+  padding: 40px 0 80px;
+}
+
+/* ─── Ambient orbs ───────────────────────────────── */
+#section-{{ section.id }} .bcw__orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+#section-{{ section.id }} .bcw__orb--tl {
+  width: 420px; height: 420px;
+  top: -80px; left: -100px;
+  background: radial-gradient(circle, rgba(200,80,20,0.38) 0%, transparent 70%);
+}
+#section-{{ section.id }} .bcw__orb--br {
+  width: 360px; height: 360px;
+  bottom: 100px; right: -60px;
+  background: radial-gradient(circle, rgba(160,50,10,0.28) 0%, transparent 70%);
+}
+
+/* ─── Step 1 inner layout ────────────────────────── */
+#section-{{ section.id }} .bcw__step1-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 64px;
+}
+
+/* ─── Heading ────────────────────────────────────── */
+#section-{{ section.id }} .bcw__heading {
+  color: var(--bcw-text);
+  font-size: clamp(1.35rem, 3vw, 2rem);
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.01em;
+  margin: 0 0 28px;
+  line-height: 1.35;
+}
+
+/* ─── Divider bed icon ────────────────────────────── */
+#section-{{ section.id }} .bcw__divider-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 36px;
+  position: relative;
+}
+#section-{{ section.id }} .bcw__divider-wrap::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(240,147,64,0.2) 20%, transparent 40%, transparent 60%, rgba(240,147,64,0.2) 80%, transparent 100%);
+}
+#section-{{ section.id }} .bcw__divider-icon {
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+  background: transparent;
+}
+#section-{{ section.id }} .bcw__divider-icon svg {
+  display: block;
+  width: 72px;
+  height: auto;
+  color: #FEFDF9;
+  filter: drop-shadow(0 0 8px rgba(101,8,34,0.4));
+}
+
+/* ─── Cards grid ─────────────────────────────────── */
+#section-{{ section.id }} .bcw__cards {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+/* ─── Card ───────────────────────────────────────── */
+#section-{{ section.id }} .bcw__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  width: calc(20% - 14px);
+  min-width: 160px;
+  max-width: 210px;
+  transition: transform 0.2s ease;
+  outline: none;
+}
+#section-{{ section.id }} .bcw__card:focus-visible {
+  outline: 2px solid var(--bcw-accent);
+  outline-offset: 4px;
+  border-radius: var(--bcw-radius-card);
+}
+#section-{{ section.id }} .bcw__card:hover {
+  transform: translateY(-3px);
+}
+#section-{{ section.id }} .bcw__card.is-disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+/* Shake animation for when limit is hit */
+@keyframes bcw-shake {
+  0%,100% { transform: translateX(0); }
+  20%      { transform: translateX(-6px); }
+  40%      { transform: translateX(6px); }
+  60%      { transform: translateX(-4px); }
+  80%      { transform: translateX(4px); }
+}
+#section-{{ section.id }} .bcw__card.is-shaking {
+  animation: bcw-shake 0.35s ease;
+}
+
+/* ─── Card image wrap ────────────────────────────── */
+#section-{{ section.id }} .bcw__card-img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: var(--bcw-radius-card);
+  overflow: hidden;
+  border: 2px solid var(--bcw-border);
+  background: var(--bcw-bg-card);
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+#section-{{ section.id }} .bcw__card.is-selected .bcw__card-img-wrap {
+  border-color: var(--bcw-border-sel);
+  background: var(--bcw-bg-card-sel);
+  box-shadow: 0 0 0 1px var(--bcw-border-sel), 0 4px 24px rgba(232,115,74,0.18);
+}
+#section-{{ section.id }} .bcw__card-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+#section-{{ section.id }} .bcw__card:hover .bcw__card-img-wrap img {
+  transform: scale(1.04);
+}
+#section-{{ section.id }} .bcw__card-img-placeholder {
+  width: 100%; height: 100%;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ─── Card checkmark button ──────────────────────── */
+#section-{{ section.id }} .bcw__card-check {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.5);
+  background: rgba(20, 28, 45, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+#section-{{ section.id }} .bcw__card-check svg {
+  width: 14px; height: 14px;
+  stroke: rgba(255,255,255,0.6);
+  transition: stroke 0.2s ease, opacity 0.2s ease;
+  opacity: 0.5;
+}
+#section-{{ section.id }} .bcw__card.is-selected .bcw__card-check {
+  background: var(--bcw-accent);
+  border-color: var(--bcw-accent);
+  transform: translateX(-50%) scale(1.1);
+}
+#section-{{ section.id }} .bcw__card.is-selected .bcw__card-check svg {
+  stroke: #fff;
+  opacity: 1;
+}
+
+/* ─── Card label ─────────────────────────────────── */
+#section-{{ section.id }} .bcw__card-label {
+  color: var(--bcw-text);
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+#section-{{ section.id }} .bcw__card.is-selected .bcw__card-label {
+  color: var(--bcw-accent);
+  font-weight: 600;
+}
+
+/* ─── Step 1 footer ──────────────────────────────── */
+#section-{{ section.id }} .bcw__step1-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+#section-{{ section.id }} .bcw__hint {
+  color: var(--bcw-text-muted);
+  font-size: 0.85rem;
+  margin: 0;
+  transition: color 0.3s;
+}
+#section-{{ section.id }} .bcw__hint.is-limit {
+  color: var(--bcw-accent);
+}
+
+/* ─── CTA button ─────────────────────────────────── */
+#section-{{ section.id }} .bcw__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: var(--bcw-radius-btn);
+  border: none;
+  background: var(--bcw-accent);
+  color: #fff;
+  font-family: var(--bcw-font);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(232, 115, 74, 0.35);
+}
+#section-{{ section.id }} .bcw__cta:hover:not(:disabled) {
+  background: #d4622e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(232, 115, 74, 0.5);
+}
+#section-{{ section.id }} .bcw__cta:disabled {
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.3);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+/* ─── Bottom nav bar ─────────────────────────────── */
+#section-{{ section.id }} .bcw__nav-bar {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--bcw-nav-bg);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px;
+  padding: 10px 14px;
+  min-width: 300px;
+  max-width: calc(100vw - 40px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+#section-{{ section.id }} .bcw__nav-bar-left,
+#section-{{ section.id }} .bcw__nav-bar-right {
+  display: flex;
+  align-items: center;
+}
+#section-{{ section.id }} .bcw__nav-bar-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1.25;
+  padding: 0 16px;
+}
+#section-{{ section.id }} .bcw__nav-title {
+  color: var(--bcw-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+#section-{{ section.id }} .bcw__nav-step {
+  color: var(--bcw-text-muted);
+  font-size: 0.72rem;
+}
+#section-{{ section.id }} .bcw__nav-arrow {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: var(--bcw-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+#section-{{ section.id }} .bcw__nav-arrow:hover:not(:disabled) {
+  background: rgba(255,255,255,0.15);
+}
+#section-{{ section.id }} .bcw__nav-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+#section-{{ section.id }} .bcw__nav-arrow--next:not(:disabled) {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* ─── Step 2 layout ──────────────────────────────── */
+#section-{{ section.id }} .bcw__step2-inner {
+  max-width: 1260px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+#section-{{ section.id }} .bcw__step2-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+#section-{{ section.id }} .comparison-heading {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--bcw-text);
+}
+#section-{{ section.id }} .bcw__back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,200,140,0.25);
+  background: rgba(255,200,140,0.07);
+  color: var(--bcw-text-muted);
+  font-family: var(--bcw-font);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+#section-{{ section.id }} .bcw__back-btn:hover {
+  background: rgba(255,200,140,0.13);
+  border-color: rgba(255,200,140,0.4);
+}
+
+/* ─── Comparison table (reused + adapted) ────────── */
+#section-{{ section.id }} .comparison-table {
+  overflow: hidden;
+  background: var(--cmp-header-bg);
+  border-radius: 0 0 25px 25px;
+  margin-bottom: 2rem;
+}
+#section-{{ section.id }} .row {
+  display: flex;
+  border-bottom: 1px solid var(--cmp-border);
+}
+#section-{{ section.id }} .row:last-child { border-bottom: 0; }
+#section-{{ section.id }} .cell {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#section-{{ section.id }} .cell--label {
+  flex: 0 0 200px;
+  justify-content: flex-start;
+  text-align: left;
+  font-weight: 400;
+  color: var(--cmp-text);
+}
+#section-{{ section.id }} .cell--product {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  background: transparent;
+}
+#section-{{ section.id }} .cell--product.is-visible {
+  display: flex;
+}
+#section-{{ section.id }} .row--header {
+  background: rgba(255,200,140,0.07);
+  padding: 30px 20px;
+  border-radius: 25px;
+  border: 1px solid rgba(255,200,140,0.1);
+}
+#section-{{ section.id }} .product-thumb {
+  width: 210px; height: 160px;
+  margin: 0 auto 10px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+#section-{{ section.id }} .product-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+#section-{{ section.id }} .product-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+  color: var(--cmp-text);
+}
+#section-{{ section.id }} .product-price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 700;
+  color: var(--cmp-accent);
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+#section-{{ section.id }} .product-price .compare {
+  margin: 4px 0 20px;
+  font-size: .9rem;
+  font-weight: 400;
+  color: #999;
+  text-decoration: line-through;
+}
+#section-{{ section.id }} .product-link {
+  margin-top: 4px;
+  font-size: .9rem;
+  text-decoration: underline;
+  color: rgba(245,237,227,0.65);
+}
+
+/* Bullets rows */
+#section-{{ section.id }} .row--bullets {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--cmp-border);
+  padding: 22px 0;
+}
+#section-{{ section.id }} .row--bullets .bullets-heading {
+  flex: 0 0 200px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: left;
+}
+#section-{{ section.id }} .row--bullets .cell--product {
+  flex: 1;
+  display: none;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+#section-{{ section.id }} .row--bullets .cell--product.is-visible { display: flex; }
+#section-{{ section.id }} .product-bullets {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+#section-{{ section.id }} .product-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: .95rem;
+  line-height: 1.45;
+}
+#section-{{ section.id }} .product-bullets li svg {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  color: var(--cmp-accent);
+}
+
+/* Accordion groups */
+#section-{{ section.id }} .group-accordion { border-top: 1px solid var(--cmp-border); }
+#section-{{ section.id }} .group-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 14px 0;
+  font-weight: 700;
+  color: var(--cmp-text);
+}
+#section-{{ section.id }} .group-toggle {
+  width: 16px; height: 16px;
+  position: relative;
+  flex-shrink: 0;
+}
+#section-{{ section.id }} .group-toggle::before,
+#section-{{ section.id }} .group-toggle::after {
+  content: "";
+  position: absolute;
+  background: rgba(245,237,227,0.7);
+  transition: .2s;
+}
+#section-{{ section.id }} .group-toggle::before { top: 7px; left: 0; right: 0; height: 2px; }
+#section-{{ section.id }} .group-toggle::after  { left: 7px; top: 0; bottom: 0; width: 2px; }
+#section-{{ section.id }} .group-accordion[open] .group-toggle::after { transform: scaleY(0); }
+#section-{{ section.id }} .value-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+#section-{{ section.id }} .value-image img {
+  max-width: 180px;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+@media (max-width: 600px) {
+  #section-{{ section.id }} .value-image img {
+    max-width: 160px;
+    }
+  }
+#section-{{ section.id }} .value { color: var(--cmp-text); }
+#section-{{ section.id }} .value--empty { color: rgba(245,237,227,0.3); }
+
+/* Equal bullets row */
+#section-{{ section.id }} .row--bullets-equal {
+  display: flex;
+  align-items: flex-start;
+  border-top: 1px solid var(--cmp-border);
+  padding: 22px 0;
+  gap: 30px;
+}
+#section-{{ section.id }} .row--bullets-equal .cell--label {
+  flex: 0 0 250px;
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cmp-text);
+  text-align: left;
+  white-space: nowrap;
+}
+#section-{{ section.id }} .row--bullets-equal .cell--equal {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+}
+#section-{{ section.id }} .product-bullets-equal {
+  list-style: none;
+  margin: 0; padding: 0;
+}
+#section-{{ section.id }} .product-bullets-equal li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: .95rem;
+  line-height: 1.45;
+  color: var(--cmp-text);
+}
+#section-{{ section.id }} .product-bullets-equal li svg {
+  width: 16px; height: 16px;
+  margin-right: 8px;
+  color: var(--cmp-accent);
+  fill: var(--cmp-accent);
+}
+
+/* ─── Type cards (Step 0) — 3 columns, wider ────── */
+#section-{{ section.id }} .bcw__cards--type {
+  max-width: 860px;
+  justify-content: center;
+}
+#section-{{ section.id }} .bcw__type-card {
+  width: calc(33.333% - 12px);
+  min-width: 180px;
+  max-width: 260px;
+  cursor: pointer;
+}
+#section-{{ section.id }} .bcw__type-card .bcw__card-check {
+  /* Type cards: single-select feel — always show check dimly */
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  #section-{{ section.id }} .bcw__type-card {
+    width: calc(100% - 0px);
+    max-width: 320px;
+  }
+  #section-{{ section.id }} .bcw__cards--type {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ─── All steps: pad bottom so content clears nav bar ── */
+#section-{{ section.id }} .bcw__step--0,
+#section-{{ section.id }} .bcw__step--1 {
+  padding-bottom: 120px;
+}
+#section-{{ section.id }} .bcw__step--2 {
+  padding-bottom: 120px;
+}
+
+
+@media (max-width: 900px) {
+  #section-{{ section.id }} .bcw__cards { gap: 12px; }
+  #section-{{ section.id }} .bcw__card {
+    width: calc(33.333% - 10px);
+    min-width: 130px;
+  }
+}
+@media (max-width: 600px) {
+  #section-{{ section.id }} .bcw__step--1 { padding-bottom: 110px; }
+  #section-{{ section.id }} .bcw__card {
+    width: calc(50% - 8px);
+    min-width: 0;
+    max-width: none;
+  }
+  #section-{{ section.id }} .bcw__step1-inner { padding-top: 40px; }
+  #section-{{ section.id }} .row--header {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2px;
+    padding: 2px;
+  }
+  #section-{{ section.id }} .product-thumb { width: 140px; height: 140px; }
+  #section-{{ section.id }} .row, #section-{{ section.id }} .cell { padding: 8px 4px; }
+  #section-{{ section.id }} .cell--label { display: none !important; }
+  #section-{{ section.id }} .row--bullets {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  #section-{{ section.id }} .row--bullets .bullets-heading { grid-column: 1/-1; margin-bottom: 6px; }
+  #section-{{ section.id }} .row--bullets-equal { flex-direction: column; gap: 8px; }
+  #section-{{ section.id }} .row--bullets-equal .cell--label { flex: 0 0 auto; white-space: normal; }
+  #section-{{ section.id }} .bcw__step2-header { flex-direction: column; align-items: flex-start; }
+  #section-{{ section.id }} .comparison-heading { font-size: 1.5rem; }
+}
+@media (max-width: 400px) {
+  #section-{{ section.id }} .bcw__card { width: calc(50% - 6px); }
+  #section-{{ section.id }} .bcw__nav-bar { min-width: 0; width: calc(100vw - 32px); }
+}
+</style>
+
+
+{%- comment -%}══════════════════════════════════════════════════════════════
+  JAVASCRIPT
+══════════════════════════════════════════════════════════════{%- endcomment -%}
+<script>
+(function () {
+  'use strict';
+
+  var root       = document.getElementById('section-{{ section.id }}');
+  if (!root) return;
+
+  /* ── DOM references ─────────────────────────────── */
+  var step0      = root.querySelector('[data-step="0"]');
+  var step1      = root.querySelector('[data-step="1"]');
+  var step2      = root.querySelector('[data-step="2"]');
+
+  var typeCards  = Array.from(root.querySelectorAll('.bcw__type-card'));
+  var cards      = Array.from(root.querySelectorAll('.bcw__card:not(.bcw__type-card)'));
+  var ctaBtn     = root.querySelector('[data-cta]');
+  var hintEl     = root.querySelector('[data-hint]');
+  var navNext    = root.querySelector('[data-nav-next]');
+  var backBtns   = Array.from(root.querySelectorAll('[data-back]'));
+  var navBackTo0 = root.querySelector('[data-nav-back-to-0]');
+
+  var BREAKPOINT = 768;
+
+  function getMaxSelect() {
+    return window.innerWidth < BREAKPOINT ? 2 : 3;
+  }
+
+  var selectedOrder = [];
+
+  /* ── Step visibility ─────────────────────────────── */
+  function showStep(n) {
+    [step0, step1, step2].forEach(function (s, i) {
+      if (s) s.hidden = (i !== n);
+    });
+    window.scrollTo({ top: root.offsetTop - 20, behavior: 'smooth' });
+  }
+
+  /* ── Type card selection (Step 0) ───────────────── */
+  typeCards.forEach(function (card) {
+    function activate() {
+      var type = card.getAttribute('data-type');
+      var url  = card.getAttribute('data-url');
+
+      /* Highlight selected card briefly */
+      typeCards.forEach(function (c) { c.classList.remove('is-selected'); });
+      card.classList.add('is-selected');
+
+      setTimeout(function () {
+        if (type === 'kontinental') {
+          /* Go to model selection */
+          showStep(1);
+        } else if (url && url !== '') {
+          /* Navigate to configured URL */
+          window.location.href = url;
+        } else {
+          /* Fallback: no URL configured — do nothing / show hint */
+          card.classList.remove('is-selected');
+        }
+      }, 220);
+    }
+
+    card.addEventListener('click', activate);
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
+  });
+
+  /* ── Model card selection (Step 1) ──────────────── */
+  function updateHint() {
+    var max = getMaxSelect();
+    var n   = selectedOrder.length;
+    if (n === 0) {
+      hintEl.textContent = 'Vælg op til ' + max + ' modeller';
+      hintEl.classList.remove('is-limit');
+    } else if (n >= max) {
+      hintEl.textContent = 'Maksimalt ' + max + ' modeller valgt';
+      hintEl.classList.add('is-limit');
+    } else {
+      hintEl.textContent = n + ' valgt — vælg op til ' + (max - n) + ' mere';
+      hintEl.classList.remove('is-limit');
+    }
+  }
+
+  function enforceLimit() {
+    /* If screen shrinks to mobile while 3 are selected, deselect the last one */
+    var max = getMaxSelect();
+    while (selectedOrder.length > max) {
+      var removedIdx = selectedOrder.pop();
+      var removedCard = root.querySelector('.bcw__card[data-index="' + removedIdx + '"]');
+      if (removedCard) {
+        removedCard.classList.remove('is-selected');
+        removedCard.setAttribute('aria-checked', 'false');
+      }
+    }
+    updateHint();
+    updateCTA();
+  }
+
+  function updateCTA() {
+    var hasSelection = selectedOrder.length > 0;
+    if (ctaBtn)  ctaBtn.disabled  = !hasSelection;
+    if (navNext) navNext.disabled = !hasSelection;
+  }
+
+  function toggleCard(card) {
+    var idx = card.getAttribute('data-index');
+    var pos = selectedOrder.indexOf(idx);
+
+    if (pos !== -1) {
+      selectedOrder.splice(pos, 1);
+      card.classList.remove('is-selected');
+      card.setAttribute('aria-checked', 'false');
+    } else {
+      if (selectedOrder.length >= getMaxSelect()) {
+        cards.forEach(function (c) {
+          if (!c.classList.contains('is-selected')) {
+            c.classList.remove('is-shaking');
+            void c.offsetWidth;
+            c.classList.add('is-shaking');
+            c.addEventListener('animationend', function () {
+              c.classList.remove('is-shaking');
+            }, { once: true });
+          }
+        });
+        return;
+      }
+      selectedOrder.push(idx);
+      card.classList.add('is-selected');
+      card.setAttribute('aria-checked', 'true');
+    }
+
+    updateHint();
+    updateCTA();
+  }
+
+  /* ── Apply visibility to comparison columns ──────── */
+  function applyComparisonVisibility() {
+    root.querySelectorAll('.cell--product').forEach(function (c) {
+      c.classList.remove('is-visible');
+    });
+    selectedOrder.forEach(function (idx, position) {
+      root.querySelectorAll('.product-' + idx).forEach(function (c) {
+        c.classList.add('is-visible');
+        c.style.order = position;
+      });
+    });
+  }
+
+  /* ── Model card events ───────────────────────────── */
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () { toggleCard(card); });
+    card.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(card); }
+    });
+  });
+
+  /* ── CTA / nav transitions ───────────────────────── */
+  if (ctaBtn) {
+    ctaBtn.addEventListener('click', function () {
+      if (selectedOrder.length === 0) return;
+      applyComparisonVisibility();
+      showStep(2);
+    });
+  }
+  if (navNext) {
+    navNext.addEventListener('click', function () {
+      if (selectedOrder.length === 0) return;
+      applyComparisonVisibility();
+      showStep(2);
+    });
+  }
+  backBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () { showStep(1); });
+  });
+  if (navBackTo0) {
+    /* Step 1 back arrow → Step 0 (same page) */
+    navBackTo0.addEventListener('click', function () { showStep(0); });
+  }
+
+  /* Step 1 back arrow → external URL (when skip_step0 is enabled) */
+  var navBackUrl = root.querySelector('[data-nav-back-url]');
+  if (navBackUrl) {
+    navBackUrl.addEventListener('click', function () {
+      window.location.href = navBackUrl.getAttribute('data-nav-back-url');
+    });
+  }
+
+  /* ── Enforce limit on viewport resize ───────────── */
+  var resizeTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(enforceLimit, 150);
+  });
+
+  /* ── Accordion: safety open on expand_first ──────── */
+  {% if section.settings.expand_first %}
+  var firstAcc = root.querySelector('.group-accordion');
+  if (firstAcc && !firstAcc.hasAttribute('open')) {
+    firstAcc.setAttribute('open', 'open');
+  }
+  {% endif %}
+
+  /* ── Initial state ───────────────────────────────── */
+  updateHint();
+  updateCTA();
+
+})();
+</script>
+
+
+{%- comment -%}══════════════════════════════════════════════════════════════
+  SCHEMA
+══════════════════════════════════════════════════════════════{%- endcomment -%}
+{% schema %}
+{
+  "name": "Bed Comparison Wizard",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Trin 1 — Sengetypevalg"
+    },
+    {
+      "type": "checkbox",
+      "id": "skip_step0",
+      "label": "Spring sengetypevalg over",
+      "info": "Aktiver på Elevationsseng- og Boxmadras-sider så widgetten starter direkte ved modelvalg",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "step0_url",
+      "label": "Link til sengetypevalg (trin 1)",
+      "info": "Bruges som 'tilbage'-link på Elevation/Boxmadras-sider. Standard: /pages/sammenlign-kontinentalsenge"
+    },
+    {
+      "type": "text",
+      "id": "step0_heading",
+      "label": "Overskrift (trin 1)",
+      "default": "Vælg hvilken type seng ønsker I jer?"
+    },
+    {
+      "type": "header",
+      "content": "Kontinentalseng"
+    },
+    {
+      "type": "image_picker",
+      "id": "type_img_kontinental",
+      "label": "Billede — Kontinentalseng"
+    },
+    {
+      "type": "text",
+      "id": "type_label_kontinental",
+      "label": "Navn — Kontinentalseng",
+      "default": "Kontinentalseng"
+    },
+    {
+      "type": "header",
+      "content": "Elevationsseng"
+    },
+    {
+      "type": "image_picker",
+      "id": "type_img_elevation",
+      "label": "Billede — Elevationsseng"
+    },
+    {
+      "type": "text",
+      "id": "type_label_elevation",
+      "label": "Navn — Elevationsseng",
+      "default": "Elevationsseng"
+    },
+    {
+      "type": "url",
+      "id": "type_url_elevation",
+      "label": "Link — Elevationsseng",
+      "info": "Brugeren sendes hertil ved klik"
+    },
+    {
+      "type": "header",
+      "content": "Boxmadras"
+    },
+    {
+      "type": "image_picker",
+      "id": "type_img_boxmadras",
+      "label": "Billede — Boxmadras"
+    },
+    {
+      "type": "text",
+      "id": "type_label_boxmadras",
+      "label": "Navn — Boxmadras",
+      "default": "Boxmadras"
+    },
+    {
+      "type": "url",
+      "id": "type_url_boxmadras",
+      "label": "Link — Boxmadras",
+      "info": "Brugeren sendes hertil ved klik"
+    },
+    {
+      "type": "header",
+      "content": "Trin 2 — Modelvalg (Kontinentalseng)"
+    },
+    {
+      "type": "text",
+      "id": "step1_heading",
+      "label": "Overskrift (trin 1)",
+      "default": "Vælg hvilken type seng ønsker I jer?"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Knaptekst (fortsæt til sammenligning)",
+      "default": "Sammenlign valgte"
+    },
+    {
+      "type": "text",
+      "id": "nav_title_0",
+      "label": "Navigationsbar titel — Trin 1",
+      "default": "Sengetype"
+    },
+    {
+      "type": "text",
+      "id": "nav_title_1",
+      "label": "Navigationsbar titel — Trin 2",
+      "default": "Sengemodel"
+    },
+    {
+      "type": "text",
+      "id": "nav_title_2",
+      "label": "Navigationsbar titel — Trin 3",
+      "default": "Sammenlign"
+    },
+    {
+      "type": "header",
+      "content": "Trin 3 — Sammenligning"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Overskrift (trin 2)",
+      "default": "Sammenlign kontinentalsenge"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_images",
+      "label": "Vis produktbilleder i sammenligningen",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "expand_first",
+      "label": "Åbn første accordion-gruppe som standard",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Modeller (op til 5)"
+    },
+    { "type": "product", "id": "product_1", "label": "Model 1" },
+    { "type": "text",    "id": "product_title_1", "label": "Model 1 — navn override" },
+    { "type": "product", "id": "product_2", "label": "Model 2" },
+    { "type": "text",    "id": "product_title_2", "label": "Model 2 — navn override" },
+    { "type": "product", "id": "product_3", "label": "Model 3" },
+    { "type": "text",    "id": "product_title_3", "label": "Model 3 — navn override" },
+    { "type": "product", "id": "product_4", "label": "Model 4" },
+    { "type": "text",    "id": "product_title_4", "label": "Model 4 — navn override" },
+    { "type": "product", "id": "product_5", "label": "Model 5" },
+    { "type": "text",    "id": "product_title_5", "label": "Model 5 — navn override" }
+  ],
+  "blocks": [
+    {
+      "type": "comparison_row",
+      "name": "Sammenlign-række",
+      "settings": [
+        { "type": "text", "id": "group",  "label": "Gruppe (accordion)", "info": "Lad tom for 'Generelt'" },
+        { "type": "text", "id": "label",  "label": "Række-label", "default": "Feature" },
+
+        { "type": "image_picker", "id": "image_product_1", "label": "Billede — Model 1" },
+        { "type": "text",         "id": "value_product_1", "label": "Værdi — Model 1" },
+
+        { "type": "image_picker", "id": "image_product_2", "label": "Billede — Model 2" },
+        { "type": "text",         "id": "value_product_2", "label": "Værdi — Model 2" },
+
+        { "type": "image_picker", "id": "image_product_3", "label": "Billede — Model 3" },
+        { "type": "text",         "id": "value_product_3", "label": "Værdi — Model 3" },
+
+        { "type": "image_picker", "id": "image_product_4", "label": "Billede — Model 4" },
+        { "type": "text",         "id": "value_product_4", "label": "Værdi — Model 4" },
+
+        { "type": "image_picker", "id": "image_product_5", "label": "Billede — Model 5" },
+        { "type": "text",         "id": "value_product_5", "label": "Værdi — Model 5" }
+      ]
+    },
+    {
+      "type": "product_bullets",
+      "name": "Produkt overblik",
+      "settings": [
+        { "type": "text", "id": "bullets_heading", "label": "Overskrift", "default": "Vi fremhæver" },
+
+        { "type": "text", "id": "bullet_product_1_1", "label": "Bullet 1 — Model 1" },
+        { "type": "text", "id": "bullet_product_1_2", "label": "Bullet 2 — Model 1" },
+        { "type": "text", "id": "bullet_product_1_3", "label": "Bullet 3 — Model 1" },
+
+        { "type": "text", "id": "bullet_product_2_1", "label": "Bullet 1 — Model 2" },
+        { "type": "text", "id": "bullet_product_2_2", "label": "Bullet 2 — Model 2" },
+        { "type": "text", "id": "bullet_product_2_3", "label": "Bullet 3 — Model 2" },
+
+        { "type": "text", "id": "bullet_product_3_1", "label": "Bullet 1 — Model 3" },
+        { "type": "text", "id": "bullet_product_3_2", "label": "Bullet 2 — Model 3" },
+        { "type": "text", "id": "bullet_product_3_3", "label": "Bullet 3 — Model 3" },
+
+        { "type": "text", "id": "bullet_product_4_1", "label": "Bullet 1 — Model 4" },
+        { "type": "text", "id": "bullet_product_4_2", "label": "Bullet 2 — Model 4" },
+        { "type": "text", "id": "bullet_product_4_3", "label": "Bullet 3 — Model 4" },
+
+        { "type": "text", "id": "bullet_product_5_1", "label": "Bullet 1 — Model 5" },
+        { "type": "text", "id": "bullet_product_5_2", "label": "Bullet 2 — Model 5" },
+        { "type": "text", "id": "bullet_product_5_3", "label": "Bullet 3 — Model 5" }
+      ]
+    },
+    {
+      "type": "product_bullets_equal",
+      "name": "Fælles bullets",
+      "settings": [
+        { "type": "text", "id": "equal_bullets_heading", "label": "Overskrift", "default": "Det har alle modellerne til fælles" },
+        { "type": "text", "id": "equal_bullet_1", "label": "Bullet 1" },
+        { "type": "text", "id": "equal_bullet_2", "label": "Bullet 2" },
+        { "type": "text", "id": "equal_bullet_3", "label": "Bullet 3" },
+        { "type": "text", "id": "equal_bullet_4", "label": "Bullet 4" },
+        { "type": "text", "id": "equal_bullet_5", "label": "Bullet 5" },
+        { "type": "text", "id": "equal_bullet_6", "label": "Bullet 6" },
+        { "type": "text", "id": "equal_bullet_7", "label": "Bullet 7" },
+        { "type": "text", "id": "equal_bullet_8", "label": "Bullet 8" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Bed Comparison Wizard",
+      "blocks": [
+        { "type": "product_bullets" },
+        { "type": "comparison_row", "settings": { "group": "Springmadras", "label": "Antal zoner" } },
+        { "type": "comparison_row", "settings": { "group": "Springmadras", "label": "Polstring" } },
+        { "type": "comparison_row", "settings": { "group": "Topmadras",    "label": "Kerne" } },
+        { "type": "product_bullets_equal" }
+      ]
+    }
+  ]
+}
+{% endschema %}

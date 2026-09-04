@@ -1,0 +1,26 @@
+{% if section.settings.show_breadcrumb != blank %}
+<div class="container container--xl">
+  {% render 'breadcrumb-bar' %}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Breadcrumb bar",
+  "class": "shopify-section--breadcrumb-bar",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_breadcrumb",
+      "label": "Show breadcrumb",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb bar"
+    }
+  ]
+}
+{% endschema %}

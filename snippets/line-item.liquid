@@ -1,0 +1,195 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+LINE ITEM
+----------------------------------------------------------------------------------------------------------------------
+
+This component renders a single line item product information, and is used on order and cart page.
+
+********************************************
+Supported variables
+********************************************
+
+* line_item: the line item to render (required)
+* show_quantity_selector: if set to true, the quantity selector is displayed (useful for instance of mini-cart)
+{%- endcomment -%}
+
+<line-item class="line-item">
+  {%- if line_item.image != blank -%}
+    {{- line_item.image | image_url: width: line_item.image.width | image_tag: loading: 'lazy', sizes: '(max-width: 699px) 70px, 120px', widths: '70,120,140,210,240,360', class: 'line-item__media' -}}
+  {%- endif -%}
+
+  <div class="line-item-info">
+
+    {%- assign text_class = '' -%}
+
+    {%- if settings.product_card_text_font == 'heading' -%}
+      {%- assign text_class = 'h6' -%}
+    {%- endif -%}
+
+    {% capture line_item_title_name %}
+      <div class="product-card-product-title">
+        {%- if line_item.product.title contains ' | ' -%}
+        <div class="title">{{- line_item.product.title | split: ' | ' | first -}}</div>
+        <span class="text-subdued">{{- line_item.product.title | split: ' | ' | last -}}</span>
+        {%- else -%}
+          <div class="title">{{- line_item.product.title -}}</div>
+        {%- endif -%}
+      </div>
+    {% endcapture %}
+
+    <div class="v-stack justify-items-start gap-2">
+      {%- if settings.show_vendor and line_item.vendor != blank -%}
+        {%- capture vendor_class -%}smallcaps {% if settings.product_card_text_font == 'heading' %}heading{% endif %}{% endcapture %}
+        {%- render 'vendor' with line_item.vendor, class: vendor_class -%}
+      {%- endif -%}
+
+      <div class="v-stack justify-items-start gap-1">
+
+        {%- if line_item.url != blank -%}
+          {% comment %} <a href="{{ line_item.url }}" class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</a> {% endcomment %}
+           <a href="{{ line_item.url }}" class="{{ text_class }}">
+           {{- line_item_title_name -}}
+           </a>
+        {%- else -%}
+          {% comment %} <p class="{{ text_class }}">{{ line_item.product.title | default: line_item.title }}</p> {% endcomment %}
+          <p class="{{ text_class }}">{{- line_item_title_name -}}</p>
+        {%- endif -%}
+
+        {% comment %} {%- render 'price-list', line_item: line_item, context: 'line_item' -%} {% endcomment %}
+      </div>
+
+      {%- capture secondary_information -%}
+        {%- unless line_item.product.has_only_default_variant or line_item.gift_card -%}
+          <p class="text-subdued">{{ line_item.variant.title }}</p>
+        {%- endunless -%}
+
+        {%- if line_item.selling_plan_allocation -%}
+          <p class="text-subdued">{{ line_item.selling_plan_allocation.selling_plan.name }}</p>
+        {%- endif -%}
+
+        {% comment %} {%- unless line_item.properties == blank -%}
+          <ul class="text-subdued">
+            {%- for property in line_item.properties -%}
+              {%- assign first_character_in_key = property.first | truncate: 1, '' -%}
+
+              {%- if property.last == blank or first_character_in_key == '_' -%}
+                {%- continue -%}
+              {%- endif -%}
+
+              <li>
+                {%- if property.last contains '/uploads/' -%}
+                  <a href="{{ property.last }}">{{ property.last | split: '/' | last }}</a>
+                {%- else -%}
+                  {{ property.first }}: {{ property.last }}
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endunless -%} {% endcomment %}
+      {%- endcapture -%}
+
+      {%- if secondary_information != blank -%}
+        <div class="v-stack justify-items-start gap-1">
+          {{- secondary_information -}}
+        </div>
+      {%- endif -%}
+
+      {%- if show_quantity_selector -%}
+        <line-item-quantity class="h-stack gap-4 {% if request.page_type == 'cart' %}sm:hidden{% endif %}">
+          {%- render 'quantity-selector', line_item: line_item, size: 'sm' -%}
+          <a href="{{ line_item.url_to_remove }}" class="link text-xs">{{ 'cart.order.remove' | t }}</a>
+        </line-item-quantity>
+      {%- else -%}
+        <p class="text-subdued text-sm sm:hidden">{{ 'customer.order.quantity' | t }}: {{ line_item.quantity }}</p>
+      {%- endif -%}
+
+      {%- if line_item.line_level_discount_allocations != blank -%}
+        <ul class="v-stack justify-items-start gap-1 unstyled-list" role="list">
+          {%- for discount_allocation in line_item.line_level_discount_allocations -%}
+            <li class="discount-badge text-xs">
+              {%- render 'icon' with 'discount', width: 12 -%} {{ discount_allocation.discount_application.title }} (-{{ discount_allocation.amount | money }})
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+      {%- if line_item.product.tags contains 'main'  -%}
+            {% assign main_uid = line_item.properties._ref %}
+            {% assign totalPrice = line_item.final_line_price %}
+            {% if line_item.variant.compare_at_price != blank %}
+              {% assign fullPrice = line_item.variant.compare_at_price %}
+            {% else %}
+              {% assign fullPrice = line_item.original_line_price %}
+            {% endif %}
+            {% for add_on in cart.items %}
+              {% assign addon_uid = add_on.properties._ref %}
+    
+              {% if main_uid == addon_uid %}
+                {% unless add_on.product.tags contains 'main' %}
+                  {% unless freeProducts contains add_on.product.handle %}
+                  {% assign addonPrice = add_on.variant.price %}
+    
+                  <p>{{ add_on.quantity }}x {{ add_on.variant.title }}</p>
+    
+                  {% assign totalPrice = totalPrice | plus: addonPrice %}
+                  {% assign fullPrice = fullPrice | plus: addonPrice %}
+                {% endunless %}
+                {% endunless %}
+              {% endif %}
+            {%- endfor -%}
+
+       {%- if settings.currency_code_enabled -%}
+          {% if fullPrice > totalPrice %}
+            
+            <p class="line-item-price"><span class="correct-price">{{- totalPrice | money_with_currency -}}</span>
+            <span class="prev-price">{{- fullPrice | money_with_currency -}}</span>
+            <span class="discount-price">-{{ fullPrice | minus: totalPrice | money_with_currency -}}</span></p>
+            
+          {%- else -%}
+          
+            <p class="line-item-price"><span class="correct-price">{{- totalPrice | money_with_currency -}}</span></p>
+           
+          {%- endif -%}
+        {%- else -%}
+          {% if fullPrice > totalPrice %}
+            <p class="line-item-price"><span class="correct-price">{{- totalPrice | money -}}</span>
+            <span class="prev-price">{{- fullPrice | money -}}</span>
+            <span class="discount-price">-{{ fullPrice | minus: totalPrice | money -}}</span></p>
+            
+          {%- else -%}
+            <p class="line-item-price"><span class="correct-price">{{- totalPrice | money -}}</span></p>
+            
+          {%- endif -%}
+         {% comment %} <p>
+
+         Oprindelig pris: {{ line_item.variant.compare_at_price }}<br/>
+         Oprindelig pris 2: {{ line_item.original_line_price }}<br/>
+         Samlet oprindelig: {{ fullPrice | money }}<br/>
+         </p> {% endcomment %}
+        {%- endif -%}
+
+      {% else %}
+      {% assign totalComparePrice = line_item.variant.compare_at_price | times: line_item.quantity %}
+      {% assign totalBeforePrice = line_item.price | times: line_item.quantity %}
+
+        {%- if settings.currency_code_enabled -%}
+          {% if line_item.variant.compare_at_price > line_item.price %}
+            <p class="line-item-price"><span class="correct-price">{{- line_item.final_line_price | money_with_currency -}}</span>
+            <span class="prev-price">{{- line_item.variant.compare_at_price | times: line_item.quantity | money_with_currency -}}</span>
+            <span class="discount-price">-{{ totalComparePrice | minus: totalBeforePrice | money_with_currency -}}</span></p>
+          {% else %}
+            <p class="line-item-price"><span class="correct-price">{{- line_item.price | money_with_currency -}}</span></p>
+          {%- endif -%}
+        {%- else -%}
+        
+          {% if line_item.variant.compare_at_price > line_item.price %}
+            <p class="line-item-price"><span class="correct-price">{{- line_item.final_line_price | money -}}</span>
+            <span class="prev-price">{{- line_item.variant.compare_at_price | times: line_item.quantity | money -}}</span>
+            <span class="discount-price">-{{ totalComparePrice | minus: totalBeforePrice | money -}}</span></p> 
+          {% else %}
+            <p class="line-item-price"><span class="correct-price">{{- line_item.final_line_price | money -}}</span></p>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endif -%}
+    </div>
+  </div>
+</line-item>

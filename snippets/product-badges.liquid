@@ -1,0 +1,115 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT BADGES COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+This component is used in product listing and product page to render the badges of a given product
+
+********************************************
+Supported variables
+********************************************
+
+* product: the product to render the badges
+* variant: the specific variant to show the badge from
+* vertical: if set to true, the badges are outputted vertically
+* types: the types of badge to output. Can be "custom", "sold_out" or "discount" (or a combination separated by comma). If nothing is set, all badges are outputted.
+* form_id: an optional form ID to use to update the badges when a given variant changes
+{%- endcomment -%}
+
+{%- liquid
+  assign badge_types = types | default: 'custom, sold_out, discount' | split: ','
+  assign variant = variant | default: product.selected_or_first_available_variant
+-%}
+
+{%- assign is_badge_list_hidden = true -%}
+
+{%- capture badges -%}
+  {%- for badge_type in badge_types -%}
+    {%- assign stripped_badge_type = badge_type | strip -%}
+
+    {%- case stripped_badge_type -%}
+      {%- when 'custom' -%}
+        {%- assign custom_badges = product.metafields.custom.badges.value -%}
+
+        {%- for custom_badge in custom_badges -%}
+          {%- assign is_badge_list_hidden = false -%}
+          <span class="badge badge--custom">{{ custom_badge }}</span>
+        {%- endfor -%}
+
+      {%- when 'sold_out' -%}
+        {%- if settings.show_sold_out_badge -%}
+          {%- if variant.available == false or form_id != blank -%}
+            {%- unless variant.available -%}
+              {%- assign is_badge_list_hidden = false -%}
+            {%- endunless -%}
+
+            <sold-out-badge {% if variant.available %}hidden{% endif %} {% if form_id != blank %}form="{{ form_id }}"{% endif %} class="badge badge--sold-out">
+              {{- 'product.general.sold_out_badge' | t -}}
+            </sold-out-badge>
+          {%- endif -%}
+        {%- endif -%}
+
+{%- when 'discount' -%}
+  {%- if settings.show_discount -%}
+    {%- assign is_variant_on_sale = false -%}
+    {%- assign is_skarp_pris = false -%}
+
+    {%- if variant.compare_at_price > variant.price -%}
+      {%- assign is_variant_on_sale = true -%}
+      {%- assign is_badge_list_hidden = false -%}
+
+    {%- elsif settings.discount_mode == 'pris' and variant.compare_at_price == blank -%}
+      {%- assign is_skarp_pris = true -%}
+      {%- assign is_badge_list_hidden = false -%}
+
+    {%- elsif settings.discount_mode == 'pris' and variant.compare_at_price == variant.price -%}
+      {%- assign is_skarp_pris = true -%}
+      {%- assign is_badge_list_hidden = false -%}
+    {%- endif -%}
+
+    {%- if is_variant_on_sale or is_skarp_pris -%}
+      <on-sale-badge
+        {% if form_id != blank and is_variant_on_sale == false %}hidden{% endif %}
+        {% if is_variant_on_sale and settings.show_discount %}discount-mode="{{ settings.discount_mode | escape }}"{% endif %}
+        {% if form_id != blank %}form="{{ form_id }}"{% endif %}
+        class=""
+      >
+        <div class="splash splash-collection">
+          {%- render 'icon' with 'splash' -%}
+          <div class="splash-text-holder">
+            
+           {%- if is_variant_on_sale -%}
+  {%- assign savings = variant.compare_at_price | minus: variant.price | times: 100.0 | divided_by: variant.compare_at_price | round -%}
+  <span>-{{ savings }}%</span>
+
+{%- elsif is_skarp_pris -%}
+  {%- assign splash_text = product.metafields.custom.splash_text -%}
+  {%- if splash_text != blank -%}
+    <span style="font-size:1rem; text-align:center; line-height:1.1; display:block;">
+      {{ splash_text }}
+    </span>
+  {%- else -%}
+    <span style="font-size:1rem; text-align:center; line-height:1.1; display:block;">
+      Skarp pris
+    </span>
+  {%- endif -%}
+{%- endif -%}
+
+
+          </div>
+        </div>
+      </on-sale-badge>
+    {%- endif -%}
+  {%- endif -%}
+
+
+
+    {%- endcase -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- if badges != blank -%}
+  <badge-list {% if form_id != blank and is_badge_list_hidden %}hidden{% endif %} class="badge-list {% if vertical %}badge-list--vertical{% endif %}">
+    {{- badges -}}
+  </badge-list>
+{%- endif -%}

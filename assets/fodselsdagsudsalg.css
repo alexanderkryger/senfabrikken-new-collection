@@ -1,0 +1,85 @@
+
+p.h1 {
+   color: #ff2c2c; /* Kraftig varm rød tekst */
+  text-shadow:
+    0 0 5px #ff2c2c,
+    0 0 10px #ff2c2c,
+    0 0 20px #ff0000,
+    0 0 30px #cc0000;
+  font-weight: bold;
+  animation: darkPulse 3s infinite ease-in-out;
+}
+
+p.scrolling-content__text {
+    color: white;
+}
+
+           body {
+    background-color: #250902 !important;
+}
+ product-card.product-card.ribbon.ribbon-Trykaflastende.highlighted {
+    background-color: #fff0f2;
+}
+          product-card.product-card.ribbon.ribbon-Kølende.highlighted {
+    background-color: #fff0f2;
+}
+          strong {
+     color: #f32e2b; 
+}
+          h2.h2 {
+   color: #f32e2b; 
+}
+          span.animated-plus.group-expanded\:rotate {
+    color: white;
+}
+          span.text-with-icon.gap-4 {
+    color: white;
+}
+          a.breadcrumbs__link {
+            color:#806f63;
+}
+
+span.glow-text {
+  color: #cc0000; /* Elegant rød tekst */
+  text-shadow: 0 0 2px #ffffff;
+  font-weight: bold;
+  animation: subtlePulse 4s infinite ease-in-out;
+}
+
+@keyframes subtlePulse {
+  0% {
+    text-shadow: 0 0 2px #ffffff;
+  }
+  50% {
+    text-shadow: 0 0 4px #ffffff;
+  }
+  100% {
+    text-shadow: 0 0 2px #ffffff;
+  }
+}
+
+@keyframes darkPulse {
+  0% {
+    text-shadow:
+    0 0 2px #ff2c2c,
+      0 0 5px #ff2c2c,
+      0 0 10px #ff0000,
+      0 0 15px #cc0000;
+  }
+  50% {
+    text-shadow:
+      0 0 8px #ff2c2c,
+      0 0 16px #ff2c2c,
+      0 0 24px #ff0000,
+      0 0 36px #cc0000;
+  }
+  100% {
+    text-shadow:
+      0 0 2px #ff2c2c,
+      0 0 5px #ff2c2c,
+      0 0 10px #ff0000,
+      0 0 15px #cc0000;
+  }
+}
+
+

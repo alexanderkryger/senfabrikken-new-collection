@@ -1,0 +1,111 @@
+<style>
+  .stNavBar { background-color:{{ section.settings.bg }}; position:sticky; top:var(--header-height, 0); z-index:5; transition:transform .15s ease-in-out; }
+  html.lock .stNavBar { opacity:0; pointer-event:none; }
+  html:has(.header.is-hidden) .stNavBar { transform: translateY(calc(var(--header-height, 0) * -1)); }
+  .navWraper { display:flex; align-items:center; justify-content:space-between; overflow-x:auto; overflow-y:hidden; }
+  .navBar { display:flex; align-items:center; }
+  .navBar a { color:{{ section.settings.lcl }}; padding:12px 15px; }
+  .navBar a:hover { color:{{ section.settings.lclh }} }
+  .stCart { font-size:14px; font-weight:400; padding:5px 15px 10px 15px; line-height:1; }
+  .cartWrap { padding-left:15px; }
+  @media screen and (max-width: 1000px){
+    .btnlbl { display:none; }
+    .cartWrap { position:sticky; right:0; background-color:{{ section.settings.bg }}; }
+    }
+    .review-link {
+    padding: 12px 15px;
+    font-weight: 400 !important;
+}
+  .review-link:hover {
+    color: white; /* Gør teksten hvid ved hover */
+}   
+</style>
+<div class="container container--xl">
+    <div class="navWraper">
+      <div class="navBar">
+        {% for block in section.blocks %}
+          <a href="{{ block.settings.link }}">{{ block.settings.menu }}</a>
+        {% endfor %}
+       <div class="drawer-btn review-link" data-drawer-btn="drawer-yotpo">
+        Anmeldelser
+        <div data-product-id="{{ product.id }}" style="display:none;"></div>
+      </div>
+      </div>
+      {% if section.settings.iscart %}
+        <div class="cartWrap">
+          {% if section.settings.btnlbl != blank %}
+          <span class="btnlbl">{{ section.settings.btnlbl }} &nbsp;</span>
+          {% endif %}
+          <a href="#cart-form" class="button stCart">{{ section.settings.btn }}</a>
+        </div>
+      {% endif %}
+    </div>
+</div>
+{% schema %}
+  {
+    "name": "Navigation",
+    "class": "stNavBar",
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg",
+        "label": "Background Color",
+        "default": "#d9e8f5"
+      },
+      {
+        "type": "color",
+        "id": "lcl",
+        "label": "Link Color",
+        "default": "#666"
+      },
+      {
+        "type": "color",
+        "id": "lclh",
+        "label": "Link Hover Color",
+        "default": "#48301f"
+      },
+      {
+        "type": "header",
+        "content": "Add to cart Button"
+      },
+      {
+        "type": "checkbox",
+        "id": "iscart",
+        "label": "Show add to cart button?"
+      },
+      {
+        "type": "text",
+        "id": "btnlbl",
+        "label": "Lable"
+      },
+      {
+        "type": "text",
+        "id": "btn",
+        "label": "Button Text"
+      }
+    ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "menu",
+          "label": "Menu item"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Navigation"
+    }
+  ]
+  }
+{% endschema %}

@@ -1,0 +1,86 @@
+
+p.h1 {
+    background: linear-gradient(90deg, 
+        #A47C52 0%, 
+        #FFDC7A 25%, 
+        #FFFFC0 50%, 
+        #FFDC7A 75%, 
+        #A47C52 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  font-weight: 900;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.1); /* Small glow effect */
+ 
+}
+              p {
+    color: white;
+}
+
+
+
+           body {
+  background-image: url('https://cdn.shopify.com/s/files/1/0710/4563/files/SENGEFABRIKKEN_PATTERN_2.png?v=1759836253');
+  background-repeat: repeat;
+  background-size: auto; /* or 'contain' / 'cover' depending on the pattern */
+  background-color: #151515; /* fallback color */
+}
+
+/* Make the three sections transparent so the body pattern shows through */
+section#shopify-section-template--24663723508090__space_FpMwEj,
+section#shopify-section-template--24663723508090__scrolling_content_6HAmPF .section-spacing,
+section#shopify-section-template--24663723508090__scrolling_content_V3V6GD .section-spacing,
+section#shopify-section-template--24663723508090__scrolling_content_4FBg6h .section-spacing,
+section#shopify-section-template--24663723508090__rich_text_baQr8r .section-spacing {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+
+ product-card.product-card.ribbon.ribbon-Trykaflastende.highlighted {
+    background-color: black;
+}
+          product-card.product-card.ribbon.ribbon-Kølende.highlighted {
+    background-color: black;
+}
+          strong {
+       background: linear-gradient(90deg, 
+        #A47C52 0%, 
+        #FFDC7A 25%, 
+        #FFFFC0 50%, 
+        #FFDC7A 75%, 
+        #A47C52 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.1); /* Small glow effect */
+}
+          h2.h2 {
+     background: linear-gradient(90deg, 
+        #A47C52 0%, 
+        #FFDC7A 25%, 
+        #FFFFC0 50%, 
+        #FFDC7A 75%, 
+        #A47C52 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.1); /* Small glow effect */
+}
+          span.animated-plus.group-expanded\:rotate {
+    color: white;
+}
+          span.text-with-icon.gap-4 {
+    color: white;
+}
+          a.breadcrumbs__link {
+            color:#806f63;
+}
+
+.countdown__timer-flip--background::part(digit) {
+    background: linear-gradient(90deg, #a47c52, #ffdc7a, #ffffc0, #ffdc7a, #a47c52);
+}
+
+#coi-banner-wrapper_label p {
+    color: #000 !important; /* Erstat med ønsket farvekode */
+}

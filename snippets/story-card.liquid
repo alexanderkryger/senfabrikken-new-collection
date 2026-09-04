@@ -1,0 +1,178 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+STORY CARD COMPONENT
+----------------------------------------------------------------------------------------------------------------------
+
+Renders a single "story_card" metaobject entry as a card in a product story row. Each card communicates one idea:
+Danish production, craftsmanship, materials, construction, comfort zones or reassurance.
+
+********************************************
+Supported variables
+********************************************
+
+* card: the story_card metaobject entry to render (required)
+* sizes: the sizes attribute used for the card image. Defaults to the story row card width
+* eager: if set to true, the image is loaded eagerly. Only use for cards above the fold
+* class: additional classes added to the card root element
+
+********************************************
+Metaobject fields consumed
+********************************************
+
+* card_type: photo_overlay | photo_below | typographic | addon
+* internal_title: admin only, never rendered
+* kicker, heading, body: text content. Only heading is required
+* image: file reference. Used by every type except typographic
+* highlight: large figure on typographic cards, layer number (1/2/3) on construction cards
+* bullets: list of short reassurances, typographic cards only
+* color_scheme: cream (default) | burgundy | paper. Ignored by photo_overlay, whose text always sits on the gradient
+* product: product reference, addon cards only. Drives the quick add link
+* link_text, link_url: optional link. Ignored on addon cards, which link to the product
+{%- endcomment -%}
+
+{%- liquid
+  assign card_type = card.card_type.value | default: 'photo_below'
+  assign card_image = card.image.value
+  assign card_heading = card.heading.value
+  assign card_kicker = card.kicker.value
+  assign card_body = card.body.value
+  assign card_highlight = card.highlight.value
+  assign card_scheme = card.color_scheme.value | default: 'cream'
+
+  comment
+    A photo card without a photo would render as an empty frame, so it falls back to the text-below layout.
+  endcomment
+  if card_image == blank and card_type != 'typographic'
+    assign card_type = 'typographic'
+  endif
+
+  comment
+    Addon cards always point at their product. Every other type may carry an optional editorial link.
+  endcomment
+  if card_type == 'addon'
+    assign card_product = card.product.value
+    assign card_url = card_product.url
+  else
+    assign card_url = card.link_url.value
+  endif
+
+  assign card_modifier = card_type | replace: '_', '-'
+
+  comment
+    On overlay cards the prose stretches across the media instead of sitting in one corner, so the kicker and heading
+    can anchor the top while the body drops to the foot — the same reading order as the cards without a photo.
+  endcomment
+  if card_type == 'photo_overlay'
+    assign prose_classes = 'prose text-start'
+  else
+    assign prose_classes = 'prose'
+  endif
+
+  unless sizes
+    assign sizes = '(max-width: 699px) 68vw, (max-width: 999px) 48vw, 500px'
+  endunless
+
+  if eager
+    assign card_loading = 'eager'
+  else
+    assign card_loading = 'lazy'
+  endif
+-%}
+
+{%- if card != blank and card_heading != blank -%}
+  {%- capture card_media -%}
+    {%- if card_image != blank -%}
+      {%- if card_image.width > 0 -%}
+        {{- card_image
+          | image_url: width: card_image.width
+          | image_tag:
+            loading: card_loading,
+            sizes: sizes,
+            widths: '200,300,400,500,600,800,1000,1200,1400',
+            alt: card_heading,
+            class: 'story-card__image zoom-image group-hover:zoom',
+            draggable: 'false'
+        -}}
+      {%- else -%}
+        {%- comment -%}Vector diagrams are uploaded as generic files, which image_url cannot resize{%- endcomment -%}
+        <img src="{{ card_image.url }}" alt="{{ card_heading | escape }}" loading="{{ card_loading }}" class="story-card__image" draggable="false">
+      {%- endif -%}
+    {%- endif -%}
+  {%- endcapture -%}
+
+  {%- capture card_text -%}
+    <div class="{{ prose_classes }}">
+      {%- if card_kicker != blank -%}
+        <p class="smallcaps {% if card_type != 'photo_overlay' %}text-subdued{% endif %}">{{ card_kicker | escape }}</p>
+      {%- endif -%}
+
+      {%- if card_type == 'typographic' and card_highlight != blank -%}
+        <p class="story-card__highlight">{{ card_highlight | escape }}</p>
+      {%- endif -%}
+
+      <p class="h5">{{ card_heading | escape }}</p>
+
+      {%- if card_body != blank -%}
+        <p class="story-card__body">{{ card_body | newline_to_br }}</p>
+      {%- endif -%}
+
+      {%- if card_type == 'typographic' and card.bullets.value.size > 0 -%}
+        <ul class="story-card__list unstyled-list v-stack">
+          {%- for bullet in card.bullets.value -%}
+            <li>{{ bullet | escape }}</li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if card_type != 'addon' and card.link_text.value != blank and card_url != blank -%}
+        <span class="link">{{ card.link_text.value | escape }}</span>
+      {%- endif -%}
+    </div>
+  {%- endcapture -%}
+
+  {%- capture card_content -%}
+    {%- case card_type -%}
+      {%- when 'photo_overlay' -%}
+        <div class="content-over-media">
+          {{- card_media -}}
+          {{- card_text -}}
+        </div>
+
+      {%- when 'typographic' -%}
+        <div class="story-card__content">
+          {{- card_text -}}
+        </div>
+
+      {%- else -%}
+        <div class="story-card__figure">
+          {{- card_media -}}
+
+          {%- if card_type == 'addon' -%}
+            <span class="story-card__add circle-button" aria-hidden="true">
+              {%- render 'icon' with 'plus' -%}
+            </span>
+          {%- endif -%}
+
+          {%- if card_type == 'photo_below' and card_highlight != blank -%}
+            <span class="story-card__step">{{ card_highlight | escape }}</span>
+          {%- endif -%}
+        </div>
+
+        <div class="story-card__content">
+          {{- card_text -}}
+        </div>
+    {%- endcase -%}
+  {%- endcapture -%}
+
+  {%- capture card_classes -%}story-card story-card--{{ card_modifier }} story-card--{{ card_scheme }} snap-start group {{ class }}{%- endcapture -%}
+
+  {%- if card_url != blank -%}
+    <a href="{{ card_url }}" class="{{ card_classes }}" data-instant>
+      {{- card_content -}}
+    </a>
+  {%- else -%}
+    <article class="{{ card_classes }}">
+      {{- card_content -}}
+    </article>
+  {%- endif -%}
+{%- endif -%}

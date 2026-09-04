@@ -1,0 +1,59 @@
+
+p.h1 {
+    background: linear-gradient(90deg, 
+        #1b802b 0%,    /* Darker green */
+        #2ecc51 25%,   /* Medium green */
+        #40ff55 50%,   /* Vibrant green */
+        #2ecc51 75%,   /* Medium green */
+        #1b802b 100%); /* Darker green */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  font-weight: 900;
+    text-shadow: 0 0 4px rgba(64, 255, 85, 0.5); /* Small glow effect to match the vibrant green */
+ 
+}
+
+ 
+           body {
+    background-color: #012219 !important;
+}
+ product-card.product-card.ribbon.ribbon-Trykaflastende.highlighted {
+    background-color: black;
+}
+          product-card.product-card.ribbon.ribbon-Kølende.highlighted {
+    background-color: black;
+}
+          strong {
+        background: linear-gradient(90deg, 
+        #1b802b 0%,    /* Darker green */
+        #2ecc51 25%,   /* Medium green */
+        #40ff55 50%,   /* Vibrant green */
+        #2ecc51 75%,   /* Medium green */
+        #1b802b 100%); /* Darker green */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 4px rgba(64, 255, 85, 0.5); /* Small glow effect to match the vibrant green */     
+}
+          h2.h2 {
+    background: linear-gradient(90deg, 
+        #1b802b 0%,    /* Darker green */
+        #2ecc51 25%,   /* Medium green */
+        #40ff55 50%,   /* Vibrant green */
+        #2ecc51 75%,   /* Medium green */
+        #1b802b 100%); /* Darker green */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 4px rgba(64, 255, 85, 0.5); /* Small glow effect to match the vibrant green */  
+}
+          span.animated-plus.group-expanded\:rotate {
+    color: white;
+}
+          span.text-with-icon.gap-4 {
+    color: white;
+}
+          a.breadcrumbs__link {
+            color:#806f63;
+}

@@ -1,0 +1,1048 @@
+<script type="application/json" data-current-variant>
+  {
+    "currentVariant": {{ product.selected_or_first_available_variant | json }}
+  }
+</script>
+
+<form action="/cart" method="post" class="group_table grProdducts grprForm" id="cart-form" data-id="{{ product.selected_or_first_available_variant.id }}">
+
+
+  {% assign option_count = 0 %}
+  {%- for option in product.options_with_values -%}
+  {% assign option_count = option_count |  plus: 1 %}
+  {%- endfor -%}
+  <ul class="group-prod product-info-ul" style="display:flex; flex-direction:column;">
+    {% for gppr in product.metafields.custom.group.value %}
+        {%- assign sold_out = true -%}
+        {%- if gppr.available  -%}{%- assign sold_out = false -%}{%- endif -%}
+
+        {%- unless sold_out -%}
+          {%- assign current_variant = gppr.selected_or_first_available_variant -%}
+          {%- assign image = current_variant.featured_image | default: gppr.featured_image -%}
+          {%- assign on_sale = false -%}
+
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+              {%- assign on_sale = true -%}
+          {%- endif -%}
+
+          {%- assign index = forloop.index -%}
+          {%- assign cu_pr = current_variant.price -%}
+          {%- assign price = price | plus:cu_pr -%}
+          {% if gppr == product %}
+            <li class="group-prod-item main clearfix text-left" style="margin-bottom: 15px; order: 999;">
+              <input type="hidden" value="{{ current_variant.price }}" class="vrPrice">
+
+              <div class="qtyField hidden" title="{{ 'products.product.quantity' | t }}">
+                <a class="minus gprQty" href="javascript:void(0);"><i class="at at-minus-r" aria-hidden="true"></i></a>
+                <input type="text" id="qty{{ gppr.id }}" name="quantity" value="1" class="product-form__input qty mainprqty" />
+                <a class="plus gprQty" href="javascript:void(0);">
+                <svg aria-hidden="true" focusable="false" fill="none" width="{{ width | default: 12 }}" class="{{ class | strip }}" viewBox="0 0 12 12">
+                  <path d="M6 0v12M0 6h12" stroke="currentColor" stroke-width="{{ stroke_width | default: settings.icon_stroke_width }}"/>
+                </svg>
+                </a>
+              </div>
+            </li>
+
+            {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+
+              {%- liquid
+                assign current_variant = product.selected_or_first_available_variant
+                assign currentValue = false
+
+                for value in option.values
+                  assign optionkey = 'option' | append: option.position
+                  assign relatedVariant = product.variants | where: optionkey, value | first
+
+                  if relatedVariant
+                    assign image = relatedVariant.image | default: current_variant.featured_image
+
+                    if option.selected_value == value
+                      assign currentValue = relatedVariant[optionkey]
+                    endif
+                  endif
+                endfor
+              -%}
+              <li class="group-prod-item clearfix text-left mfp-link" data-options {% if option_count < 0 %}data-extra{% endif %} data-current-product-variants>
+
+                <div  class="details">
+                  <div class="product-name">
+
+                       <div class="drawer-btn" data-drawer-btn="{{ option.name }}">
+                        <div class="drawer-btn__title">{{ option.name }}</div>
+                       </div>
+                  </div>
+
+                  <div class="gpprVariants mfp-link">
+                    <input type="hidden" value="0" class="vrPrice">
+                    <span class="gprvrAct optPopup variant-value"><span class="variant-example"></span>
+                    <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                    </span>
+                    <div class="sidebar-drawer" data-drawer="{{ option.name }}">
+                      <div class="Drawer__Header">
+                        <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+                          {%- render 'icon' with 'custom-arrow-left' -%}
+                          <span>Tilbage</span>
+                        </div>
+                      </div>
+                  
+                    
+                        <div class="sidebar-drawer__content">
+                          <div class="sidebar-drawer__content__scroll">
+                            <div class="">
+                              <h3 class="heading h3">{{ option.name }}</h3>
+                              <div class="">{{ current_variant.metafields.custom.fasthed_tekst | metafield_tag }}</div>
+                            </div>
+                            <br>
+
+                            <ul class="gprvrList" data-prod-title="{{ product.title }}">
+                            {%- for value in option.values -%}
+                              {%- liquid
+                                assign optionkey = 'option' | append: option.position
+                                assign relatedVariant = product.variants | where: optionkey, value | first
+                              -%}
+
+                              {%- if relatedVariant.available -%}
+                                {%- liquid
+                                  assign priceDifference = relatedVariant.price | minus: current_variant.price
+                                  assign relatedPrice = priceDifference
+                                -%}
+
+                                {%- liquid
+                                  assign colors = 'color,farve,vaelg-farve,select-color,vaelg-fasthed,vaelg-fasthed-2,vaelg-fasthed-1' | split: ','
+                                  assign optionName = option.name | handleize
+                                  assign colorConfig = settings.color_config | newline_to_br | split: '<br />'
+
+                                  assign relImage = relatedVariant.image | img_url: '400x'
+
+                                  if colors contains optionName
+                                    for color in colorConfig
+                                      assign colorParts = color | split: ':'
+                                      assign colorLabel = colorParts | first | strip
+
+                                      if colorLabel == relatedVariant[optionkey]
+                                        assign relImage = colorParts | last | strip | file_img_url: '400x300'
+                                      endif
+                                    endfor
+                                  endif
+                                -%}
+                                <li class="gprvr sidebar-drawer__option{% comment %} {% if relatedVariant == current_variant %} active{% endif %} {% endcomment %}" data-main-variant="true" data-prod="{{ product.id }}{{ option.position }}" data-id="{{ relatedVariant.id }}" data-price="{{ relatedPrice }}" data-quantity="{%- if relatedVariant.inventory_management == blank or relatedVariant.inventory_policy == 'continue' -%}999{%- else -%}{{ relatedVariant.inventory_quantity }}{%- endif -%}">
+                                {% comment %}  <div>
+                                  <p class="option-image"><img src="{{ relImage }}" alt="{{ relatedVariant.title }}"></p>
+                                  <p class="name">{{ relatedVariant[optionkey] }}</p>
+                                  <b class="price">{{ relatedPrice | money }}</b>
+                                  </div>
+                                  <p>test 5</p>
+                                </li>
+                                <li class="gprvr sidebar-drawer__option" data-prod="{{ gppr.id }}" data-id="{{ variant.id }}" data-price="{{ variant.price }}" data-quantity="{%- if variant.inventory_management == blank or variant.inventory_policy == 'continue' -%}999{%- else -%}{{ variant.inventory_quantity }}{%- endif -%}">
+                                    {% endcomment %}<p class="option-image"><img src="{{ relImage }}" alt="{{ relatedVariant.title }}" /></p>
+                                    <div>
+                                      {% if relatedVariant[optionkey] contains " - " %}
+                                        {% assign titleSplit = relatedVariant[optionkey] | split: " - " %}
+                                        <p class="name hidden">{{ relatedVariant[optionkey] }}</p>
+                                        <p class="visually-name">{{ titleSplit[0] }}</p>
+                                        <p class="text">{{ titleSplit[1] }}</p>
+                                      {% else %}
+                                        <p class="name">{{ relatedVariant[optionkey] }}</p>
+                                      {% endif %}
+                                      <b class="price">{{ relatedPrice | money }}</b>
+                                  </div>
+                                  <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                                  </li>
+                              {%- endif -%}
+                            {%- endfor -%}
+
+                          </ul>
+                        <div class="fake-confirm-btn__wrapper">
+                      <div class="fake-confirm-btn btn btn--large gpr-form-cart button w-full">Bekræft</div>
+                      </div>
+                    </div>
+
+                    </div>
+                    </div>
+
+                    <input class="hidden_txt v_hidden hidden" type="text" name="properties[main]" value="{{ product.title }}" >
+                    <input class="hidden_txt v_hidden hidden" type="hidden" name="main" value="true">
+                    <input type="text" value="" class="product-form__input qty" name="updates[{{ relatedVariant.id }}]" id="qty{{ product.id }}{{ option.position }}" min="0" max="{%- if current_variant.inventory_quantity <= 0 and current_variant.available and current_variant.inventory_management != null -%}999{%- elsif current_variant.inventory_management != null -%}{{current_variant.inventory_quantity}}{%- else -%}999{%- endif -%}" required/>
+                  </div>
+
+                  {%- render 'icon' with 'chevron-right' -%}
+                </div>
+              </li>
+
+            {%- endfor -%}
+            {%- endunless -%}
+            <select class="hidden_txt v_hidden hidden" name="id" id="product-{{ product.id }}" data-prod-name="{{ product.title }}" >
+              {%- for variant in product.variants -%}
+                <option
+                    {% if variant.id == product.selected_or_first_available_variant.id %}selected="selected"{% endif %}
+                    value="{{ variant.id }}"
+                    data-select-name="{{ variant.title }}"
+                    {% comment %}data-price="{{ variant.price | minus: product.selected_or_first_available_variant.price }}"{% endcomment %}>
+                  {{ variant.title }} - {{ variant.price | money }}
+                </option>
+              {%- endfor -%}
+            </select>
+          {% else %}
+            <li class="group-prod-item clearfix text-left mfp-link" data-extra>
+
+
+              <div  class="details">
+                <div class="product-name">
+
+                    <div class="drawer-btn" data-drawer-btn="{{ gppr.title }}">
+                      <div class="drawer-btn__title">{{ gppr.title }}</div>
+                    </div>
+
+
+          	    </div>
+
+                {%- if gppr.has_only_default_variant -%}
+          		    <input type="hidden" value="{{current_variant.price}}" class="vrPrice">
+
+               	  <input type="hidden" name="updates[{{ current_variant.id }}]" class="product-form_group_variants" value="1">
+
+               	  {{ current_variant.price | money }}
+                {%- else -%}
+          				<div class="gpprVariants mfp-link">
+                    <input type="hidden" value="{{current_variant.price}}" class="vrPrice">
+
+                    <span class="gprvrAct optPopup variant-value"><span class="variant-example"></span>
+                    <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                    </span>
+                    <div class="sidebar-drawer" data-drawer="{{gppr.title}}">
+                      <div class="Drawer__Header">
+                        <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+                          {%- render 'icon' with 'custom-arrow-left' -%}
+                          <span>Tilbage</span>
+                        </div>
+                      </div>
+                      <div class="sidebar-drawer__content">
+                        <div class="sidebar-drawer__content__scroll">
+                          <div class="">
+                            <h3 class="heading h3">{{gppr.title}}</h3>
+                            <div class="">{{ gppr.description }}</div>
+                          </div>
+                        <div>
+                      </div>
+                      <br>
+                        <ul class="gprvrList" data-prod-title="{{ product.title }}">
+                          {%- for variant in gppr.variants -%}
+                            {%- if variant.available -%}
+                              {% if variant.metafields.custom.upgrade == blank %}
+                              <li class="gprvr sidebar-drawer__option" data-prod="{{ gppr.id }}" data-id="{{ variant.id }}" data-price="{{ variant.price }}" data-quantity="{%- if variant.inventory_management == blank or variant.inventory_policy == 'continue' -%}999{%- else -%}{{ variant.inventory_quantity }}{%- endif -%}">
+                                <p class="option-image"><img src="{{ variant.image | img_url: '400x' }}" alt="{{ variant.title }}" /></p>
+                               {%- else -%}
+                                  {% if variant.metafields.custom.upgrade != blank %}
+                                  {%- endif -%}
+                                <li class="gprvr sidebar-drawer__option" data-prod="{{ gppr.id }}" data-id="{{ variant.id }}" data-price="{{ variant.price }}" data-quantity="{%- if variant.inventory_management == blank or variant.inventory_policy == 'continue' -%}999{%- else -%}{{ variant.inventory_quantity }}{%- endif -%}" style="border: 1px solid #eea63c; position: relative;">
+                                  <img src="https://cdn.shopify.com/s/files/1/0710/4563/files/UPGRADE_TOP_2.png?v=1736601222" alt="Badge" class="badge-image" style="position: absolute; top: -14px; left: -6px; width: 55px; height: 55px;">
+                                <p class="option-image"><img src="{{ variant.image | img_url: '400x' }}" alt="{{ variant.title }}" /></p>
+                                {%- endif -%}
+                                <div>
+                                  {% if variant.title contains " - " %}
+                                    {% assign titleSplit = variant.title | split: " - " %}
+                                     <p class="name hidden">{{ variant.title }}</p>
+                                    <p class="visually-name">{{ titleSplit[0] }}</p>
+                                    <p class="text">{{ titleSplit[1] }}</p>
+                                  {% else %}
+                                    <p class="name">{{ variant.title }}</p>
+                                  {% endif %}
+                                  <b class="vprice">{{ variant.price | money }}</b>
+                                  <b class="cprice text-subdued line-through">{{ variant.compare_at_price| money }}</b>
+                              </div>
+                              <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                              </li>
+                            {%- endif -%}
+                            {% if variant.metafields.custom.ekstra_levering != blank %}
+                               <p class="opgradering"> Leveringstid ({{ variant.metafields.custom.ekstra_levering }})</p>
+                              {%- endif -%}
+                            {% if variant.metafields.custom.upgrade != blank %}
+                                  <p class="opgradering"> OPGRADERING</p>
+                                  {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                          {% if gppr.title contains 'Fasthed' %}
+    {%- render 'media-in-drawer-fasthed' -%}
+
+     {% elsif gppr.title contains 'Topmadras' %}
+     {%- render 'media-in-drawer' -%}
+      {%- endif -%}
+                        <div class="fake-confirm-btn__wrapper">
+                      <div class="fake-confirm-btn btn btn--large gpr-form-cart button w-full">Bekræft</div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    <input class="hidden_txt v_hidden hidden" type="text" name="properties[main]" value="{{ product.title }}" >
+                    <input type="text" value="{% if link.title == 'main'%}1{% endif %}" class="product-form__input qty" name="updates[{{ current_variant.id }}]" id="qty{{ gppr.id }}" min="0" max="{%- if current_variant.inventory_quantity <= 0 and current_variant.available and current_variant.inventory_management != null -%}999{%- elsif current_variant.inventory_management != null -%}{{current_variant.inventory_quantity}}{%- else -%}999{%- endif -%}" required/>
+                  </div>
+                {%- endif -%}
+                {%- render 'icon' with 'chevron-right' -%}
+              </div>
+            </li>
+          {%- endif -%}
+        {%- endunless -%}
+    {%- endfor -%}
+    
+    
+    
+    
+    {% if product.metafields.custom.product_upsale_free.value != blank %}
+    <div class="grprForm__upsale__wrapper">
+    
+    <div class="grprForm__upsale__inner free" data-extra data-upsale="2">
+        <div class="drawer-btn drawer-btn-upsale" data-drawer-btn="drawer-btn-upsale-free">
+          <p class="option-image"><img src="https://cdn.shopify.com/s/files/1/0710/4563/files/lagen_gift.jpg?v=1709798432" alt="{{ product.title }}" style="margin-right:10px; width:48px; color:white;" /></p>
+    GRATIS GAVE VED SENGEKØB {%- render 'icon' with 'chevron-right' -%}
+        </div>
+      
+                  <div class="gpprVariants mfp-link">
+                    {%- for product in product.metafields.custom.product_upsale_free.value -%}
+                      {%- if product.available -%}
+                        <input type="hidden" value="0" class="vrPrice" data-upsale-variant-id="{{product.selected_or_first_available_variant.id}}">
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    <span class="gprvrAct optPopup variant-value"></span>
+                    <div class="sidebar-drawer" data-drawer="drawer-btn-upsale-free">
+                      <div class="Drawer__Header">
+                        <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+                          {%- render 'icon' with 'custom-arrow-left' -%}
+                          <span>Tilbage</span>
+                        </div>
+                      </div>
+                      <div class="sidebar-drawer__content">
+                        <div class="sidebar-drawer__content__scroll">
+                          <div class="">
+                             <h3 class="heading h3">GRATIS GAVE</h3>
+                            <b>I anledning af vores World Sleep Day får du en gratis rullemadras med til din nye seng. Rullemadrassen er i 100% bomuld og smyger sig tæt omkring topmadrassen. Gælder så længe lager haves!</b>
+                          </div>
+                        <div>
+                      </div>
+                      <br>
+                        <ul class="gprvrList" data-prod-title="{{ product.title }}">
+                        {% assign currentVariant = product.selected_or_first_available_variant.id%}
+                          {%- for product in product.metafields.custom.product_upsale_free.value -%}
+                            {%- if product.available -%}
+                              <li class="gprvr sidebar-drawer__option" data-multiple-select="true" data-prod="{{ currentVariant }}" data-id="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price }}{% if product.price == 0 %}1{% endif %}" data-quantity="{%- if product.inventory_management == blank or product.inventory_policy == 'continue' -%}999{%- else -%}{{ product.inventory_quantity }}{%- endif -%}">
+                                <p class="option-image"><img src="{{ product.media | first | img_url: '400x' }}" alt="{{ product.title }}" /></p>
+                                <div>
+                                  {% if product.title contains " - " %}
+                                    {% assign titleSplit = product.title | split: " - " %}
+
+                                    <p class="name hidden">{{ product.title }}</p>
+                                    <p class="visually-name">{{ titleSplit[0] }}</p>
+                                    <p class="text">{{ titleSplit[1] }} {{ titleSplit[2] }}</p>
+                                  {% else %}
+                                    <p class="name">{{ product.title }}</p>
+                                  {% endif %}
+                                  <b class="vprice">{{ product.price | money }}</b>
+                                  <b class="cprice text-subdued line-through">{{ product.compare_at_price| money }}</b>
+
+                              </div>
+                              <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                        <div class="fake-confirm-btn__wrapper">
+                      <div class="fake-confirm-btn btn btn--large gpr-form-cart button w-full">Bekræft</div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    <input class="hidden_txt v_hidden hidden" type="text" name="properties[main]" value="{{ product.title }}">
+                    <input type="text" value="{% if link.title == 'main'%}1{% endif %}" class="product-form__input qty" name="updates[{{ current_variant.id }}]" id="qty{{ gppr.id }}" min="0" max="{%- if current_variant.inventory_quantity <= 0 and current_variant.available and current_variant.inventory_management != null -%}999{%- elsif current_variant.inventory_management != null -%}{{current_variant.inventory_quantity}}{%- else -%}999{%- endif -%}"/>
+                  </div>
+
+      </div>
+      </div>
+    {%- endif -%}
+    
+
+    {% if product.metafields.custom.product_upsale_free_2.value != blank %}
+    <div class="grprForm__upsale__wrapper upsaleFree2">
+    
+    <div class="grprForm__upsale__inner free2" data-extra data-upsale="2">
+        <div class="drawer-btn drawer-btn-upsale" data-drawer-btn="drawer-btn-upsale-free-2">
+          <p class="option-image"><img src="https://cdn.shopify.com/s/files/1/0710/4563/files/tyngdedyne_3_8ec65695-af05-4593-86c5-8c7be59db612.jpg?v=1729583784" alt="{{ product.title }}" style="margin-right:10px; width:48px;" /></p>
+            FØDSELSDAG - GRATIS GAVE {%- render 'icon' with 'chevron-right' -%}
+        </div>
+      
+                  <div class="gpprVariants mfp-link">
+                    
+                    <input type="hidden" value="0" class="vrPrice freePr2" data-upsale-variant-id="">
+                    
+
+                    <span class="gprvrAct optPopup variant-value"></span>
+                    <div class="sidebar-drawer upsaleFree2Drawer" data-drawer="drawer-btn-upsale-free-2">
+                      <div class="Drawer__Header">
+                        <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+                          {%- render 'icon' with 'custom-arrow-left' -%}
+                          <span>Tilbage</span>
+                        </div>
+                      </div>
+                      <div class="sidebar-drawer__content">
+                        <div class="sidebar-drawer__content__scroll">
+                          <div class="">
+                            <h3 class="heading h3">FØDSELSDAG - GRATIS GAVE</h3>
+                            <b>I anledning af vores store <span style="color: #f2aa3c; font-weight: bold;">FØDSELSDAGSGFEST</span> har du mulighed for at vælge en valgfri gave. Men skynd dig, tilbuddet gælder kun denne uge eller så længe lager haves!</b>
+                          </div>
+                        <div>
+                      </div>
+                      <br>
+                        <ul class="gprvrList" data-prod-title="{{ product.title }}">
+                        {% assign currentVariant = product.selected_or_first_available_variant.id%}
+                          {%- for product in product.metafields.custom.product_upsale_free_2.value -%}
+                            {%- if product.available -%}
+                              <li class="gprvr sidebar-drawer__option" data-multiple-select="true" data-prod="{{ currentVariant }}" data-id="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price }}{% if product.price == 0 %}1{% endif %}" data-quantity="{%- if product.inventory_management == blank or product.inventory_policy == 'continue' -%}999{%- else -%}{{ product.inventory_quantity }}{%- endif -%}">
+                                <p class="option-image"><img src="{{ product.media | first | img_url: '400x' }}" alt="{{ product.title }}" /></p>
+                                <div>
+                                  {% if product.title contains " - " %}
+                                    {% assign titleSplit = product.title | split: " - " %}
+
+                                    <p class="name hidden">{{ product.title }}</p>
+                                    <p class="visually-name">{{ titleSplit[0] }}</p>
+                                    <p class="text">{{ titleSplit[1] }} {{ titleSplit[2] }}</p>
+                                  {% else %}
+                                    <p class="name">{{ product.title }}</p>
+                                  {% endif %}
+                                  <b class="vprice">{{ product.price | money }}</b>
+                                  <b class="cprice text-subdued line-through">{{ product.compare_at_price| money }}</b>
+
+                              </div>
+                              <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                        <div class="fake-confirm-btn__wrapper">
+                      <div class="fake-confirm-btn btn btn--large gpr-form-cart button w-full">Bekræft</div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    <input class="hidden_txt v_hidden hidden" type="text" name="properties[main]" value="{{ product.title }}">
+                    <input type="text" value="{% if link.title == 'main'%}1{% endif %}" class="product-form__input qty" name="updates[{{ current_variant.id }}]" id="qty{{ gppr.id }}" min="0" max="{%- if current_variant.inventory_quantity <= 0 and current_variant.available and current_variant.inventory_management != null -%}999{%- elsif current_variant.inventory_management != null -%}{{current_variant.inventory_quantity}}{%- else -%}999{%- endif -%}"/>
+                  </div>
+
+      </div>
+      </div>
+    {%- endif -%}
+    
+    
+    {% if product.metafields.custom.product_upsale.value != blank %}
+    <div class="grprForm__upsale__wrapper">
+    
+    <div class="grprForm__upsale__inner" data-extra data-upsale="1">
+  <div class="drawer-btn drawer-btn-upsale"  data-drawer-btn="drawer-btn-upsale">
+      <p class="option-image">
+  <img src="https://cdn.shopify.com/s/files/1/0710/4563/files/fiberpude_2_1_22191b6e-3dda-4ae7-affc-8206f8d4f533.jpg?v=1707830051" alt="{{ product.title }}" style="margin-right: 10px; width: 48px;"/>
+</p>
+    Spar op til 40% på tilbehør
+    {%- render 'icon' with 'chevron-right' -%}
+    </div>
+      
+                  <div class="gpprVariants mfp-link">
+                    {%- for product in product.metafields.custom.product_upsale.value -%}
+                      {%- if product.available -%}
+                        <input type="hidden" value="0" class="vrPrice" data-upsale-variant-id="{{product.selected_or_first_available_variant.id}}">
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    <span class="gprvrAct optPopup variant-value">
+
+                    </span>
+                    <div class="sidebar-drawer" data-drawer="drawer-btn-upsale">
+                      <div class="Drawer__Header">
+                        <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+                          {%- render 'icon' with 'custom-arrow-left' -%}
+                          <span>Tilbage</span>
+                        </div>
+                      </div>
+                      <div class="sidebar-drawer__content">
+                        <div class="sidebar-drawer__content__scroll">
+                          <div class="">
+                            <h3 class="heading h3">Tilbud</h3>
+                            <b>Spar op til <span style="color: #f2aa3c; font-weight: bold;">40%</span> på tilbehør ved sengekøb</b>
+
+                          </div>
+                        <div>
+                      </div>
+                      <br>
+                        <ul class="gprvrList" data-prod-title="{{ product.title }}">
+                        {% assign currentVariant = product.selected_or_first_available_variant.id%}
+                          {%- for product in product.metafields.custom.product_upsale.value -%}
+                            {%- if product.available -%}
+                              <li class="gprvr sidebar-drawer__option" data-multiple-select="true" data-prod="{{ currentVariant }}" data-id="{{ product.selected_or_first_available_variant.id }}" data-price="{{ product.price }}" data-quantity="{%- if product.inventory_management == blank or product.inventory_policy == 'continue' -%}999{%- else -%}{{ product.inventory_quantity }}{%- endif -%}">
+                                <p class="option-image"><img src="{{ product.media | first | img_url: '400x' }}" alt="{{ product.title }}" /></p>
+                                <div>
+                                  {% if product.title contains " - " %}
+                                    {% assign titleSplit = product.title | split: " - " %}
+
+                                    <p class="name hidden">{{ product.title }}</p>
+                                    <p class="visually-name">{{ titleSplit[0] }}</p>
+                                    <p class="text">{{ titleSplit[1] }} {{ titleSplit[2] }}</p>
+                                  {% else %}
+                                    <p class="name">{{ product.title }}</p>
+                                  {% endif %}
+                                  <b class="vprice">{{ product.price | money }}</b>
+                                  <b class="cprice text-subdued line-through">{{ product.compare_at_price| money }}</b>
+
+                              </div>
+                              <span class="variant-active__icon">{%- render 'icon' with 'checkmark'-%}</span>
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                        <div class="fake-confirm-btn__wrapper">
+                      <div class="fake-confirm-btn btn btn--large gpr-form-cart button w-full">Bekræft</div>
+                      </div>
+                    </div>
+                    </div>
+                    </div>
+                    <input class="hidden_txt v_hidden hidden" type="text" name="properties[main]" value="{{ product.title }}">
+                    <input type="text" value="{% if link.title == 'main'%}1{% endif %}" class="product-form__input qty" name="updates[{{ current_variant.id }}]" id="qty{{ gppr.id }}" min="0" max="{%- if current_variant.inventory_quantity <= 0 and current_variant.available and current_variant.inventory_management != null -%}999{%- elsif current_variant.inventory_management != null -%}{{current_variant.inventory_quantity}}{%- else -%}999{%- endif -%}"/>
+                  </div>
+
+      </div>
+      </div>
+    {%- endif -%}
+
+  </ul>
+
+  {{infoLinks}}
+  <div class="priceRow">
+   {% comment %}  <h3 class="gpPrice medium-up--hide">{{price | money}}</h3> {% endcomment %}
+
+   {% if product.metafields.custom.queue != blank %}
+      <div class="product-form__item--submit">
+    <button 
+      type="button" 
+      class="btn btn--large gpr-form-cart button w-full" 
+      disabled
+    >
+      <span>Tilbud åbner fredag</span>
+    </button>
+  </div>
+{% else %}
+    <div class="product-form__item--submit">
+      <button type="submit" name="add" id="gprAddToCart-{{ section.id }}" class="btn btn--large gpr-form-cart button w-full" data-submit data-prod-title="{{ product.title }}">
+          <span id="AddToCartText-{{ section.id }}" data-submit-text>{%- unless current_variant.available -%}{{ 'product.general.unavailable_button' | t }}{%- else -%}{{ 'product.general.add_to_cart_button' | t }}{%- endunless -%}</span>
+      </button>
+    </div>
+  {%- endif -%}  
+    
+  </div>
+</form>
+
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js" defer></script>
+{%- liquid
+  assign required_translation = "Skal udfyldes"
+-%}
+
+<script type="text/javascript">
+
+  window.addEventListener('DOMContentLoaded',function(){
+    const data = JSON.parse(document.getElementById('ProductJson-{{ section.id }}').innerHTML)
+    var hasOnlyDefaultVariant = data.variants.length === 1
+
+    function getRelatedVariant(name, index = 0) {
+      const selectedVariant = JSON.parse(document.querySelector('[data-current-variant]').innerHTML).currentVariant
+
+      let options = selectedVariant.options
+      options[index] = name
+
+      const findMatch = data.variants.find(function(variant) {
+        return JSON.stringify(variant.options) == JSON.stringify(options);
+      })
+
+      return findMatch;
+    }
+
+    /* Fix prices on load */
+    function updatePricesOnVariants() {
+      const options = document.querySelectorAll('[data-options]');
+      const selectedVariant = JSON.parse(document.querySelector('[data-current-variant]').innerHTML).currentVariant
+      
+      options.forEach(function(option, index) {
+        const variants = option.querySelectorAll('[data-main-variant]')
+
+        variants.forEach(function(variant) {
+          var price = variant.querySelector('.price');
+          var name = variant.querySelector('.name');
+
+          const related = getRelatedVariant(name.textContent, index);
+          //console.log("TEST: " + related.price + " // Test: " + selectedVariant.price);
+          const priceDifference = related.price - selectedVariant.price;
+
+          variant.setAttribute('data-price', priceDifference);
+          price.textContent = formatMoney(priceDifference, window.themeVariables.settings.moneyFormat);
+          //formatMoney(sum, window.themeVariables.settings.moneyFormat)
+        })
+      });
+      
+      setTimeout(() => {
+
+      const variantID = getVariant();
+
+      let variantIDVal = "";
+      if( variantID ){
+        variantIDVal = variantID.attr('value');
+      }
+
+        //Custom default variant selector
+
+        const currentProductVariants = document.querySelectorAll('[data-current-product-variants]');
+        
+        let dataId = "";
+        // Iterate over each product variant element
+        currentProductVariants.forEach(currentProductVariant => {
+          if (currentProductVariant) {
+            //console.log("got it");
+
+            // Find the .gprvrList within the current product variant
+            const gprvrListElement = $(currentProductVariant).find('.gprvrList');
+            
+            if (gprvrListElement.length > 0) {
+              // Parsing the 'data-id' attribute as an integer
+              dataId = parseInt(gprvrListElement.attr('data-id'), 10);
+              
+              // Do something with dataId here
+              //console.log(dataId);
+            }
+          }
+        });
+        const mainProductElement = document.querySelector('.main-product-form');
+
+        if (mainProductElement) {
+          // Find the input field within the main product element
+          const inputField = mainProductElement.querySelector('input[name="id"]');
+          
+        if (inputField && variantIDVal) {
+            // Change the input field's value to dataId
+            inputField.value = variantIDVal;
+            //console.log("Input field value set to:", dataId);
+          }
+        }
+
+      }, "100");
+    }
+
+    updatePricesOnVariants();
+
+    jQuery.extend(jQuery.validator.messages, {
+      required: '{{ required_translation }}',
+    });
+
+    var newVal = '0';
+    $(".gprQty").on("click", function() {
+      var qtyField = $(this).parent(".qtyField"),
+         oldValue = $(qtyField).find(".qty").val();
+
+      if ($(this).is(".plus")) {
+        newVal = parseInt(oldValue) + 1;
+      } else if (oldValue != 0 ) {
+        newVal = parseInt(oldValue) - 1;
+      }
+
+      $(qtyField).find(".qty").val(newVal);
+      $(qtyField).find('.qty').attr('value', newVal)
+
+      $(".product-form__input.qty").each(function(){
+        var $this = $(this);
+      	if($this.val() != "") {
+      		$this.val(newVal);
+      	}
+      });
+    });
+
+  $('.gpprVariants .optdd').click(function(){
+  		$(this).next().slideToggle();
+	});
+
+  // Open group variant popup
+  $('.gpprVariants .optPopup').click(function(){
+    $('body').toggleClass('showOverly');
+    $(this).next(".popup").toggleClass('active');
+	});
+
+  // close group variant popup
+  //$('.closeVrOpt').click(function(){
+  //  $('body').removeClass('showOverly');
+  //  $(".gpprVariants .popup").removeClass('active');
+	//});
+
+  var uid = new Date().getTime();
+
+  $('.gprvrdd').on('click', function(e){
+      	var name = $(this).html(),
+            pr = $(this).data('prod'),
+      		  id = $(this).data('id'),
+            price = $(this).data('price');
+
+      	$(this).parents('.gpprVariants').find('.vrPrice').val(price).trigger('change');
+      	$(this).parents('.gpprVariants').find('.gprvrAct span').html(name);
+      	$('#qty'+pr).attr('name','updates['+id+']');
+  		  $(this).parent().slideUp();
+    });
+
+    // Click on group variant popup item
+    $('.sidebar-drawer__option').on('click', function() {
+      const isMultipleSelect = $(this).data('multiple-select');
+
+      if(isMultipleSelect){
+       updatePricesOnVariants();
+       const wraper = $(this).parents(".grprForm__upsale__inner");
+       const freewraper = $(this).parents(".grprForm__upsale__inner.free");
+       const freewraper2 = $(this).parents(".grprForm__upsale__inner.free2");
+       const variantIsActive = $(this).hasClass("active");
+
+        var name = $(this).find(".name").html(),
+            mainName = $(this).data('prodName'),
+            pr = $(this).data('prod'),
+            id = $(this).data('id'),
+            price = $(this).data('price'),
+            mainQty = $(".mainprqty").val(),
+            mainVariant = $(this).data('mainVariant'),
+            image = $(this).find(".option-image").html(),
+            nameEdit = $(this).find(".visually-name").html(),
+            sizes = $(this).find(".text").html();
+
+        //$('.sidebar-drawer__option').removeClass("active");
+        $(this).parents('.gprvrList').attr('data-id', id);
+        $('#qty'+pr).attr('name','updates['+id+']').val(mainQty);
+        $('#qty'+pr).siblings("label.error").remove();
+        $(this).parents('.gpprVariants').find('.at').removeClass('at-plus-l').addClass('at-check-r');
+
+        var offersText = 'Spar 40% på tilbehør ved sengekøb <svg aria-hidden="true" focusable="false" fill="none" width="{{ width | default: 10 }}" class="{{ class | strip }}" viewBox="0 0 10 10"><path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"/></svg>';
+        if(freewraper.length || freewraper2.length){
+            offersText = 'GRATIS GAVE VED SENGEKØB <svg aria-hidden="true" focusable="false" fill="none" width="{{ width | default: 10 }}" class="{{ class | strip }}" viewBox="0 0 10 10"><path d="m3 9 4-4-4-4" stroke="currentColor" stroke-linecap="square"/></svg>';
+        }
+
+        if(variantIsActive) {
+          $(this).parents('.gpprVariants').find('.gprvrAct span.variant-active__icon').removeClass("active");
+          $(this).removeClass("active");
+          mainQty = 0;
+          price = 0;
+          //$(this).parents('.gpprVariants').find('.gprvrAct span.variant-example').html("");
+          if (nameEdit != null && sizes != null ) {
+            $(this).parents('.gpprVariants').find('.gprvrAct span.variant-example:contains("' + nameEdit + '")').remove();
+          } else {
+            $(this).parents('.gpprVariants').find('.gprvrAct span.variant-example:contains("' + name + '")').remove();
+          }
+          if ($(wraper).find(".variant-value .variant-example").length == 0) {
+            $(wraper).find(".drawer-btn-upsale").html(offersText);
+          }
+        } else {
+          if(freewraper2.length){
+            $(this).siblings().removeClass("active");
+            $(this).addClass("active");
+          } else{
+            $(this).addClass("active");
+          }
+          $(wraper).find(".drawer-btn-upsale").text("");
+
+          var chevronHtml = '<span class="variant-active__icon active"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none"><path d="M2.66797 8L6.33464 12L13.3346 4" stroke="#2F1300" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+
+          if(freewraper2.length){
+            if (nameEdit != null && sizes != null ) {
+             $(this).parents('.gpprVariants').find('.gprvrAct').html('<span class="variant-example"><span class="variant-example__image">' + image + '</span>' + nameEdit + ' (' + formatMoney(price) + ')' + sizes + chevronHtml + '</span>');
+            } else {
+              $(this).parents('.gpprVariants').find('.gprvrAct').html('<span class="variant-example"><span class="variant-example__image">' + image + '</span>' + name + ' (' + formatMoney(price) + ')' + chevronHtml + '</span>');
+            }
+          } else {
+            if (nameEdit != null && sizes != null ) {
+             $(this).parents('.gpprVariants').find('.gprvrAct').prepend('<span class="variant-example"><span class="variant-example__image">' + image + '</span>' + nameEdit + ' (' + formatMoney(price) + ')' + sizes + chevronHtml + '</span>');
+            } else {
+              $(this).parents('.gpprVariants').find('.gprvrAct').prepend('<span class="variant-example"><span class="variant-example__image">' + image + '</span>' + name + ' (' + formatMoney(price) + ')' + chevronHtml + '</span>');
+            }
+          }
+        }
+
+        $("html").removeClass("lock");
+        $(".hide-on-drawer-active").removeClass("active");
+        $(".sidebar-drawer").removeClass("active");
+        $('[data-upsale-variant-id]').each(function(){
+           // Compare the value of data-upsale-variant-id with the 'id' variable
+           if (parseInt($(this).data('upsale-variant-id')) === id){
+              // Apply the remaining logic
+              $(this).val(price).trigger('change')
+              //$(this).parents('.gpprVariants').find('.vrPrice').val(price).trigger('change');
+          }
+        });
+        $('.freePr2').attr('data-upsale-variant-id',id);
+      } else {
+      updatePricesOnVariants();
+
+      var name = $(this).find(".name").html(),
+          mainName = $(this).data('prodName'),
+          pr = $(this).data('prod'),
+          id = $(this).data('id'),
+          price = $(this).data('price'),
+          mainQty = $(".mainprqty").val(),
+          mainVariant = $(this).data('mainVariant');
+        $(this).siblings().removeClass("active");
+        $(this).parents('.gprvrList').attr('data-id', id);
+      	$(this).parents('.gpprVariants').find('.gprvrAct span.variant-example').html(name);
+      	$('#qty'+pr).attr('name','updates['+id+']').val(mainQty);
+      	$('#qty'+pr).siblings("label.error").remove();
+       	$(this).parents('.gpprVariants').find('.at').removeClass('at-plus-l').addClass('at-check-r');
+        $(this).parents('.gpprVariants').find('.gprvrAct span.variant-active__icon').addClass("active");
+        $(this).addClass("active");
+
+  		$("html").removeClass("lock");
+        $(".hide-on-drawer-active").removeClass("active");
+        $(".sidebar-drawer").removeClass("active");
+        $(this).parents('.gpprVariants').find('.vrPrice').val(price).trigger('change');
+      }
+    });
+
+    $('.vrPrice').on('change', function(e) {
+      var sum = 0;
+
+      $('.vrPrice').each(function() {
+          var price = $(this).val();
+          sum += parseFloat(price);
+      });
+
+
+      $(".product-info .gpPrice .heading").html(formatMoney(sum, window.themeVariables.settings.moneyFormat));
+    })
+
+
+    function getVariant( option = false, position = false ) {
+      var select = $('select[name="id"]');
+      var options = $('[data-options]');
+
+      // Loop through options and find correct variant
+      var selectValue = []
+      options.each(function(i) {
+        var relID = $(this).find('.product-form__input.qty').attr('name').replace(/\D/g,'');
+        var variantItem = $(this).find('.sidebar-drawer__option[data-id="' + relID + '"]')
+        var variantName = $(variantItem).find('.name').text()
+
+        selectValue.push(variantName);
+      })
+
+      if ( option && position ) {
+        selectValue[position - 1] = option;
+      }
+
+      var selectID = selectValue.join(' / ')
+      return hasOnlyDefaultVariant ? select.find('option') : select.find('[data-select-name="' + selectID + '"]');
+    }
+
+
+    // Add products to cart
+    function onSuccess() {
+      window.location = '/cart'
+    }
+
+    $('#cart-form').validate();
+
+    $("[data-submit]").on("click", function(e) {
+      e.preventDefault();
+
+      var mainProdTitle = $(this).attr('data-prod-title');
+
+      var items = [];
+      var extraProducts = $('[data-extra]');
+      var select = $('select[name="id"]');
+
+      {% if product.has_only_default_variant -%}
+        var mainProdObj = {
+          quantity: $('#cart-form').find('input[name="quantity"]').val(),
+          id: parseInt($('.grprForm').attr('data-id'))
+        };
+
+        // Push main item to the items array
+        //items.push(mainProdObj);
+      {%- endif %}
+
+      var variantID = getVariant();
+      if ( variantID ) {
+        items.push({
+          quantity: $('#cart-form').find('input[name="quantity"]').val(),
+          id: parseInt(variantID.attr('value')),
+          properties: {
+            'main': mainProdTitle,
+            '_ref': uid
+          }
+      })
+
+
+      // Assuming you have a reference to the main-product-form element
+      var mainProductForm = document.querySelectorAll('.main-product-form')[0];
+
+
+      // Create the first hidden input
+      var input1 = document.createElement('input');
+      input1.type = 'hidden';
+      input1.name = 'properties[main]';
+      input1.value = mainProdTitle;
+
+      // Create the second hidden input
+      var input2 = document.createElement('input');
+      input2.type = 'hidden';
+      input2.name = 'properties[_ref]';
+      input2.value = uid;
+
+      // Append the inputs to the main-product-form element
+      mainProductForm.appendChild(input1);
+      mainProductForm.appendChild(input2);
+
+      }
+
+
+      // Loop through extra items to add objects to the items array with quantity, id and property with the name of the main product
+      extraProducts.each(function(i) {
+              console.log("EACH PRODUCT");
+        var isUpsale = $(this).attr('data-upsale');
+        if (isUpsale == "1") {
+              console.log("IS UPSALE");
+
+
+
+              $(this).find('.vrPrice').each(function() {
+              console.log("Has vr");
+              var id = parseInt($(this).data('upsale-variant-id'));
+              var variantPrice = Number($(this).val());
+              console.log("THE UPSALE PRODUCT", id);
+              if(id && variantPrice > 0 ) {
+                var obj = {
+                  quantity: $('#cart-form').find('input[name="quantity"]').val(),
+                  id: id,
+                  properties: {
+                    'main': mainProdTitle
+                  }
+                };
+
+
+                if (!Number.isNaN(id)) {
+                  items.push(obj);
+                }
+              }
+
+              // Inserting the matching value inside the obj
+              // For example, assuming there's an element with class 'some-class' inside each matched element
+              // obj.properties.matchingValue = $(element).find('.some-class').text();
+
+              // Now you can use the obj with the inserted values as needed
+            });
+        }
+        else {
+            console.log("HERE");
+            var id = parseInt($(this).find('.gprvrList').attr('data-id'));
+            console.log(id);
+            var obj = {
+            quantity: $('#cart-form').find('input[name="quantity"]').val(),
+            id: id,
+            properties: {
+              'main': mainProdTitle,
+              '_ref': uid
+            }
+          }
+
+        }
+
+
+        if (isUpsale !== "1") {
+          console.log("not 1");
+          if (!Number.isNaN(id)) {
+            items.push(obj);
+          }
+        }
+
+      });
+      console.log("ALL ITEMS");
+      console.log(items);
+      let hasMultipleVariants = false;
+      let itemsMainId = "";
+      if (items.length > 1) {
+        hasMultipleVariants = true;
+        items =  items.slice(1);
+       itemsMainId =  items[0];
+      }
+      console.log("NEW ITEMS", items);
+      console.log("MAIN ID", itemsMainId);
+      // Reverse items array to outout in same order they are picked
+      items = items.reverse();
+      if ( $("#cart-form").valid() ) {
+        $('[data-submit-text]').html(window.themeVariables.strings.addedToCart);
+        if (hasMultipleVariants) {
+            $.ajax({
+              type: 'POST',
+              url: '/cart/add.js',
+              data: {items: items},
+              dataType: 'json',
+              success: function(response) {
+                document.documentElement.dispatchEvent(new CustomEvent("variant:group:added", { bubbles: true, detail: { items: itemsMainId } }));
+              },
+              error: function(XMLHttpRequest, textStatus) {
+                alert(XMLHttpRequest.responseJSON.message);
+              }
+            })
+          } else {
+              document.documentElement.dispatchEvent(new CustomEvent("variant:group:added", { bubbles: true, detail: { items: items } }));
+          }
+      }
+
+    })
+
+  });
+
+  function formatMoney(cents, format = "") {
+  if (typeof cents === "string") {
+    cents = cents.replace(".", "");
+  }
+  const placeholderRegex = /\{\{\s*(\w+)\s*\}\}/, formatString = format || window.themeVariables.settings.moneyFormat;
+  function defaultTo(value2, defaultValue) {
+    return value2 == null || value2 !== value2 ? defaultValue : value2;
+  }
+  function formatWithDelimiters(number, precision, thousands, decimal) {
+    precision = defaultTo(precision, 2);
+    thousands = defaultTo(thousands, ",");
+    decimal = defaultTo(decimal, ".");
+    if (isNaN(number) || number == null) {
+      return 0;
+    }
+    number = (number / 100).toFixed(precision);
+    let parts = number.split("."), dollarsAmount = parts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + thousands), centsAmount = parts[1] ? decimal + parts[1] : "";
+    return dollarsAmount + centsAmount;
+  }
+  let value = "";
+  switch (formatString.match(placeholderRegex)[1]) {
+    case "amount":
+      value = formatWithDelimiters(cents, 2);
+      break;
+    case "amount_no_decimals":
+      value = formatWithDelimiters(cents, 0);
+      break;
+    case "amount_with_space_separator":
+      value = formatWithDelimiters(cents, 2, " ", ".");
+      break;
+    case "amount_with_comma_separator":
+      value = formatWithDelimiters(cents, 0, ".", ",");
+      break;
+    case "amount_with_apostrophe_separator":
+      value = formatWithDelimiters(cents, 2, "'", ".");
+      break;
+    case "amount_no_decimals_with_comma_separator":
+      value = formatWithDelimiters(cents, 0, ".", ",");
+      break;
+    case "amount_no_decimals_with_space_separator":
+      value = formatWithDelimiters(cents, 0, " ");
+      break;
+    case "amount_no_decimals_with_apostrophe_separator":
+      value = formatWithDelimiters(cents, 0, "'");
+      break;
+  }
+  if (formatString.indexOf("with_comma_separator") !== -1) {
+    return formatString.replace(placeholderRegex, value);
+  } else {
+    return formatString.replace(placeholderRegex, value);
+  }
+}
+</script>

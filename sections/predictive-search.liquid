@@ -1,0 +1,358 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PREDICTIVE SEARCH — takeover overlay content
+----------------------------------------------------------------------------------------------------------------------
+
+Fetched by <search-takeover> (assets/search-takeover.js) via
+/search?section_id=predictive-search&q=…, so the `search` drop is populated
+with matching products AND search.filters from the Search & Discovery app.
+
+Shopify's full /search endpoint does NOT return collections in search.results
+(that's a predictive-search-only feature, and the predictive endpoint doesn't
+return filters). So for the Kategorier sidebar we iterate the global
+`collections` object and match titles against search.terms — case-insensitive
+substring match. Simple, no extra fetch, respects the merchant's store.
+
+Layout (desktop ≥1000px):
+    ┌──────────────┬──────────────────────────────────┐
+    │  Kategorier  │  Produkter                       │
+    │ (matching    │  ─ filter pills (Størrelse/…)  ─ │
+    │  collections │  [ product grid ]                │
+    │  from query) │                                  │
+    └──────────────┴──────────────────────────────────┘
+
+Filter rendering is done INLINE (not via snippets/facets.liquid) because:
+  1. filter-collection.liquid has `pointer-events: none` on its summary,
+     breaking click-to-toggle behavior in this overlay context.
+  2. We only want a subset of filter groups visible (Størrelse, Farve, Type).
+  3. We need a 1-column scrollable value list.
+
+When a filter is toggled, the theme's global facet:update listener
+(in theme.js) handles the AJAX refresh by refetching this section and
+replacing #shopify-section-predictive-search in place.
+
+Supported variables: none
+{%- endcomment -%}
+
+{%- liquid
+  assign allowed_filter_labels = 'Størrelse,Farve,Type' | split: ','
+-%}
+
+{%- if search.performed -%}
+  {%- comment -%}
+    Paginate by 50 to override Shopify's default 10-result cap on search.results
+    inside Section Rendering API responses. Note: SRA may further clamp this
+    to 20 in practice. For most overlay UX this is enough — the merchant's
+    products_to_show setting (max 30) controls how many we actually display.
+  {%- endcomment -%}
+  {%- paginate search.results by: 50 -%}
+  {%- liquid
+    assign active_values_count = 0
+    assign allowed_filters_count = 0
+
+    for filter in search.filters
+      if allowed_filter_labels contains filter.label
+        assign allowed_filters_count = allowed_filters_count | plus: 1
+
+        if filter.type == 'price_range'
+          if filter.max_value.value != blank or filter.min_value.value != blank
+            assign active_values_count = active_values_count | plus: 1
+          endif
+        else
+          assign active_values_count = active_values_count | plus: filter.active_values.size
+        endif
+      endif
+    endfor
+
+    assign product_results = search.results | where: 'object_type', 'product'
+    assign search_query_lower = search.terms | downcase | strip
+  -%}
+
+  {%- comment -%} Build matching collections list via a capture so we can test for emptiness.
+    Only collections with metafield custom.search set to true appear in the
+    sidebar — merchants can opt collections in/out of search results via this
+    boolean metafield (Settings → Custom data → Collections → custom.search). {%- endcomment -%}
+  {%- capture collection_links -%}
+    {%- assign rendered = 0 -%}
+    {%- for col in collections -%}
+      {%- if rendered >= section.settings.collections_to_show -%}{%- break -%}{%- endif -%}
+      {%- unless col.metafields.custom.search -%}{%- continue -%}{%- endunless -%}
+      {%- assign title_lower = col.title | downcase -%}
+      {%- if title_lower contains search_query_lower -%}
+        <li>
+          <a href="{{ col.url }}" class="predictive-search__collection-link" data-instant>
+            <span>{{ col.title }}</span>
+            {%- render 'icon' with 'arrow-right', width: 14 -%}
+          </a>
+        </li>
+        {%- assign rendered = rendered | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endcapture -%}
+
+  <div class="predictive-search__takeover">
+    <div class="container">
+
+      {%- comment -%} ============ MOBILE TAB TOGGLE ============
+        Visible only on mobile (CSS-controlled). Toggles which section is
+        shown — Produkter (default) or Kategorier. Desktop ignores these
+        tabs and shows both side-by-side. {%- endcomment -%}
+      <nav class="predictive-search__mobile-tabs" data-mobile-tabs aria-label="Resultattyper">
+        <button type="button" class="predictive-search__mobile-tab is-active" data-tab="products" aria-selected="true">
+          Produkter
+          {%- if search.results_count > 0 -%}
+            <span class="predictive-search__mobile-tab-count">{{ search.results_count }}</span>
+          {%- endif -%}
+        </button>
+        <button type="button" class="predictive-search__mobile-tab" data-tab="categories" aria-selected="false">
+          Kategorier
+        </button>
+      </nav>
+
+      <div class="predictive-search__layout" data-active-tab="products">
+
+        {%- comment -%} ============ LEFT SIDEBAR: Kategorier (dynamic) ============
+          Two-tier fallback:
+          1. If search-term matches collections (with custom.search metafield),
+             show those as "Kategorier".
+          2. If no matches, show the configured search_idle_menu link list as
+             "Populære kategorier" — same UI as the idle state, so the sidebar
+             column never appears empty.
+        {%- endcomment -%}
+        {%- if collection_links != blank -%}
+          <aside class="predictive-search__sidebar">
+            <p class="predictive-search__sidebar-heading h4">
+              Kategorier
+            </p>
+            <ul class="predictive-search__collection-list unstyled-list" role="list">
+              {{- collection_links -}}
+            </ul>
+          </aside>
+        {%- else -%}
+          {%- assign fallback_menu = linklists[settings.search_idle_menu] -%}
+          {%- if fallback_menu.links.size > 0 -%}
+            <aside class="predictive-search__sidebar">
+              <p class="predictive-search__sidebar-heading h4">
+                Populære kategorier
+              </p>
+              <ul class="search-idle__menu-list unstyled-list" role="list">
+                {%- for link in fallback_menu.links -%}
+                  <li>
+                    <a href="{{ link.url }}" class="search-idle__menu-link" data-instant>
+                      <span>{{ link.title }}</span>
+                      {%- render 'icon' with 'arrow-right', width: 14 -%}
+                    </a>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </aside>
+          {%- endif -%}
+        {%- endif -%}
+
+        {%- comment -%} ============ MAIN COLUMN ============ {%- endcomment -%}
+        <div class="predictive-search__main">
+
+          {%- comment -%} ============ RESULTS HEADER ============ {%- endcomment -%}
+          <header class="predictive-search__results-header">
+            <p class="h5">{{ 'search.general.products' | t }}</p>
+            {%- if product_results.size > 0 and search.terms != blank -%}
+              <p class="text-subdued">{{ 'search.results_count_for_terms' | t: count: search.results_count, terms: search.terms }}</p>
+            {%- endif -%}
+          </header>
+
+          {%- comment -%} ============ HORIZONTAL FILTER PILLS ============
+            Rendered inline (not via facets.liquid) so we can:
+              - limit to a curated subset of filter groups
+              - use the vanilla `accordion` snippet (no pointer-events: none)
+              - render filter values in a 1-column scrollable list
+            The wrapping <form is="facets-form"> integrates with the theme's
+            facet:update AJAX refresh pipeline.
+          {%- endcomment -%}
+          {%- if allowed_filters_count > 0 -%}
+            <div class="predictive-search__toolbar">
+              {%- comment -%} Mobile-only close button. Hidden on desktop via CSS,
+                shown only when the mobile filter sheet is open. Closes the sheet
+                via the data-mobile-filter-close handler in search-takeover.js. {%- endcomment -%}
+              <button type="button" class="predictive-search__mobile-close" data-mobile-filter-close aria-label="Luk filter">
+                {%- render 'icon' with 'close', width: 18 -%}
+              </button>
+
+              <form is="facets-form" update-on-change section-id="{{ section.id }}" method="GET" action="{{ request.path }}" class="facets predictive-search__filters facets-horizontal">
+                <input type="hidden" name="page" value="">
+
+                {%- if search.sort_by != blank -%}
+                  <input type="hidden" name="sort_by" value="{{ search.sort_by }}">
+                {%- endif -%}
+
+                {%- if request.page_type == 'search' -%}
+                  <input type="hidden" name="q" value="{{ search.terms | escape }}">
+                {%- endif -%}
+
+                <div class="accordion-list">
+                  {%- for filter in search.filters -%}
+                    {%- if allowed_filter_labels contains filter.label -%}
+                      {%- capture id_prefix -%}facets-predictive-{{ forloop.index }}{%- endcapture -%}
+
+                      {%- capture filter_content -%}
+                        {%- case filter.type -%}
+                          {%- when 'list', 'boolean' -%}
+                            <div class="predictive-search__filter-values">
+                              {%- for filter_value in filter.values -%}
+                                {%- liquid
+                                  if filter_value.count == 0 and filter_value.active == false
+                                    continue
+                                  endif
+
+                                  if section.settings.show_filter_values_count
+                                    assign label_text = filter_value.label | append: ' (' | append: filter_value.count | append: ')'
+                                  else
+                                    assign label_text = filter_value.label
+                                  endif
+                                -%}
+
+                                <div class="checkbox-control">
+                                  <input id="{{ id_prefix }}-{{ forloop.index }}"
+                                         type="checkbox"
+                                         name="{{ filter_value.param_name }}"
+                                         value="{{ filter_value.value }}"
+                                         {% if filter_value.active %}checked{% endif %}>
+                                  <label for="{{ id_prefix }}-{{ forloop.index }}" class="text-sm">{{ label_text }}</label>
+                                </div>
+                              {%- endfor -%}
+                            </div>
+
+                          {%- when 'price_range' -%}
+                            {%- render 'price-range', filter: filter -%}
+                        {%- endcase -%}
+                      {%- endcapture -%}
+
+                      {%- if filter_content != blank -%}
+                        {%- render 'accordion',
+                            title: filter.label,
+                            content: filter_content,
+                            open: false,
+                            show_arrow: true
+                        -%}
+                      {%- endif -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+
+                {%- comment -%} ============ ACTIVE FACET CHIPS ============
+                  Rendered INSIDE the facets-form so chip clicks integrate with
+                  the theme's update-on-change AJAX pipeline (no full-page nav).
+
+                  Each chip is a button that unchecks (or clears) the
+                  corresponding form input, then dispatches a 'change' event
+                  to trigger the theme's facet:update fetch.
+
+                  "Ryd alle filtre" submits the form with all filter inputs
+                  reset — accomplished via a <button type="reset"> wrapper
+                  that fires after we manually clear each one.
+                {%- endcomment -%}
+                {%- if active_values_count > 0 -%}
+                  <div class="predictive-search__active-facets">
+                    {%- for filter in search.filters -%}
+                      {%- unless allowed_filter_labels contains filter.label -%}{%- continue -%}{%- endunless -%}
+
+                      {%- if filter.type == 'price_range' -%}
+                        {%- if filter.min_value.value != blank or filter.max_value.value != blank -%}
+                          <div class="removable-facet">
+                            <button type="button" data-remove-facet data-filter-name="{{ filter.min_value.param_name }}" data-filter-name-2="{{ filter.max_value.param_name }}" aria-label="Fjern {{ filter.label }}-filter">
+                              {%- render 'icon' with 'close', width: 10 -%}
+                            </button>
+                            <span>
+                              {{- filter.label -}}:
+                              {%- if filter.min_value.value -%} {{ filter.min_value.value | money_without_trailing_zeros }}{%- else -%} {{ 0 | money_without_trailing_zeros }}{%- endif -%}
+                              –
+                              {%- if filter.max_value.value -%}{{ filter.max_value.value | money_without_trailing_zeros }}{%- else -%}{{ filter.range_max | money_without_trailing_zeros }}{%- endif -%}
+                            </span>
+                          </div>
+                        {%- endif -%}
+                      {%- else -%}
+                        {%- for active_value in filter.active_values -%}
+                          <div class="removable-facet">
+                            <button type="button" data-remove-facet data-filter-name="{{ active_value.param_name }}" data-filter-value="{{ active_value.value | escape }}" aria-label="Fjern {{ active_value.label }}-filter">
+                              {%- render 'icon' with 'close', width: 10 -%}
+                            </button>
+                            <span>{{ filter.label }}: {{ active_value.label }}</span>
+                          </div>
+                        {%- endfor -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+
+                    <button type="button" data-clear-all-facets class="facets-clear-all">
+                      <span class="link">Ryd alle filtre</span>
+                    </button>
+                  </div>
+                {%- endif -%}
+              </form>
+            </div>
+          {%- endif -%}
+
+          {%- comment -%} ============ PRODUCT GRID / NO RESULTS ============ {%- endcomment -%}
+          {%- if product_results.size == 0 -%}
+            <div class="predictive-search__no-results-wrap">
+              <p class="predictive-search__no-results-message text-center">
+                {{- 'search.general.no_results' | t -}}
+              </p>
+            </div>
+            {%- render 'search-idle-state' -%}
+          {%- else -%}
+            <product-list class="product-list product-list--compact predictive-search__products" style="--product-list-items-per-row: 3;">
+              {%- comment -%} Skip products with product.type "Free" (configurator add-ons)
+                and "upsale" (bundle gift products). Both are reachable through the
+                products they bundle with, not via search. {%- endcomment -%}
+              {%- assign hidden_types = 'Free,upsale' | split: ',' -%}
+              {%- for product in product_results limit: section.settings.products_to_show -%}
+                {%- unless hidden_types contains product.type -%}
+                  {%- render 'product-card-menu',
+                      product: product,
+                      stacked: true,
+                      show_quick_buy: false,
+                      show_secondary_image: false
+                  -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            </product-list>
+          {%- endif -%}
+
+        </div>
+      </div>
+    </div>
+  </div>
+  {%- endpaginate -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.predictive_search.predictive_search",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "label": "Antal produkter vist i søge-overlayet",
+      "min": 6,
+      "max": 30,
+      "step": 1,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "collections_to_show",
+      "label": "Antal kategorier vist i sidebaren",
+      "info": "Maksimalt antal matchende kollektioner vist i venstre sidebar. Matcher på kollektionstitel (case-insensitive).",
+      "min": 3,
+      "max": 15,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filter_values_count",
+      "label": "Vis antal produkter pr. filter-værdi",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

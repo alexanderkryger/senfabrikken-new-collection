@@ -1,0 +1,920 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_navigation_EfeqBP": {
+      "type": "product-navigation",
+      "blocks": {
+        "menu_EMcTHN": {
+          "type": "menu",
+          "settings": {
+            "menu": "Kontinentalsenge",
+            "link": "#Kontinentalsenge"
+          }
+        },
+        "menu_izXJMf": {
+          "type": "menu",
+          "settings": {
+            "menu": "Elevationssenge",
+            "link": "#Elevationssenge"
+          }
+        },
+        "menu_Yn9KAR": {
+          "type": "menu",
+          "settings": {
+            "menu": "Boxmadrasser",
+            "link": "#Boxmadrasser"
+          }
+        },
+        "menu_DcB6RM": {
+          "type": "menu",
+          "settings": {
+            "menu": "Tilbehør",
+            "link": "#Tilbehor"
+          }
+        }
+      },
+      "block_order": [
+        "menu_EMcTHN",
+        "menu_izXJMf",
+        "menu_Yn9KAR",
+        "menu_DcB6RM"
+      ],
+      "settings": {
+        "bg": "#d9e8f5",
+        "lcl": "#2f1300",
+        "lclh": "#ffffff",
+        "iscart": false,
+        "btnlbl": "",
+        "btn": ""
+      }
+    },
+    "main": {
+      "type": "main-page",
+      "disabled": true,
+      "settings": {
+        "show_title": true,
+        "page_width": "xs"
+      }
+    },
+    "ac469766-3335-4db4-84ad-2cceb7daab49": {
+      "type": "breadcrumb-bar",
+      "settings": {
+        "show_breadcrumb": true
+      }
+    },
+    "13be2ed4-95e8-4955-941c-579cd75eeccc": {
+      "type": "countdown",
+      "custom_css": [
+        ".countdown__content.prose {max-width: 700px;}"
+      ],
+      "settings": {
+        "seasonal_background": false,
+        "remove_bottom_padding": true,
+        "video": "shopify://files/videos/9X7_BANNER_FABRIK.mp4",
+        "mobile_video": "shopify://files/videos/1X1_BANNER_FABRIK.mp4",
+        "image": "shopify://shop_images/0a26f74cce08611d6124be8eb42d65f7.jpg",
+        "mobile_image": "shopify://shop_images/banner_tilbudsside_mobil.jpg",
+        "image_size": "auto",
+        "image_content": "shopify://shop_images/SF-Paskeudsalg24-LockUp-SVG-2025-70.svg",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "button_link": "",
+        "button_text": "",
+        "countdown_title": "Påskeudsalg slutter om",
+        "expiration_date": "2025-04-28",
+        "expiration_behavior": "leave",
+        "animate_number": true,
+        "countdown_background": "#262626",
+        "background": "rgba(0,0,0,0)",
+        "text_color": "#ffdc2e",
+        "button_background": "",
+        "button_text_color": "#ffffff",
+        "flip_background": "#ffdc2e",
+        "flip_background_opacity": 100,
+        "flip_text_color": "#262626",
+        "overlay_color": "#56b0fb",
+        "overlay_opacity": 10
+      }
+    },
+    "space_FpMwEj": {
+      "type": "space",
+      "settings": {
+        "size_mobile": "large",
+        "size": "large",
+        "background": "#262626"
+      }
+    },
+    "scrolling_content_V3V6GD": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_3THgad": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>⚡ BEGRÆNSET TILBUD - KUN MENS LAGER HAVES</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "text_3THgad"
+      ],
+      "custom_css": [],
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.2,
+        "scroll_direction": "left",
+        "text_font": "body",
+        "text_font_size_mobile": 10,
+        "text_font_size_desktop": 20,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 10,
+        "item_horizontal_spacing_desktop": 55,
+        "background": "#262626",
+        "text_color": ""
+      }
+    },
+    "media_grid_qwfGFF": {
+      "type": "media-grid",
+      "blocks": {
+        "image_mQiWzG": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/paskeudsalg_banner_5.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_tDtkdw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/paskeudsalg_banner_2.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_AG3hT9": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/paskeudsalg_banner_3.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "image_3zNhmH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/paskeudsalg_banner_4.png",
+            "column_count": "3",
+            "row_count": 2,
+            "title": "",
+            "content": "",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "image_mQiWzG",
+        "image_tDtkdw",
+        "image_AG3hT9",
+        "image_3zNhmH"
+      ],
+      "settings": {
+        "margin_bottom": 0,
+        "desktop_row_height": 180,
+        "mobile_row_height": 200,
+        "section_width": "lg",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "product_list_x9fRM7": {
+      "type": "product-list",
+      "blocks": {
+        "product_XwWCi7": {
+          "type": "product",
+          "settings": {
+            "product": "krone-platin-elevation-bla-180x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "product_XwWCi7"
+      ],
+      "custom_css": [
+        "p.h1 {font-size: 2.8rem;}"
+      ],
+      "settings": {
+        "products_per_row": "1",
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "text": "<strong>UGENS DEAL</strong>",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "c05ba001-8515-4063-8f0e-a96bc68dff99": {
+      "type": "product-list",
+      "blocks": {
+        "template--20177880121692__c05ba001-8515-4063-8f0e-a96bc68dff99-product-1": {
+          "type": "product",
+          "settings": {
+            "product": "monark-trykaflastende-kontinental-antracit-180x200-cm",
+            "highlighted": false
+          }
+        },
+        "9c2dc430-6a35-473a-b8d7-f7192db25b9a": {
+          "type": "product",
+          "settings": {
+            "product": "monark-koelende-kontinental-antracit-180x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880121692__c05ba001-8515-4063-8f0e-a96bc68dff99-product-1",
+        "9c2dc430-6a35-473a-b8d7-f7192db25b9a"
+      ],
+      "disabled": true,
+      "settings": {
+        "products_per_row": "2",
+        "seasonal_background": false,
+        "remove_bottom_padding": true,
+        "text": "",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "space_73ygWD": {
+      "type": "space",
+      "disabled": true,
+      "settings": {
+        "size_mobile": "large",
+        "size": "large",
+        "background": "#111810"
+      }
+    },
+    "ad17b23a-8673-47dd-be9d-3ea840e708d7": {
+      "type": "media-grid-default",
+      "blocks": {
+        "template--20177880121692__ad17b23a-8673-47dd-be9d-3ea840e708d7-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/SF_Banner_100dage_Desk_2000x625_2.jpg",
+            "mobile_image": "shopify://shop_images/SF_Banner_100dage_mobile.jpg",
+            "column_count": "12",
+            "row_count": 1,
+            "content": "",
+            "title": "100 dages risikofri prøve",
+            "heading_tag": "h1",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880121692__ad17b23a-8673-47dd-be9d-3ea840e708d7-image-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "desktop_row_height": 420,
+        "mobile_row_height": 420,
+        "section_width": "xl",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "12cfc518-a28e-4bdb-9887-7a55a8a2a1e7": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20149228274012__12cfc518-a28e-4bdb-9887-7a55a8a2a1e7-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Vores Kontinentalsenge",
+            "heading_tag": "h1"
+          }
+        },
+        "template--20149228274012__12cfc518-a28e-4bdb-9887-7a55a8a2a1e7-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Kontinentalsenge kombinerer unik komfort med stilfuldt design. Vores kontinentalsenge består af tre individuelle lag; en stærk boxmadras, en fleksibel og støttende springmadras samt en eksklusiv topmadras. </p>",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "template--20149228274012__12cfc518-a28e-4bdb-9887-7a55a8a2a1e7-heading-1",
+        "template--20149228274012__12cfc518-a28e-4bdb-9887-7a55a8a2a1e7-richtext-1"
+      ],
+      "settings": {
+        "custom_id": "Kontinentalsenge",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "eebe73ca-57e6-42e4-a978-cdaaddeec820": {
+      "type": "product-list",
+      "blocks": {
+        "template--20177880121692__eebe73ca-57e6-42e4-a978-cdaaddeec820-product-1": {
+          "type": "product",
+          "settings": {
+            "product": "krone-komfort-kontinental-antracit-180x200-cm",
+            "highlighted": false
+          }
+        },
+        "257c49a1-c53d-4112-b2b9-67a1a05c5ae5": {
+          "type": "product",
+          "settings": {
+            "product": "krone-trykaflastende-kontinental-antracit-180x200-cm",
+            "highlighted": true
+          }
+        },
+        "b0d4349d-ea2b-41eb-9673-ba2a6140e39c": {
+          "type": "product",
+          "settings": {
+            "product": "krone-kolende-kontinental-antracit-180x200-cm",
+            "highlighted": true
+          }
+        },
+        "9330f602-943f-4846-a020-ca37da99bc11": {
+          "type": "product",
+          "settings": {
+            "product": "krone-luksus-kontinental-sand-180x200-cm",
+            "highlighted": false
+          }
+        },
+        "product_GpTA7X": {
+          "type": "product",
+          "settings": {
+            "product": "krone-magasinboks-sand-180x200-cm",
+            "highlighted": false
+          }
+        },
+        "product_HVn6gK": {
+          "type": "product",
+          "settings": {
+            "product": "krone-platin-kontinental-sand-180x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880121692__eebe73ca-57e6-42e4-a978-cdaaddeec820-product-1",
+        "257c49a1-c53d-4112-b2b9-67a1a05c5ae5",
+        "b0d4349d-ea2b-41eb-9673-ba2a6140e39c",
+        "9330f602-943f-4846-a020-ca37da99bc11",
+        "product_GpTA7X",
+        "product_HVn6gK"
+      ],
+      "settings": {
+        "products_per_row": "1",
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "text": "",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "12d0d4b7-d39c-4f01-8eae-dbd00c9750e0": {
+      "type": "media-grid-default",
+      "blocks": {
+        "template--20177880121692__12d0d4b7-d39c-4f01-8eae-dbd00c9750e0-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/SF_Banner_Naturfonden_Desk_2000x625_a4415238-779e-4c36-a4be-650cf95cd69c.png",
+            "mobile_image": "shopify://shop_images/SF_Banner_Naturfonden_Mobil.jpg",
+            "column_count": "12",
+            "row_count": 1,
+            "content": "<p>Bevarer den danske natur</p>",
+            "title": "For hver solgte seng frikøbes et stykke dansk natur gennem Den Danske Naturfond",
+            "heading_tag": "h1",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-end-start text-start",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "template--20177880121692__12d0d4b7-d39c-4f01-8eae-dbd00c9750e0-image-1"
+      ],
+      "settings": {
+        "desktop_row_height": 420,
+        "mobile_row_height": 420,
+        "section_width": "xl",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "c147b45d-1dd1-4964-a9f5-5ec9d423294f": {
+      "type": "rich-text",
+      "blocks": {
+        "7c22fbe6-6300-4883-a3d9-a485f6ddc0ec": {
+          "type": "heading",
+          "settings": {
+            "text": "Vores Elevationssenge",
+            "heading_tag": "h1"
+          }
+        },
+        "e2034be3-e7fe-471f-9731-9a5db06d138e": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Elevationssenge kombinerer unik komfort med funktionalitet. Her kan du nemt hæve og sænke såvel hoved- som fodende efter behov. Særligt praktisk, hvis du fx læser i sengen eller af helbredsmæssige årsager har brug for at ændre din soveposition.</p>",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "7c22fbe6-6300-4883-a3d9-a485f6ddc0ec",
+        "e2034be3-e7fe-471f-9731-9a5db06d138e"
+      ],
+      "settings": {
+        "custom_id": "Elevationssenge",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "08c8a802-4d24-4f94-bd5e-9a68ce46758f": {
+      "type": "product-list",
+      "blocks": {
+        "a79cb416-c327-4f84-828f-231c26867210": {
+          "type": "product",
+          "settings": {
+            "product": "krone-trykaflastende-elevation-lysegra-180x200-cm",
+            "highlighted": true
+          }
+        },
+        "f3d450ff-b7ec-4d71-be60-6f5a6c291078": {
+          "type": "product",
+          "settings": {
+            "product": "krone-kolende-elevation-lysegra-180x200-cm",
+            "highlighted": true
+          }
+        },
+        "c9f911f5-b720-43f5-987d-c6914ae05c05": {
+          "type": "product",
+          "settings": {
+            "product": "krone-luksus-elevation-sand-180x200-cm",
+            "highlighted": false
+          }
+        },
+        "64f09b68-866d-48c9-b989-379461a7297b": {
+          "type": "product",
+          "settings": {
+            "product": "krone-platin-elevation-antracit-180x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "a79cb416-c327-4f84-828f-231c26867210",
+        "f3d450ff-b7ec-4d71-be60-6f5a6c291078",
+        "c9f911f5-b720-43f5-987d-c6914ae05c05",
+        "64f09b68-866d-48c9-b989-379461a7297b"
+      ],
+      "settings": {
+        "products_per_row": "1",
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "text": "",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "79b0e374-e2d6-418d-94dd-f4dd09eb8423": {
+      "type": "custom-html",
+      "settings": {
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "html": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"da-DK\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5c1d6cc06af40c00013d7c52\" data-style-height=\"140px\" data-style-width=\"100%\" data-theme=\"dark\" data-tags=\"SelectedReview\" data-review-languages=\"da\" data-font-family=\"Montserrat\">\n  <a href=\"https://dk.trustpilot.com/review/sengefabrikken.dk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->",
+        "text_alignment": "center"
+      }
+    },
+    "2beddb64-0718-410d-be31-f0898ff55437": {
+      "type": "rich-text",
+      "blocks": {
+        "cad52db1-4d57-4b4e-9690-3d7a0eb654db": {
+          "type": "heading",
+          "settings": {
+            "text": "Vores Boxmadrasser",
+            "heading_tag": "h1"
+          }
+        },
+        "6b6435e6-45b1-4787-bd62-e84c56c5801e": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Boxmadrasser er simple all-in-one løsninger, hvor du ikke går på kompromis med hverken komfort eller støtte. Du får vores velkendte komfort og støtte fra to individuelle fjedrelag samlet i en massiv trækonstruktion betrukket med Oeko Tex certificerede møbeltekstiler. </p>",
+            "text_color": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "cad52db1-4d57-4b4e-9690-3d7a0eb654db",
+        "6b6435e6-45b1-4787-bd62-e84c56c5801e"
+      ],
+      "settings": {
+        "custom_id": "Boxmadrasser",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "acdcbf6e-70a7-41a4-8210-3f2ebe10ddfd": {
+      "type": "product-list",
+      "blocks": {
+        "ad13d41f-b70a-49bf-af88-a85c420c5dd6": {
+          "type": "product",
+          "settings": {
+            "product": "krone-komfort-box-antracit-140x200-cm",
+            "highlighted": false
+          }
+        },
+        "3c6785bc-4b7e-4be3-86ae-74e5a1cd3bf7": {
+          "type": "product",
+          "settings": {
+            "product": "krone-trykaflastende-box-lysegra-140x200-cm",
+            "highlighted": true
+          }
+        },
+        "1d93c458-0814-465f-805d-f1095a32750e": {
+          "type": "product",
+          "settings": {
+            "product": "krone-kolende-box-lysegra-140x200-cm",
+            "highlighted": true
+          }
+        },
+        "3e543634-c6e2-437f-b83f-5e809d4560ab": {
+          "type": "product",
+          "settings": {
+            "product": "krone-luksus-box-sand-140x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "ad13d41f-b70a-49bf-af88-a85c420c5dd6",
+        "3c6785bc-4b7e-4be3-86ae-74e5a1cd3bf7",
+        "1d93c458-0814-465f-805d-f1095a32750e",
+        "3e543634-c6e2-437f-b83f-5e809d4560ab"
+      ],
+      "settings": {
+        "products_per_row": "1",
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "text": "",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "rich_text_baQr8r": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_a3cGTQ": {
+          "type": "heading",
+          "settings": {
+            "text": "Tilbehør på tilbud",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "heading_a3cGTQ"
+      ],
+      "settings": {
+        "custom_id": "Tilbehor",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "#262626",
+        "background_gradient": ""
+      }
+    },
+    "scrolling_content_4FBg6h": {
+      "type": "scrolling-content",
+      "blocks": {
+        "text_LVNUgY": {
+          "type": "text",
+          "settings": {
+            "text": "<strong>⚡ BEGRÆNSET TILBUD - KUN MENS LAGER HAVES</strong>"
+          }
+        }
+      },
+      "block_order": [
+        "text_LVNUgY"
+      ],
+      "settings": {
+        "separate_section_with_border": false,
+        "scrolling_speed": 0.2,
+        "scroll_direction": "left",
+        "text_font": "body",
+        "text_font_size_mobile": 10,
+        "text_font_size_desktop": 20,
+        "section_vertical_spacing_mobile": 10,
+        "section_vertical_spacing_desktop": 10,
+        "item_horizontal_spacing_mobile": 10,
+        "item_horizontal_spacing_desktop": 55,
+        "background": "#262626",
+        "text_color": ""
+      }
+    },
+    "product_list_jjcBLg": {
+      "type": "product-list",
+      "blocks": {
+        "product_gyy66Q": {
+          "type": "product",
+          "settings": {
+            "product": "komfort-topmadras-90x200-cm",
+            "highlighted": false
+          }
+        },
+        "product_pfnEgc": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "dundynen-140x200-cm",
+            "highlighted": false
+          }
+        },
+        "product_6JKrta": {
+          "type": "product",
+          "disabled": true,
+          "settings": {
+            "product": "sovesofaen-grain-140x200-cm",
+            "highlighted": false
+          }
+        }
+      },
+      "block_order": [
+        "product_gyy66Q",
+        "product_pfnEgc",
+        "product_6JKrta"
+      ],
+      "settings": {
+        "products_per_row": "1",
+        "seasonal_background": false,
+        "remove_bottom_padding": false,
+        "text": "",
+        "heading_tag": "h1",
+        "content": ""
+      }
+    },
+    "0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc": {
+      "type": "multi-column",
+      "blocks": {
+        "template--20149228274012__0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc-image_with_text-1": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "Påskeudsalg Senge 2025",
+            "heading_tag": "h1",
+            "content": "<p>Vi er endelig gået live med vores helt vilde <strong>Påskeudsalg </strong>– og priserne er aldrig set lavere end netop nu. Hvis du har et mål om at forbedre din nattesøvn i 2025, så er det en rigtig god idé at slå til nu. Påsken markerer en ny begyndelse, og det gælder også for vores priser.</p><p><strong>Påskeudsalget</strong> hos Sengefabrikken er ingen undtagelse – tværtimod. Vi har skruet op for kvaliteten, men ned for prisen. Derfor kan du lige nu spare helt op til vanvittige <strong>70%</strong> på vores danske kvalitetssenge. Og tilbuddene koncentrerer sig altså ikke omkring andensorteringsvarer eller udgåede modeller, men derimod vores <strong>bedstsælgende og mest populære senge</strong>. Rabatterne spænder vidt og bredt fra komplette senge til dyner, puder og sengetøj.</p><p>Selvom året stadig er ungt, tør vi godt lægge hovedet på blokken og garantere, at du ikke ser en bedre pris i løbet af 2025 – dermed kan du skyde påsken i gang ved at foretage årets bedste investering allerede nu. En investering i en ny seng er ikke bare en investering i et nyt møbel, men derimod en investering i en <strong>bedre udgave af dig selv</strong>.</p>",
+            "text_color": "#ffffff",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "template--20149228274012__0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc-image_with_text-2": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "<strong>Brug for hjælp?</strong>",
+            "heading_tag": "h1",
+            "content": "<p>Igennem hele påsken sidder vores kompetente og erfarne sengeeksperter klar til at hjælpe dig i mål med den helt rigtige bestilling. Ingen spørgsmål er for store eller for små; hvis du har brug for hjælp, hvad enten det er omhandlende specifikke produkter, levering eller noget helt tredje, så må du endelig ikke tøve med at kontakte os. Vi er online alle ugens dage fra 8-23.</p><p>Vi håber, at vores tilbud kan inspirere dig til at foretage en investering i dig selv og dit velvære. En god nats søvn er alfa og omega for at være et velfungerende menneske dagen derpå – og vi vil rigtig gerne med dig på rejsen hen imod en fantastisk søvn.</p><p>Lige nu kan du spare helt op til 70% på vores danske kvalitetssenge – så der har aldrig været et bedre tidspunkt at investere i din søvn!</p>",
+            "text_color": "#ffffff",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_p38RR8": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "<strong>påskeudsalg Kontinentalsenge</strong>",
+            "heading_tag": "h3",
+            "content": "<p>Gør et kup under vores <strong>Påskeudsalg </strong>med uovertrufne tilbud på kontinentalsenge. I denne måned kan du opgradere dit soveværelse med en kontinentalseng, der kombinerer elegant design med uovertruffen komfort.</p><p>Vores kontinentalsenge er skabt til dem, der ikke vil gå på kompromis med søvnkvaliteten, og under <strong>Påskeudsalget </strong>er det din chance for at erhverve luksus til en brøkdel af prisen. Uanset dine præferencer sikrer vores brede udvalg, at du finder den perfekte seng til dit hjem.</p>",
+            "text_color": "#ffffff",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_nppaD9": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "<strong>Påskeudsalg Elevationssenge</strong>",
+            "heading_tag": "h3",
+            "content": "<p>Opdag vores attraktive tilbud på elevationssenge under <strong>Påskeudsalget</strong>. En elevationsseng fra Sengefabrikken tilbyder ikke kun personlig komfort med justerbare indstillinger, men også en bedre søvnoplevelse.</p><p>Ideel for alle, der værdsætter fleksibilitet og komfort, vores <strong>Påskeudsalg </strong>gør det muligt for dig at investere i en elevationsseng, der opfylder dine behov, uden at tømme pengepungen. Nyd fordelene ved en tilpasset hvilestilling og forbedret komfort til en pris, der kun findes én gang om året.</p>",
+            "text_color": "#ffffff",
+            "link_url": "",
+            "link_text": ""
+          }
+        },
+        "image_with_text_VJQAgh": {
+          "type": "image_with_text",
+          "settings": {
+            "title": "<strong>Påskeudsalg Boxmadrasser</strong>",
+            "heading_tag": "h3",
+            "content": "<p>Vores <strong>Påskeudsalg </strong>byder på fantastiske besparelser på boxmadrasser, der er designet til at give dig den optimale kombination af støtte og komfort. En boxmadras fra Sengefabrikken er den ideelle løsning for enhver, der søger en praktisk og komfortabel seng.</p><p>Med vores <strong>Påskeudsalg </strong>kan du gøre en god handel på en kvalitetsboxmadras, der vil forbedre din søvn og dit soveværelses æstetik. Uanset om du opdaterer dit soveværelse eller forbereder et gæsteværelse, er dette det perfekte tidspunkt at købe.</p>",
+            "text_color": "#ffffff",
+            "link_url": "",
+            "link_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20149228274012__0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc-image_with_text-1",
+        "template--20149228274012__0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc-image_with_text-2",
+        "image_with_text_p38RR8",
+        "image_with_text_nppaD9",
+        "image_with_text_VJQAgh"
+      ],
+      "settings": {
+        "columns_per_row": 2,
+        "stack_on_mobile": true,
+        "overlap_image": false,
+        "content_alignment": "start",
+        "text_alignment": "start",
+        "spacing": "md",
+        "subheading": "",
+        "title": "",
+        "content": ""
+      }
+    },
+    "f85fe6db-5997-429d-a140-c1ec154039d7": {
+      "type": "faq",
+      "blocks": {
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Er det sikkert at købe seng online?",
+            "answer": "<p>Ja, det er det i hvert fald. Vi mener faktisk at vores gunstige betingelser giver dig bedre forudsætninger for at vælge den helt rigtige seng - selvom du ikke kan prøve den inden køb. Der er således en enorm forskel på at prøve en seng i en fysisk butik med alt tøj på i 2-3 minutter kontra at sove i den hjemme i dit soveværelse 7-9 timer hver eneste nat. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 30 dages gratis returret samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Har I en butik eller et showroom?",
+            "answer": "<p>Nej, vi er 100% online - og har ingen butikker eller showrooms. Dette er et helt bevidst valg, da vi ved at holde vores faste omkostninger på et absolut minimum, har mulighed for at optimere både fleksibilitet og priser. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 100 dages gratis retur samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster levering?",
+            "answer": "<p>Leveringsprisen afhænger af den valgte leveringsform samt leveringsadressen, og den endelige pris vises altid tydeligt på bestillingssiden, inden du gennemfører dit køb.</p> <p>Mindre varer, herunder sengetøj, dyner og puder, leveres til din adresse med GLS, mens større varer som senge og madrasser leveres med DSV.</p> <p>Standardlevering sker til kantsten. Ønsker du en mere bekvem levering, har du mulighed for at tilkøbe ekstra serviceydelser, så leveringen tilpasses dine behov. Vi tilbyder blandt andet opbæring/indbæring, montering samt bortskaffelse af din nuværende seng. Alle tilkøb kan vælges direkte på bestillingssiden.</p>"
+          }
+        },
+        "46dc144e-f4e7-42c0-8839-8f7ec208c83f": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor lang er jeres leveringstid?",
+            "answer": "<p>Leveringstiden på vores produkter spænder vidt og bredt. Leveringstiden på et produkt vil altid fremgå af produktsiden samt på din ordrebekræftelse. </p><p>Som udgangspunkt vil små varer, som dyner, puder og sengetøj, altid kunne leveres indenfor 1-3 hverdage. Senge, vi har færdigproduceret og stående klar på lager, vil typisk have en leveringstid på op til 15 hverdage, imens senge i ukurante størrelser samt specialmål har en leveringstid på 3-7 uger. </p>"
+          }
+        },
+        "2f4238d4-ba2c-4e62-942a-3acf1aa2a37c": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Ja, det kan du. Hvis du ønsker levering en bestemt dag, så skal du blot notere det som ordrekommentar. Herefter vil vi videreformidle den ønskede dag til både vores pakkeri samt det eksterne leveringsfirma, der står for den endelige levering. </p><p>Vi kan ikke garantere levering den ønskede dag, men vi vil altid forsøge at imødekomme det bedst muligt - og det lykkes heldigvis også i 95% af alle tilfælde. Skulle vi mod forventning ikke være i stand til at levere den ønskede dag, så vil leveringen som regel finde sted dagen efter i stedet.</p><p>Uanset hvad, så vil din ordre aldrig blive leveret, uden at du har godkendt leveringsdag og tidsinterval over SMS. </p>"
+          }
+        },
+        "213e02c9-0de6-40aa-966a-17c5ae9acd4e": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg afdrage beløbet over en periode?",
+            "answer": "<p>At investere i en ny seng er en stor udgift i de flestes privatøkonomi. Derfor tilbyder vi finansiering igennem både Anyday og Santander. Ved førstnævnte kan du splitte din betaling op i 4 lige store rater, imens du gennem Santander har mulighed for at afdrage beløbet i en fastsat periode på helt op til 60 måneder. </p><p>Anyday er rente- og gebyrfrit. Hos Santander er finansieringen ligeledes rentefri - der vil dog være et mindre månedligt gebyr. Du kan altid se de nøjagtige omkostninger forbundet med finansieringsløsningen, inden du gennemfører købet. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-1",
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-2",
+        "template--20149228274012__f85fe6db-5997-429d-a140-c1ec154039d7-question-3",
+        "46dc144e-f4e7-42c0-8839-8f7ec208c83f",
+        "2f4238d4-ba2c-4e62-942a-3acf1aa2a37c",
+        "213e02c9-0de6-40aa-966a-17c5ae9acd4e"
+      ],
+      "custom_css": [
+        "p {color: white;}"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe dig alle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    }
+  },
+  "order": [
+    "product_navigation_EfeqBP",
+    "main",
+    "ac469766-3335-4db4-84ad-2cceb7daab49",
+    "13be2ed4-95e8-4955-941c-579cd75eeccc",
+    "space_FpMwEj",
+    "scrolling_content_V3V6GD",
+    "media_grid_qwfGFF",
+    "product_list_x9fRM7",
+    "c05ba001-8515-4063-8f0e-a96bc68dff99",
+    "space_73ygWD",
+    "ad17b23a-8673-47dd-be9d-3ea840e708d7",
+    "12cfc518-a28e-4bdb-9887-7a55a8a2a1e7",
+    "eebe73ca-57e6-42e4-a978-cdaaddeec820",
+    "12d0d4b7-d39c-4f01-8eae-dbd00c9750e0",
+    "c147b45d-1dd1-4964-a9f5-5ec9d423294f",
+    "08c8a802-4d24-4f94-bd5e-9a68ce46758f",
+    "79b0e374-e2d6-418d-94dd-f4dd09eb8423",
+    "2beddb64-0718-410d-be31-f0898ff55437",
+    "acdcbf6e-70a7-41a4-8210-3f2ebe10ddfd",
+    "rich_text_baQr8r",
+    "scrolling_content_4FBg6h",
+    "product_list_jjcBLg",
+    "0f01b04d-fe68-4ef6-82a2-fcdb5c02a8dc",
+    "f85fe6db-5997-429d-a140-c1ec154039d7"
+  ]
+}

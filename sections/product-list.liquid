@@ -1,0 +1,143 @@
+{%- if section.blocks.size > 0 -%}
+  <div class="section-spacing {% if section.settings.seasonal_background != blank %}seasonal_background section-spacing--padded{% endif %} {% if section.settings.remove_bottom_padding != blank %}remove_bottom_padding{% endif %}">
+      {%- if section.settings.text != blank or section.settings.content != blank -%}
+      <div class="container container--xs">
+        <div class="prose text-center product-list-content">
+          {%- if section.settings.text != blank -%}
+            <p class="{{ section.settings.heading_tag }}" {{ section.shopify_attributes }}>{{ section.settings.text }}</p>
+          {%- endif -%}
+          {%- if section.settings.content != blank -%}
+            <div {{ section.shopify_attributes }}>
+              {{- section.settings.content -}}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- endif -%}
+    <div class="container container--xl">
+      <div class="product-list-wrapper">
+        <div class="product-list product-list-rows-{{ section.settings.products_per_row }}">
+        {%- for block in section.blocks -%}
+          {%- render 'product-card', product: block.settings.product, highlighted: block.settings.highlighted -%}
+        {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+  {
+    "name": "Product list",
+    "class": "shopify-section--product-list",
+    "tag": "section",
+    "disabled_on": {
+      "groups": ["header", "custom.overlay"]
+    },
+    "settings": [
+      {
+        "type": "select",
+        "id": "products_per_row",
+        "label": "Products per row",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "checkbox",
+        "id": "seasonal_background",
+        "label": "Use seasonal background color",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "remove_bottom_padding",
+        "label": "Remove bottom padding",
+        "info": "This can make the spacing look better when using multiple seasonal backgrounds",
+        "default": false
+      },
+      {
+        "type": "inline_richtext",
+        "id": "text",
+        "label": "t:global.text.text",
+        "default": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "heading_tag",
+        "label": "t:global.text.style",
+        "options": [
+          {
+            "value": "h1",
+            "label": "H1"
+          },
+          {
+            "value": "h2",
+            "label": "H2"
+          },
+          {
+            "value": "h3",
+            "label": "H3"
+          },
+          {
+            "value": "h4",
+            "label": "H4"
+          },
+          {
+            "value": "h5",
+            "label": "H5"
+          },
+          {
+            "value": "h6",
+            "label": "H6"
+          }
+        ],
+        "default": "h1"
+      },
+      {
+        "type": "richtext",
+        "id": "content",
+        "label": "t:global.text.content",
+        "default": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "product",
+        "name": "Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "checkbox",
+            "id": "highlighted",
+            "label": "Highlight product"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Product list",
+        "blocks": [
+          {
+            "type": "product",
+            "settings": {
+            }
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

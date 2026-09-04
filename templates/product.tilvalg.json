@@ -1,0 +1,197 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "disabled": true,
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "disabled": true,
+      "settings": {
+        "container_size": "xl",
+        "product_info_size": 40,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 4,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "0bc048d9-1199-44a0-819b-494ae444e470": {
+      "type": "rich-text",
+      "blocks": {
+        "template--20413444030812__0bc048d9-1199-44a0-819b-494ae444e470-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Tilbehørsprodukt",
+            "heading_tag": "h1"
+          }
+        },
+        "template--20413444030812__0bc048d9-1199-44a0-819b-494ae444e470-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Dette tilbehør er et sengekomponent, som kun er tilgængeligt ved køb af en seng. </p>"
+          }
+        },
+        "702e59f5-116a-4afb-90ee-fd4760af4788": {
+          "type": "button",
+          "settings": {
+            "style": "solid",
+            "text": "Shop videre",
+            "url": "https://www.sengefabrikken.dk",
+            "background": "",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--20413444030812__0bc048d9-1199-44a0-819b-494ae444e470-heading-1",
+        "template--20413444030812__0bc048d9-1199-44a0-819b-494ae444e470-richtext-1",
+        "702e59f5-116a-4afb-90ee-fd4760af4788"
+      ],
+      "settings": {
+        "custom_id": "",
+        "remove_padding": false,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a": {
+      "type": "faq",
+      "blocks": {
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad betyder 100 dages prøve?",
+            "answer": "<p>Med vores koncept \"100 dages prøve\" i ryggen er du sikker på at gøre en god og tryg handel. Hvis du ikke er tilfreds, så kommer vi og henter varen igen på din adresse - og refunderer dig hele købsbeløbet. </p><p>Det kan være svært at vælge ny seng, dyne eller topmadras. Derfor giver vi dig 100 nætter til at prøve produktet af - hvis du ikke er tilfreds, så kan du enten ombytte til noget andet kvit og frit eller returnere. Nemt, trygt og sikkert. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Har I en butik eller et showroom?",
+            "answer": "<p>Nej, vi er 100% online - og har ingen butikker eller showrooms. Dette er et helt bevidst valg, da vi ved at holde vores faste omkostninger på et absolut minimum, har mulighed for at optimere både fleksibilitet og priser. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 100 dages gratis retur samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster levering?",
+            "answer": "<p>Leveringsprisen afhænger af den valgte leveringsform samt leveringsadressen, og den endelige pris vises altid tydeligt på bestillingssiden, inden du gennemfører dit køb.</p> <p>Mindre varer, herunder sengetøj, dyner og puder, leveres til din adresse med GLS, mens større varer som senge og madrasser leveres med DSV.</p> <p>Standardlevering sker til kantsten. Ønsker du en mere bekvem levering, har du mulighed for at tilkøbe ekstra serviceydelser, så leveringen tilpasses dine behov. Vi tilbyder blandt andet opbæring/indbæring, montering samt bortskaffelse af din nuværende seng. Alle tilkøb kan vælges direkte på bestillingssiden.</p>"
+          }
+        },
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor lang er jeres leveringstid?",
+            "answer": "<p>Leveringstiden på vores produkter spænder vidt og bredt. Leveringstiden på et produkt vil altid fremgå af produktsiden samt på din ordrebekræftelse. </p><p>Som udgangspunkt vil små varer, som dyner, puder og sengetøj, altid kunne leveres indenfor 1-3 hverdage. Senge, vi har færdigproduceret og stående klar på lager, vil typisk have en leveringstid på op til 15 hverdage, imens senge i ukurante størrelser samt specialmål har en leveringstid på 3-7 uger. </p>"
+          }
+        },
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Ja, det kan du. Hvis du ønsker levering en bestemt dag, så skal du blot notere det som ordrekommentar. Herefter vil vi videreformidle den ønskede dag til både vores pakkeri samt det eksterne leveringsfirma, der står for den endelige levering. </p><p>Vi kan ikke garantere levering den ønskede dag, men vi vil altid forsøge at imødekomme det bedst muligt - og det lykkes heldigvis også i 95% af alle tilfælde. Skulle vi mod forventning ikke være i stand til at levere den ønskede dag, så vil leveringen som regel finde sted dagen efter i stedet.</p><p>Uanset hvad, så vil din ordre aldrig blive leveret, uden at du har godkendt leveringsdag og tidsinterval over SMS. </p>"
+          }
+        },
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg afdrage beløbet over en periode?",
+            "answer": "<p>At investere i en ny seng er en stor udgift i de flestes privatøkonomi. Derfor tilbyder vi finansiering igennem både Anyday og Santander. Ved førstnævnte kan du splitte din betaling op i 4 lige store rater, imens du gennem Santander har mulighed for at afdrage beløbet i en fastsat periode på helt op til 60 måneder. </p><p>Anyday er rente- og gebyrfrit. Hos Santander er finansieringen ligeledes rentefri - der vil dog være et mindre månedligt gebyr. Du kan altid se de nøjagtige omkostninger forbundet med finansieringsløsningen, inden du gennemfører købet. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3",
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2",
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021",
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe digalle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "0bc048d9-1199-44a0-819b-494ae444e470",
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a"
+  ]
+}

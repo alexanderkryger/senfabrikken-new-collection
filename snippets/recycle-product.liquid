@@ -1,0 +1,97 @@
+{%- liquid
+  assign rcprice = 500
+  assign isRecycle = false
+  assign rcproduct = all_products[product.metafields.custom.recycle_product]
+   
+  if product.title contains '90x200'or product.title contains '90x210'
+    assign rcprice = 250
+  endif
+
+  if product.title contains '(Recycled)'
+     assign isRecycle = true
+  endif
+-%}
+
+<div class="recyclePr h-stack justify-between{% if isRecycle %} isrecycle{% endif %}">
+    <div class="ttlCol">
+        <div class="ttl h-stack"><b>Recycled Kerner</b><span class="lbl">Recycled</span></div>
+      {% if isRecycle %}
+Sengen er med recycled madraskerner. <br>Besparelsen er fratrukket prisen.
+{% else %}
+       Vælg recycled kerner til sengen og spar penge
+        {% endif %}
+    </div>
+    <div class="rcPricecol">
+      Spar {{ rcprice }} kr.
+      <div class="rctogleBtn{% unless isRecycle %} drawer-btn{% endunless %}" data-drawer-btn="drawer-recycle-product">
+        {% if isRecycle %}
+            <a href="{{ rcproduct.url }}"><button class="recycleBtn"></button></a>
+         {% else %}
+             <button id="js-button" class="recycleBtn{% unless isRecycle %} js-button{% endunless %}"></button>
+         {% endif %}
+      </div>
+    </div>
+</div>
+{% unless isRecycle %}
+<div class="sidebar-drawer recycleDrawer" data-drawer="drawer-recycle-product">
+      <div class="Drawer__Header">
+          <div class="sidebar-drawer__close Drawer__Close Icon-Wrapper--clickable">
+            {%- render 'icon' with 'custom-arrow-left' -%}
+            <span>Tilbage</span>
+          </div>
+      </div>
+      <div class="sidebar-drawer__content">
+          <div class="sidebar-drawer__content__scroll">
+              <div>
+                <h3 class="heading h3">Recycled Kerner</h3>
+                <p class="">Konceptet er enkelt; du sparer penge og bidrager samtidig til at komme "køb-og-smid-væk" kulturen til livs. Recycled kerner er madrasser, der tidligere har været ude hos andre kunder, men er blevet ombyttet til en anden fasthed indenfor vores 100 dages prøve.</p>
+                <br>
+                <b>Fordele</b>
+                <br>
+                <ul>
+                <li>- Du sparer {{ rcprice }} kr. på din nye seng.</li>
+                <li>- Du får samme garanti som normalt.</li>
+                <li>- Du får et nyt cover til madrasserne.</li>
+                <li>- Kun madraskernen er recycled - resten af sengen er fabriksny.</li>
+                </ul>
+                 <br>
+                <p>Og så er du selvfølgelig stadig omfattet af vores 100 dages risikofri prøve.</p>
+                <br>
+                <i>Vær venligst opmærksom på at vores Recycled Kerner kan have almindelig brugsspor, såsom lagersnavs o.l.</i>
+              </div>
+              <div class="recycleprRow h-stack justify-between">
+                  <div class="ttlCol">
+                    <h3 class="ttl h-stack">Vælg recycled kerner</h3>
+                    Besparelse: {{ rcprice }} kr.
+                </div>
+                <div class="rcPricecol"><span class="variant-active__icon active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.66797 8L6.33464 12L13.3346 4" stroke="#2F1300" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"></path></svg></span></div>
+              </div>
+              <a href="{{ rcproduct.url }}" id="recyclebutton" class="button w-full goRecycle">Bekræft</a>
+              <hr />
+              <div class="vdRow h-stack">
+    <div class="vdColl">
+        <!-- Replace video with image -->
+        <img src="https://cdn.shopify.com/s/files/1/0710/4563/files/recycled-kerne_edc098d1-554c-4898-acf5-ddb21ea00d35.jpg?v=1719300999" width="100%" style="border-radius: 4px;">
+    </div>
+    <div class="txt">
+        <h4>Her ses et eksempel på en recycled kerne</h4>
+        <div class="time"></div>
+    </div>
+</div>
+          </div>
+      </div>
+  </div>
+  <script>
+    const button = document.getElementsByClassName("js-button")[0];
+    button.addEventListener("click", function (event) {
+      let parentNode = event.target.parentNode;
+      if (parentNode.classList.contains("turn-on")) {
+        event.target.parentNode.classList.remove("turn-on");
+        document.body.classList.remove("active");
+      } else {
+        event.target.parentNode.classList.add("turn-on");
+        document.body.classList.add("active");
+      }
+    });
+</script>
+{% endunless %}

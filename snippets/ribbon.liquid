@@ -1,0 +1,82 @@
+{%- capture ribbon -%}
+{%- if product.tags contains settings.ribbon_text_1 -%}{{settings.ribbon_text_1}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_2 -%}{{settings.ribbon_text_2}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_3 -%}{{settings.ribbon_text_3}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_4 -%}{{settings.ribbon_text_4}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_5 -%}{{settings.ribbon_text_5}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_6 -%}{{settings.ribbon_text_6}}{%- endif -%}
+{%- if product.tags contains settings.ribbon_text_10 -%}{{settings.ribbon_text_10}}{%- endif -%}
+{%- endcapture -%}
+
+<style>
+{%- if settings.ribbon_text_1 != blank -%}
+.ribbon-{{ settings.ribbon_text_1 }} .ribbon-text {
+  background: {{settings.ribbon_color_1 }};
+  color: {{settings.ribbon_text_color_1 }};
+}
+.ribbon-{{ settings.ribbon_text_1 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_1 }}!important;
+}
+{%- endif -%}
+
+{%- if settings.ribbon_text_2 != blank -%}
+.ribbon-{{ settings.ribbon_text_2 }} .ribbon-text {
+  background: {{settings.ribbon_color_2 }};
+  color: {{settings.ribbon_text_color_2 }};
+}
+.ribbon-{{ settings.ribbon_text_2 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_2 }}!important;
+}
+{%- endif -%}
+
+{%- if settings.ribbon_text_3 != blank -%}
+.ribbon-{{ settings.ribbon_text_3 }} .ribbon-text {
+  background: {{settings.ribbon_color_3 }};
+  color: {{settings.ribbon_text_color_3 }};
+}
+.ribbon-{{ settings.ribbon_text_3 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_3 }}!important;
+}
+{%- endif -%}
+
+{%- if settings.ribbon_text_4 != blank -%}
+.ribbon-{{ settings.ribbon_text_4 }} .ribbon-text {
+  background: {{settings.ribbon_color_4 }};
+  color: {{settings.ribbon_text_color_4 }};
+}
+.ribbon-{{ settings.ribbon_text_4 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_4 }}!important;
+}
+{%- endif -%}
+
+  {%- if settings.ribbon_text_5 != blank -%}
+.ribbon-{{ settings.ribbon_text_5 }} .ribbon-text {
+  background: {{settings.ribbon_color_5 }};
+  color: {{settings.ribbon_text_color_5 }};
+}
+.ribbon-{{ settings.ribbon_text_5 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_5 }}!important;
+}
+{%- endif -%}
+
+   {%- if settings.ribbon_text_6 != blank -%}
+.ribbon-{{ settings.ribbon_text_6 }} .ribbon-text {
+  background: {{settings.ribbon_color_6 }};
+  color: {{settings.ribbon_text_color_6 }};
+}
+.ribbon-{{ settings.ribbon_text_6 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_6 }}!important;
+}
+{%- endif -%}
+
+   {%- if settings.ribbon_text_10 != blank -%}
+.ribbon-{{ settings.ribbon_text_10 }} .ribbon-text {
+  background: {{settings.ribbon_color_10 }};
+  color: {{settings.ribbon_text_color_10 }};
+}
+.ribbon-{{ settings.ribbon_text_10 }} .product-card__wrapper {
+  border-color: {{settings.ribbon_color_10 }}!important;
+}
+{%- endif -%}
+
+</style>

@@ -1,0 +1,95 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+SEARCH IDLE STATE
+----------------------------------------------------------------------------------------------------------------------
+
+Rendered in two places:
+  1. In the search takeover overlay when no query is typed (from header-search.liquid)
+  2. As a fallback in predictive-search.liquid when a query returns zero products
+
+Shows an optional menu (Kategorier) followed by a curated "Top produkter" grid.
+All content is controlled by theme settings so merchants can tune it without
+touching code.
+
+Content is wrapped in a .container so it picks up the theme's standard page
+gutters — without this wrapper, the idle state would render edge-to-edge
+(predictive-search.liquid has its own .container wrapper for the typed state).
+
+Settings used (from config/settings_schema.json "Søgning (takeover)" group):
+  - settings.search_idle_menu        Optional link_list shown first
+  - settings.search_idle_heading     Heading for the products grid
+  - settings.search_idle_subheading  Subheading / caption for the products grid
+  - settings.search_idle_collection  Collection handle to feature
+  - settings.search_idle_count       How many products to show (1–20)
+
+********************************************
+Supported variables
+********************************************
+
+Nothing
+{%- endcomment -%}
+
+{%- liquid
+  assign idle_menu = linklists[settings.search_idle_menu]
+  assign idle_collection = collections[settings.search_idle_collection]
+  assign idle_count = settings.search_idle_count | default: 10
+-%}
+
+<section class="search-idle">
+  <div class="container">
+
+    {%- comment -%} ============ OPTIONAL MENU (Kategorier / popular links) ============ {%- endcomment -%}
+    {%- if idle_menu.links.size > 0 -%}
+      <nav class="search-idle__menu" aria-label="{{ idle_menu.title | default: 'Kategorier' | escape }}">
+        <p class="search-idle__menu-heading h5">
+          {%- if idle_menu.title != blank -%}
+            {{- idle_menu.title -}}
+          {%- else -%}
+            Kategorier
+          {%- endif -%}
+        </p>
+        <ul class="search-idle__menu-list unstyled-list" role="list">
+          {%- for link in idle_menu.links -%}
+            <li>
+              <a href="{{ link.url }}" class="search-idle__menu-link" data-instant>
+                <span>{{ link.title }}</span>
+                {%- render 'icon' with 'arrow-right', width: 14 -%}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
+    {%- comment -%} ============ TOP PRODUKTER GRID ============ {%- endcomment -%}
+    {%- if idle_collection != blank and idle_collection.products.size > 0 -%}
+      <div class="search-idle__products-wrap">
+        <header class="search-idle__header">
+          {%- if settings.search_idle_heading != blank -%}
+            <h2 class="h3">{{ settings.search_idle_heading }}</h2>
+          {%- endif -%}
+          {%- if settings.search_idle_subheading != blank -%}
+            <p class="text-subdued">{{ settings.search_idle_subheading }}</p>
+          {%- endif -%}
+        </header>
+
+        <product-list class="product-list product-list--compact search-idle__grid" style="--product-list-items-per-row: 3;">
+          {%- comment -%} Skip Free (configurator add-ons) and upsale (bundle gifts).
+            These are reachable through the products they bundle with, not directly. {%- endcomment -%}
+          {%- assign hidden_types = 'Free,upsale' | split: ',' -%}
+          {%- for product in idle_collection.products limit: idle_count -%}
+            {%- unless hidden_types contains product.type -%}
+              {%- render 'product-card-menu',
+                  product: product,
+                  stacked: true,
+                  show_quick_buy: false,
+                  show_secondary_image: false
+              -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        </product-list>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>

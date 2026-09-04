@@ -1,0 +1,491 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "product_navigation_zYrM4w": {
+      "type": "product-navigation",
+      "blocks": {
+        "menu_4wHEen": {
+          "type": "menu",
+          "settings": {
+            "menu": "Produktbeskrivelse",
+            "link": "#puf"
+          }
+        },
+        "menu_rxQ6cT": {
+          "type": "menu",
+          "settings": {
+            "menu": "Specifikationer",
+            "link": "#specification"
+          }
+        },
+        "menu_3CNyWz": {
+          "type": "menu",
+          "settings": {
+            "menu": "FAQ",
+            "link": "#faq"
+          }
+        }
+      },
+      "block_order": [
+        "menu_4wHEen",
+        "menu_rxQ6cT",
+        "menu_3CNyWz"
+      ],
+      "settings": {
+        "bg": "#f1eeeb",
+        "lcl": "#2f1300",
+        "lclh": "#ffffff",
+        "iscart": true,
+        "btnlbl": "{{ product.metafields.custom.product_title.value.product_title.value }}",
+        "btn": "Køb"
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "container_size": "xl",
+        "product_info_size": 40,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 4,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "d97ec032-fc2e-4e24-8528-edb8b59287c6": {
+      "type": "custom-html",
+      "settings": {
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "html": "<!-- TrustBox widget - Carousel -->\n<div class=\"trustpilot-widget\" data-locale=\"da-DK\" data-template-id=\"53aa8912dec7e10d38f59f36\" data-businessunit-id=\"5c1d6cc06af40c00013d7c52\" data-style-height=\"140px\" data-style-width=\"100%\" data-theme=\"light\" data-tags=\"SelectedReview\" data-review-languages=\"da\" data-font-family=\"Montserrat\">\n  <a href=\"https://dk.trustpilot.com/review/sengefabrikken.dk\" target=\"_blank\" rel=\"noopener\">Trustpilot</a>\n</div>\n<!-- End TrustBox widget -->",
+        "text_alignment": "center"
+      }
+    },
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "{{ product.metafields.custom.product_title.value.product_title.value }}",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1"
+      ],
+      "settings": {
+        "custom_id": "puf",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "rgba(0,0,0,0)",
+        "background_gradient": "linear-gradient(0deg, rgba(255, 248, 242, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "63005100-2293-4b57-bfe6-fdb1d32f33fb": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/PUF_BOUCLE BEIGE.mp4",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "63005100-2293-4b57-bfe6-fdb1d32f33fb"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "end",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Puffen til vores sovesofa fungerer både som et ekstra sæde og en smart opbevaringsløsning. Perfekt til små rum, hvor funktionalitet er essentiel. Puffen kombinerer stil og praktik - og er et ideelt supplement til din sovesofa.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "<p><strong>4 fine facts om Puffen</strong></p><ul><li>Puf med opbevaringsrum.</li><li>Fleksibel funktionalitet.</li><li>Stilfuldt design.</li><li>Fås i to slidstærke tekstiler.</li></ul>",
+        "content_border_below_top": true,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#fff8f2",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "multiple_media_with_text_hxRF6C": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "video_JFPLHk": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/5050_PUF_BOUCLE_001.mp4",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "video_JFPLHk"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "image": "shopify://shop_images/puffe_boucle_3.jpg",
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "<strong>Praktisk og stilfuldt supplement til din sovesofa </strong>",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Puffen er med sit opbevaringsrum ikke blot en praktisk tilføjelse til hjemmet, men også et element af komfort og stil. Materialevalget er afgørende for både udseende og funktionalitet, og i vores puf kan du vælge mellem to forskellige holdbare tekstiler. Fyldet består af skum, så du også er sikret en behagelig siddeoplevelse - og så puffens flotte form bevares over tid. Den bløde polstrede overflade giver ekstra komfort, mens den solide konstruktion med det gemte opbevaringsrum sikrer stabilitet. En puf kombinerer dermed komfort, æstetik og funktion, hvilket gør den til en ideel løsning for dig, der søger både stil og praktisk anvendelighed i dine møbler.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#fff8f2",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "before_after_gq38cx": {
+      "type": "before-after",
+      "blocks": {
+        "before_P84w9j": {
+          "type": "before",
+          "settings": {
+            "image": "shopify://shop_images/puffen-open-closed.jpg",
+            "mobile_image": "shopify://shop_images/puffen-closed-mobile.jpg",
+            "text": "Lukket",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#1c1c1c"
+          }
+        },
+        "after_iWCzxD": {
+          "type": "after",
+          "settings": {
+            "image": "shopify://shop_images/puffen-open-desktop.jpg",
+            "mobile_image": "shopify://shop_images/puffen-open-mobile.jpg",
+            "text": "Åbent",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#1c1c1c"
+          }
+        }
+      },
+      "block_order": [
+        "before_P84w9j",
+        "after_iWCzxD"
+      ],
+      "settings": {
+        "separate_section_with_border": true,
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "cursor_direction": "horizontal",
+        "cursor_initial_position": 50,
+        "cursor_background": "#fff8f2",
+        "cursor_arrows_color": "#000000"
+      }
+    },
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f": {
+      "type": "bed-specifications",
+      "blocks": {
+        "73c19e78-2831-405f-bb84-b7897be80865": {
+          "type": "accordion",
+          "settings": {
+            "title": "Generelt",
+            "content": "<ul><li>Designet i: Danmark.</li><li>Produceret i: EU.</li><li>Opbevaringsplads: Ja.</li></ul>"
+          }
+        },
+        "e06061ec-e26d-4df2-98b3-e285c9fef24b": {
+          "type": "accordion",
+          "settings": {
+            "title": "Dimensioner",
+            "content": "<ul><li>Bredde: 83 cm.</li><li>Dybde: 83 cm.</li><li>Højde: 42 cm. </li></ul>"
+          }
+        },
+        "e437535b-8f58-4d63-bbe3-e7ca5105fba8": {
+          "type": "accordion",
+          "settings": {
+            "title": "Garanti",
+            "content": "<ul><li>2 års reklamationsret.</li><li>Alle tekstiler er Oeko Tex certificeret.</li></ul>"
+          }
+        },
+        "1896ef97-0a12-49dc-bb47-98e74d656824": {
+          "type": "accordion",
+          "settings": {
+            "title": "Komfort",
+            "content": "<ul><li>Træramme i massivt fyrretræ.</li><li>Indlæg: Skum</li><li>Bolster: 93% polyester, 6% acryl, 1% bomuld</li></ul>"
+          }
+        },
+        "accordion_tVUqmR": {
+          "type": "accordion",
+          "settings": {
+            "title": "Certifikater",
+            "content": "<p>OEKO-TEX® Standard 100</p>"
+          }
+        }
+      },
+      "block_order": [
+        "73c19e78-2831-405f-bb84-b7897be80865",
+        "e06061ec-e26d-4df2-98b3-e285c9fef24b",
+        "e437535b-8f58-4d63-bbe3-e7ca5105fba8",
+        "1896ef97-0a12-49dc-bb47-98e74d656824",
+        "accordion_tVUqmR"
+      ],
+      "settings": {
+        "title": "Puffen specifikationer",
+        "content": "<p>Tag et deep-dive ned i vores Puf. Vi står inde for kvaliteten og spiller med helt åbne kort, så du ved, hvad du får. </p>",
+        "background": "#fff8f2",
+        "text_color": "#2f1300",
+        "border_color": "#e0dcd9",
+        "image": "shopify://shop_images/sovesove_ustreg-01_puf_ae33b05a-16c2-40a9-84fc-5da6792f1705.svg"
+      }
+    },
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a": {
+      "type": "faq",
+      "blocks": {
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad betyder 100 dages prøve?",
+            "answer": "<p>Med vores koncept \"100 dages prøve\" i ryggen er du sikker på at gøre en god og tryg handel. Hvis du ikke er tilfreds, så kommer vi og henter varen igen på din adresse - og refunderer dig hele købsbeløbet. </p><p>Det kan være svært at vælge ny seng, dyne eller topmadras. Derfor giver vi dig 100 nætter til at prøve produktet af - hvis du ikke er tilfreds, så kan du enten ombytte til noget andet kvit og frit eller returnere. Nemt, trygt og sikkert. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Har I en butik eller et showroom?",
+            "answer": "<p>Nej, vi er 100% online - og har ingen butikker eller showrooms. Dette er et helt bevidst valg, da vi ved at holde vores faste omkostninger på et absolut minimum, har mulighed for at optimere både fleksibilitet og priser. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 100 dages gratis retur samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster levering?",
+            "answer": "<p>Leveringsprisen afhænger af den valgte leveringsform samt leveringsadressen, og den endelige pris vises altid tydeligt på bestillingssiden, inden du gennemfører dit køb.</p> <p>Mindre varer, herunder sengetøj, dyner og puder, leveres til din adresse med GLS, mens større varer som senge og madrasser leveres med DSV.</p> <p>Standardlevering sker til kantsten. Ønsker du en mere bekvem levering, har du mulighed for at tilkøbe ekstra serviceydelser, så leveringen tilpasses dine behov. Vi tilbyder blandt andet opbæring/indbæring, montering samt bortskaffelse af din nuværende seng. Alle tilkøb kan vælges direkte på bestillingssiden.</p>"
+          }
+        },
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor lang er jeres leveringstid?",
+            "answer": "<p>Leveringstiden på vores produkter spænder vidt og bredt. Leveringstiden på et produkt vil altid fremgå af produktsiden samt på din ordrebekræftelse. </p><p>Som udgangspunkt vil små varer, som dyner, puder og sengetøj, altid kunne leveres indenfor 1-3 hverdage. Senge, vi har færdigproduceret og stående klar på lager, vil typisk have en leveringstid på op til 15 hverdage, imens senge i ukurante størrelser samt specialmål har en leveringstid på 3-7 uger. </p>"
+          }
+        },
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Ja, det kan du. Hvis du ønsker levering en bestemt dag, så skal du blot notere det som ordrekommentar. Herefter vil vi videreformidle den ønskede dag til både vores pakkeri samt det eksterne leveringsfirma, der står for den endelige levering. </p><p>Vi kan ikke garantere levering den ønskede dag, men vi vil altid forsøge at imødekomme det bedst muligt - og det lykkes heldigvis også i 95% af alle tilfælde. Skulle vi mod forventning ikke være i stand til at levere den ønskede dag, så vil leveringen som regel finde sted dagen efter i stedet.</p><p>Uanset hvad, så vil din ordre aldrig blive leveret, uden at du har godkendt leveringsdag og tidsinterval over SMS. </p>"
+          }
+        },
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg afdrage beløbet over en periode?",
+            "answer": "<p>At investere i en ny seng er en stor udgift i de flestes privatøkonomi. Derfor tilbyder vi finansiering gennem Anyday, hvor du kan splitte din betaling op i 4 lige store rater – helt uden renter og gebyrer.</p><p>Du ser altid de præcise omkostninger, inden du gennemfører købet, og der tilføjes ingen skjulte gebyrer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3",
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2",
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021",
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe digalle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    },
+    "521a67c7-8c08-4f21-a20f-76217086071b": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "custom_icon": "shopify://shop_images/ordre-modtaget.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Bestilt</strong>",
+            "content": "<p>Når du har lavet en ordre via vores hjemmeside, går vi straks i gang med at forberede afsendelsen. Leveringstiden oplyses altid af hjemmesiden og din ordrebekræftelse. </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "custom_icon": "shopify://shop_images/Home-alt-2_dfd1c0c1-ff90-43f3-b420-ac164c7e9077.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Afsendt</strong>",
+            "content": "<p>Når din ordre er produceret og pakket, sender vi den til fragtfirmaet, der tager direkte kontakt til dig med henblik på at aftale en leveringsdag og et tidsinterval (over SMS). </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "custom_icon": "shopify://shop_images/Layers.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Leveret</strong>",
+            "content": "<p>På leveringsdagen vil fragtfirmaet sende dig en SMS ca. 30 minutter før ankomst. Intervallet vil typisk være 2-4 timer. Bemærk at mindre pakker sendes med GLS. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "product_navigation_zYrM4w",
+    "main",
+    "d97ec032-fc2e-4e24-8528-edb8b59287c6",
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556",
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6",
+    "multiple_media_with_text_hxRF6C",
+    "before_after_gq38cx",
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f",
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a",
+    "521a67c7-8c08-4f21-a20f-76217086071b"
+  ]
+}

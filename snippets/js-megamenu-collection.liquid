@@ -1,0 +1,29 @@
+<script>
+    $(document).ready(function() {
+      // Find all main nav items
+      let nav_items = $('.header__primary-nav-item');
+
+      nav_items.each(function(index) {
+        // Find all megamenu collections
+        let megamenu_collections = $(this).find('.mega-menu__collection-wrap[data-promo-handle]');
+        // For each megamenu collection, find the corresponding nav item and add a mouseenter event
+        megamenu_collections.each(function(index) {
+          let collectionEl = $(this);
+          let promo_handle = $(this).data('promo-handle');
+          let navEl = $(`li[data-promo-handle="${promo_handle}"]`);
+
+          $(navEl).on('mouseenter', function() {
+            $(collectionEl).attr('aria-hidden', 'false');
+
+            // Set all others to aria-hidden true
+            megamenu_collections.each(function() {
+              if ($(this).data('promo-handle') != promo_handle) {
+                $(this).attr('aria-hidden', 'true');
+              }
+            });
+          });
+
+        });
+      })
+    });
+</script>

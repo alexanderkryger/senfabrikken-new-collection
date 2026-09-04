@@ -1,0 +1,996 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "container_size": "xl",
+        "product_info_size": 40,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 4,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-dansk-flag",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Danskproducerede senge",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-garanti",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "25 års garanti",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-trustpilot",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "[trustscore] på Trustpilot",
+            "content": ""
+          }
+        },
+        "42d6c851-d149-4627-924e-90d392395f2a": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-use-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Gratis levering & returnering",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3",
+        "42d6c851-d149-4627-924e-90d392395f2a"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "256e6989-2111-4e6e-bf03-a115550a6497": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "95% Synes Krone har været den perfekte seng",
+            "heading_tag": "h1"
+          }
+        },
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Ur, sitae. Cerio. Et aut haria veria nisitae nonsed que sed quid modiorepudae reped et estionsecte volent, cum quo tectesequate pe litiur atet plitatqui in con renet.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-heading-1",
+        "template--19989117305180__256e6989-2111-4e6e-bf03-a115550a6497-richtext-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "remove_padding": false,
+        "content_width": "xs",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "703a6e05-5daa-47fa-b345-a27ec04be1b8": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__703a6e05-5daa-47fa-b345-a27ec04be1b8-image-2": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__703a6e05-5daa-47fa-b345-a27ec04be1b8-image-2"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Derfor er Krone det fornuftige valg",
+        "show_icon": true,
+        "show_color_swatch": false,
+        "content": "<p><strong>Hvis du køber Krone sengen får du:</strong></p><ul><li>Latex polstring</li><li>Meget for pengene</li><li>Latex polstring</li><li>Meget for pengene</li><li>Latex polstring</li><li>Meget for pengene</li></ul>",
+        "content_border_top": true,
+        "content_border_bottom": true,
+        "content_color": "",
+        "content_border_color": "#f1eeeb",
+        "content_below": "<p><strong>Vores mest populære seng siden 2013</strong></p>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#650621",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "693b1468-7de5-4787-ae86-2761a5615352": {
+      "type": "media-grid",
+      "blocks": {
+        "a0c88671-3b6c-4fe7-9cf6-80d314858bbd": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/danskproduceret_video.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Se Michael's gennemgang af sengen",
+            "content": "<p>1:24m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-end-center text-center",
+            "text_color": "#2f1300",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "26fa3eec-426a-4bbd-b1d5-8660f2ad7429": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/efterårsudsag_video_homepage_mobile.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Se Michael's gennemgang af sengen",
+            "content": "<p>1:24m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "451aea16-3e04-4741-874c-a748e992ea1f": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/danskproduceret_video.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Se Michael's gennemgang af sengen",
+            "content": "<p>1:24m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "fc5fc82f-f7ab-405f-b144-c0e6aecd6632": {
+          "type": "video",
+          "settings": {
+            "video": "shopify://files/videos/efterårsudsag_video_homepage_mobile.mp4",
+            "autoplay": false,
+            "show_controls": true,
+            "column_count": "3",
+            "row_count": 2,
+            "title": "Se Michael's gennemgang af sengen",
+            "content": "<p>1:24m</p>",
+            "link_text": "",
+            "link_url": "",
+            "link_style": "link",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "button_background": "",
+            "button_text_color": "",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "a0c88671-3b6c-4fe7-9cf6-80d314858bbd",
+        "26fa3eec-426a-4bbd-b1d5-8660f2ad7429",
+        "451aea16-3e04-4741-874c-a748e992ea1f",
+        "fc5fc82f-f7ab-405f-b144-c0e6aecd6632"
+      ],
+      "settings": {
+        "margin_bottom": 40,
+        "desktop_row_height": 290,
+        "mobile_row_height": 180,
+        "section_width": "xl",
+        "spacing": "xs",
+        "subheading": "",
+        "title": "Michael fortæller om Krone sengen",
+        "content": "",
+        "background": "",
+        "text_color": ""
+      }
+    },
+    "442e8c65-776f-4c77-b60e-e29d3b38af8b": {
+      "type": "hotspot-section",
+      "blocks": {
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Sengens opbygning",
+            "heading_tag": "h1"
+          }
+        },
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-richtext-1": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>Ur, sitae. Cerio. Et aut haria veria nisitae nonsed que sed quid modiorepudae reped<br/>et estionsecte volent, cum quo tectesequate pe litiur atet plitatqui in con renet.</p>"
+          }
+        },
+        "631ec3bb-190d-461e-b6cc-cb14d4705e49": {
+          "type": "image",
+          "settings": {
+            "image": "{{ product.metafields.custom.specifikationer_billede.value.produkt_senge_specifikationer_billede.value }}",
+            "width_mode": "custom",
+            "max_width": 600,
+            "mobile_max_width": 400,
+            "hotspot_1_title": "Topmadras",
+            "hotspot_1_url": "#topmadras",
+            "hotspot_1_horizontal": 51,
+            "hotspot_1_vertical": 10,
+            "hotspot_2_title": "Springmadras",
+            "hotspot_2_url": "#springmadras",
+            "hotspot_2_horizontal": 64,
+            "hotspot_2_vertical": 41,
+            "hotspot_3_title": "Boxmadras",
+            "hotspot_3_url": "#boxmadras",
+            "hotspot_3_horizontal": 36,
+            "hotspot_3_vertical": 69,
+            "dimensions_1_title": "Topmadras",
+            "dimensions_1_horizontal": 51,
+            "dimensions_1_vertical": 29,
+            "dimensions_2_title": "Springmadras",
+            "dimensions_2_horizontal": 64,
+            "dimensions_2_vertical": 47,
+            "dimensions_3_title": "Boxmadras",
+            "dimensions_3_horizontal": 36,
+            "dimensions_3_vertical": 69
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-heading-1",
+        "template--19989117305180__442e8c65-776f-4c77-b60e-e29d3b38af8b-richtext-1",
+        "631ec3bb-190d-461e-b6cc-cb14d4705e49"
+      ],
+      "settings": {
+        "remove_padding": false,
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "background": ""
+      }
+    },
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Topmadras",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1"
+      ],
+      "settings": {
+        "custom_id": "topmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "#f2f7fc",
+        "background_gradient": ""
+      }
+    },
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "end",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Topmadrassens funktion er at fuldende sengens komfort, her kan vi give ekstra trykaflastning, støtte eller kølende egenskaber, med andre ord skaber topmadrassen den umiddelbare fornemmelse du får når din krop rammer sengen.</p>",
+        "content_border_top": true,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#d9e8f5",
+        "content_below": "<p><strong>6 facts Krone Trykflastende topmadras</strong></p><ul><li>Topmadras med komfortzoner</li><li>Høj kerne af naturlatex</li><li>Blødt og vaskbart betræk</li><li>Åndbar og ventilerende</li><li>Naturlige materialer</li><li>Allergivenlig (Oeko-tex certificeret)</li></ul>",
+        "content_border_below_top": true,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#d9e8f5",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f2f7fc",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/dunpuden.mp4",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Danske materialer",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Hos Sengefabrikken er vi din garanti for kvalitetsmaterialer, vi laver altid dybdegående tests af materialer før de indgår i vores senge. Det kommer blandt andet til udtryk ved vores Trykaflastende topmadras der består af en skumkerne produceret hos vores samarbejdspartner i Tyskland med mere end 70 års erfaring indenfor produktion af skum.<br/><br/>Den trykaflastende skum omkranses af et topmadrasbetræk produceret i Modal tekstil, Modal er en tekstil type produceret på fibre fra bøgetræer og blev opfundet i Japan i 1950’erne, den er særligt velegnet til topmadrasser da den er blød og holdbar, men samtidig kan absorbere 50% mere vand end bomuld og derfor ikke klæber til svedig hud.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f2f7fc",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Komfort i topklasse",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Opskriften til vores trykaflastende skum er baseret på den viskoelastiske skum NASA opfandt i 1960’erne, med det formål at forbedre komfort for piloter og astronauter når de blev udsat for kraftige G-kræfter under opsendelse og landing.<br/><br/>Når man sover på vores trykaflastende skum, så vil man opleve at kroppens tryk distribueres jævnt over hele madrassens overflade. Det mindsker trykpunkter som sikrer en bedste støtte til hele kroppen og er især gavnligt for dig som oplever smerter i led og muskler. En anden stor fordel ved den trykaflastende topmadras, er at den sikrer en neutral rygradsstilling som fremmer en sund søvnposition.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f2f7fc",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "59a2c119-bee2-4772-be51-f78f6c809534": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__59a2c119-bee2-4772-be51-f78f6c809534-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "2. Springmadras",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__59a2c119-bee2-4772-be51-f78f6c809534-heading-1"
+      ],
+      "settings": {
+        "custom_id": "springmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "",
+        "background_gradient": ""
+      }
+    },
+    "bfb92b4d-8654-40b4-9867-38baba4ea89f": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__bfb92b4d-8654-40b4-9867-38baba4ea89f-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__bfb92b4d-8654-40b4-9867-38baba4ea89f-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Topmadrassens funktion er at fuldende sengens komfort, her kan vi give ekstra trykaflastning, støtte eller kølende egenskaber, med andre ord skaber topmadrassen den umiddelbare fornemmelse du får når din krop rammer sengen.</p>",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#d9e8f5",
+        "content_below": "<p><strong>6 facts Krone Trykflastende topmadras</strong></p><ul><li>Topmadras med komfortzoner</li><li>Høj kerne af naturlatex</li><li>Blødt og vaskbart betræk</li><li>Åndbar og ventilerende</li><li>Naturlige materialer</li><li>Allergivenlig (Oeko-tex certificeret)</li></ul>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "94ea3f59-c639-46c8-9609-f80e3a4b3120": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__94ea3f59-c639-46c8-9609-f80e3a4b3120-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__94ea3f59-c639-46c8-9609-f80e3a4b3120-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Topmadrassens funktion er at fuldende sengens komfort, her kan vi give ekstra trykaflastning, støtte eller kølende egenskaber, med andre ord skaber topmadrassen den umiddelbare fornemmelse du får når din krop rammer sengen.</p>",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "<p><strong>6 facts Krone Trykflastende topmadras</strong></p><ul><li>Topmadras med komfortzoner</li><li>Høj kerne af naturlatex</li><li>Blødt og vaskbart betræk</li><li>Åndbar og ventilerende</li><li>Naturlige materialer</li><li>Allergivenlig (Oeko-tex certificeret)</li></ul>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "1b160276-c6e1-400e-ad45-cd3cfff22df4": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__1b160276-c6e1-400e-ad45-cd3cfff22df4-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__1b160276-c6e1-400e-ad45-cd3cfff22df4-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Komfort i topklasse",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Opskriften til vores trykaflastende skum er baseret på den viskoelastiske skum NASA opfandt i 1960’erne, med det formål at forbedre komfort for piloter og astronauter når de blev udsat for kraftige G-kræfter under opsendelse og landing.<br/><br/>Når man sover på vores trykaflastende skum, så vil man opleve at kroppens tryk distribueres jævnt over hele madrassens overflade. Det mindsker trykpunkter som sikrer en bedste støtte til hele kroppen og er især gavnligt for dig som oplever smerter i led og muskler. En anden stor fordel ved den trykaflastende topmadras, er at den sikrer en neutral rygradsstilling som fremmer en sund søvnposition.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#2f1300",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Boxmadrasser",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1"
+      ],
+      "settings": {
+        "custom_id": "boxmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "#f2f7fc",
+        "background_gradient": ""
+      }
+    },
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1": {
+          "type": "image",
+          "settings": {
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Topmadrassens funktion er at fuldende sengens komfort, her kan vi give ekstra trykaflastning, støtte eller kølende egenskaber, med andre ord skaber topmadrassen den umiddelbare fornemmelse du får når din krop rammer sengen.</p>",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#d9e8f5",
+        "content_below": "<p><strong>6 facts Krone Trykflastende topmadras</strong></p><ul><li>Topmadras med komfortzoner</li><li>Høj kerne af naturlatex</li><li>Blødt og vaskbart betræk</li><li>Åndbar og ventilerende</li><li>Naturlige materialer</li><li>Allergivenlig (Oeko-tex certificeret)</li></ul>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#2f1300",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#f2f7fc",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f": {
+      "type": "bed-specifications",
+      "blocks": {
+        "fb15c212-ff68-4f45-b99f-769065787bfc": {
+          "type": "accordion",
+          "repeater": "{{ product.metafields.custom.sengens_specifikationer.value }}",
+          "settings": {
+            "title": "{{ block.repeater.title.value }}",
+            "content": "{{ block.repeater.content | metafield_tag }}",
+            "icon": "{{ block.repeater.icon.value }}"
+          }
+        }
+      },
+      "block_order": [
+        "fb15c212-ff68-4f45-b99f-769065787bfc"
+      ],
+      "settings": {
+        "title": "Sengens specifikationer",
+        "content": "<p>Ur, sitae. Cerio. Et aut haria veria nisitae nonsed que sed quid modiorepudae reped et estionsecte volent, cum quo tectesequate pe litiur atet plitatqui in con renet.</p>",
+        "background": "#f2f7fc",
+        "text_color": "#2f1300",
+        "border_color": "#e0dcd9",
+        "image": "{{ product.metafields.custom.specifikationer_billede.value.produkt_senge_specifikationer_billede.value }}"
+      }
+    },
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a": {
+      "type": "faq",
+      "blocks": {
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad betyder 100 dages prøve?",
+            "answer": "<p>Med vores koncept \"100 dages prøve\" i ryggen er du sikker på at gøre en god og tryg handel. Hvis du ikke er tilfreds, så kommer vi og henter varen igen på din adresse - og refunderer dig hele købsbeløbet. </p><p>Det kan være svært at vælge ny seng, dyne eller topmadras. Derfor giver vi dig 100 nætter til at prøve produktet af - hvis du ikke er tilfreds, så kan du enten ombytte til noget andet kvit og frit eller returnere. Nemt, trygt og sikkert. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg finansiere mit Køb?",
+            "answer": "<p>Hvad koster det at returnere?</p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Er der garanti på jeres senge?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent purus metus, consequat facilisis nisl eget, pellentesque suscipit lectus. Cras eu est a lectus semper tincidunt. Praesent egestas eget erat sed tincidunt. Proin non sodales elit. In risus est, tristique ac tempus eget, accumsan vel risus.</p>"
+          }
+        },
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster det at returnere?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent purus metus, consequat facilisis nisl eget, pellentesque suscipit lectus. Cras eu est a lectus semper tincidunt. Praesent egestas eget erat sed tincidunt. Proin non sodales elit. In risus est, tristique ac tempus eget, accumsan vel risus.</p>"
+          }
+        },
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent purus metus, consequat facilisis nisl eget, pellentesque suscipit lectus. Cras eu est a lectus semper tincidunt. Praesent egestas eget erat sed tincidunt. Proin non sodales elit. In risus est, tristique ac tempus eget, accumsan vel risus.</p>"
+          }
+        },
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586": {
+          "type": "question",
+          "settings": {
+            "question": "Leverer I til døren?",
+            "answer": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent purus metus, consequat facilisis nisl eget, pellentesque suscipit lectus. Cras eu est a lectus semper tincidunt. Praesent egestas eget erat sed tincidunt. Proin non sodales elit. In risus est, tristique ac tempus eget, accumsan vel risus.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3",
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2",
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021",
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe digalle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    },
+    "521a67c7-8c08-4f21-a20f-76217086071b": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "custom_icon": "shopify://shop_images/ordre-modtaget.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "Ordre modtaget",
+            "content": "<p>Du fuldfører en ordre via vores hjemmeside, hvorefter vi sætter varen i produktion. Når varen er klar til levering, så pakker vi den forsvarligt ind og sender den videre til vores fragtfirma. Vores billigste leveringsalternativ koster altid 0 kr.</p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "custom_icon": "shopify://shop_images/Home-alt-2_dfd1c0c1-ff90-43f3-b420-ac164c7e9077.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "Hos fragtmand",
+            "content": "<p>Fragtfirmaet får din seng ind på deres lager, hvorefter de tager kontakt til dig telefonisk (enten via opkald eller SMS) med henblik på at aftale en leveringsdag og et interval. Fragtfirmaet har 48 timer fra de modtager ordren til at kontakte dig.</p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "custom_icon": "shopify://shop_images/Layers.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "Aftal levering",
+            "content": "<p>På dagen vil fragtfirmaet tage kontakt til dig ca. 30 minutter før ankomst på din adresse. Dermed kan du nå hjem, hvis du fx er på arbejde. Intervallet vil være 4-6 timer. Bemærk at mindre pakker sendes til din adresse med GLS.<br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95",
+    "256e6989-2111-4e6e-bf03-a115550a6497",
+    "703a6e05-5daa-47fa-b345-a27ec04be1b8",
+    "693b1468-7de5-4787-ae86-2761a5615352",
+    "442e8c65-776f-4c77-b60e-e29d3b38af8b",
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556",
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6",
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee",
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3",
+    "59a2c119-bee2-4772-be51-f78f6c809534",
+    "bfb92b4d-8654-40b4-9867-38baba4ea89f",
+    "94ea3f59-c639-46c8-9609-f80e3a4b3120",
+    "1b160276-c6e1-400e-ad45-cd3cfff22df4",
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f",
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe",
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f",
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a",
+    "521a67c7-8c08-4f21-a20f-76217086071b"
+  ]
+}

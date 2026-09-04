@@ -1,0 +1,139 @@
+{% if template == 'index' %}
+  <title>{{ page_title }}</title>
+  {% elsif template == '404' %}
+  <title>Siden blev ikke fundet | {{ shop.name }}</title>
+  {% elsif template contains 'collection' %}
+   {% assign title_type = '' %}
+
+   {% if handle == 'boxmadrasser' %}
+     {% assign title_type = 'boxmadrasser' %}
+   {% elsif handle == 'elevationssenge' %}
+     {% assign title_type = 'elevationssenge' %}
+   {% elsif handle == 'kontinental-senge' %}
+     {% assign title_type = 'kontinental-senge' %}
+   {% elsif handle == 'sengerammer' %}
+     {% assign title_type = 'sengerammer' %}
+   {% elsif handle == 'madrasser' %}
+     {% assign title_type = 'madrasser' %}
+   {% elsif handle == 'dyner' %}
+     {% assign title_type = 'dyner' %}
+   {% elsif handle == 'rullemadrasser' %}
+     {% assign title_type = 'rullemadrasser' %}
+   {% elsif handle == 'kuvertlagner' %}
+     {% assign title_type = 'kuvertlagner' %}
+   {% elsif handle == 'faconlagner' %}
+     {% assign title_type = 'faconlagner' %}
+   {% elsif handle == 'alle-lagner' %}
+     {% assign title_type = 'alle-lagner' %}
+   {% endif %}
+
+   {% if current_tags contains 'Skummadrasser' %}
+     {% assign title_type = 'skummadrasser' %}
+   {% elsif current_tags contains 'Springmadrasser' %}
+     {% assign title_type = 'springmadrasser' %}
+   {% elsif current_tags contains 'Latexmadrasser' %}
+     {% assign title_type = 'latexmadrasser' %}
+   {% endif %}
+
+   {% assign title_size = '' %}
+   {% if current_tags contains '70x200' %}
+      {% assign title_size = '70x200' %}
+   {% elsif current_tags contains '80x200' %}
+       {% assign title_size = '80x200' %}
+   {% elsif current_tags contains '90x200' %}
+      {% assign title_size = '90x200' %}
+   {% elsif current_tags contains '90x210' %}
+      {% assign title_size = '90x210' %}
+   {% elsif current_tags contains '100x200' %}
+       {% assign title_size = '100x200' %}
+   {% elsif current_tags contains '105x200' %}
+       {% assign title_size = '105x200' %}
+   {% elsif current_tags contains '120x200' %}
+       {% assign title_size = '120x200' %}
+   {% elsif current_tags contains '140x200' %}
+       {% assign title_size = '140x200' %}
+   {% elsif current_tags contains '160x200' %}
+       {% assign title_size = '160x200' %}
+   {% elsif current_tags contains '180x200' %}
+       {% assign title_size = '180x200' %}
+   {% elsif current_tags contains '180x210' %}
+       {% assign title_size = '180x210' %}
+    {% elsif current_tags contains '200x200' %}
+       {% assign title_size = '200x200' %}
+    {% elsif current_tags contains '160x210' %}
+       {% assign title_size = '160x210' %}
+    {% elsif current_tags contains '210x200' %}
+       {% assign title_size = '210x200' %}
+    {% elsif current_tags contains '105x210' %}
+       {% assign title_size = '105x210' %}
+    {% elsif current_tags contains '210x210' %}
+       {% assign title_size = '210x210' %}
+    {% endif %}
+
+{% if title_type != '' and title_size != '' %}
+    {% if title_type == 'skummadrasser' %}
+      <title> Skummadras {{ title_size }} | Køb Kvalitets {{ title_size }} Skummadrasser Her </title>
+     {% elsif title_type == 'springmadrasser' %}
+      <title> Springmadras {{ title_size }} | Køb hos Sengefabrikken her | Fri Fragt! </title>
+    {% elsif title_type == 'latexmadrasser' %}
+      <title> Latex Madras {{ title_size }} | Køb Online Her | Gode Priser & Fri Fragt </title>
+    {% elsif title_type == 'boxmadrasser' %}
+      <title> Boxmadras {{ title_size }} | Gode Tilbud på {{ title_size }} Boxmadrasser 🛏️ </title>
+    {% elsif title_type == 'elevationssenge' %}
+      <title> Elevationsseng {{ title_size }} | Gode Tilbud på {{ title_size }} Elevationssenge </title>
+    {% elsif title_type == 'kontinental-senge' %}
+      <title> Kontinentalseng {{ title_size }} | Gode Tilbud på {{ title_size }} Kontinentalsenge </title>
+    {% elsif title_type == 'sengerammer' %}
+      <title> Sengeramme {{ title_size }} | Se vores Flotte Sengestel i {{ title_size }} Mål Her  </title>
+    {% elsif title_type == 'madrasser' %}
+      <title> Madras {{ title_size }} | Kvalitets Madrasser i {{ title_size }} cm | Fri Fragt!  </title>
+    {% elsif title_type == 'dyner' %}
+      <title> {{ title_size }} {{ title_type }} | Stort udvalg af bløde dyner </title>
+    {% elsif title_type == 'rullemadrasser' %}
+      <title> {{ title_size }} {{ title_type }} | Se vores udvalg af kvalitets rullemadrasser </title>
+    {% elsif title_type == 'kuvertlagner' %}
+      <title> {{ title_size }} {{ title_type }} | Køb dine lagner her </title>
+    {% elsif title_type == 'faconlagner' %}
+      <title> {{ title_size }} {{ title_type }} | Find dine nye faconlagner her på Sengefabrikken.dk </title>
+    {% elsif title_type == 'alle-lagner' %}
+      <title> {{ title_size }} lagner | Se alle vores lækre og bløde lagner lige her </title>
+    {% else %}
+       <title> {{ title_size }} {{ title_type }} | Stort udvalg af kvalitets madrasser </title>
+     {% endif %}
+{% elsif title_type != '' %}
+    {% if title_type == 'skummadrasser' %}
+      <title> Skummadras | Find en Billig Skummadras i Høj Kvalitet Online Her </title>
+     {% elsif title_type == 'springmadrasser' %}
+      <title> Springmadrasser | Køb en Kvalitets Springmadras Online Her </title>
+    {% elsif title_type == 'latexmadrasser' %}
+      <title> Latexmadrasser | Se Alle Vores Latexmadrasser Her | Fri Fragt!  </title>
+    {% elsif title_type == 'boxmadrasser' %}
+      <title> Boxmadrasser | Køb din Nye Boxmadras Online Her | Fri Fragt </title>
+    {% elsif title_type == 'elevationssenge' %}
+      <title> Elevationssenge | Find en Billig Elevationsseng Her | Fri Fragt </title>
+    {% elsif title_type == 'kontinental-senge' %}
+      <title> Kontinentalsenge | Køb bl.a. en Seng i 200x200 Her | Gratis Fragt </title>
+    {% elsif title_type == 'sengerammer' %}
+      <title> Sengeramme | Køb bl.a. Flot Sengeramme i 140x200 Her | Fri Fragt  </title>
+    {% elsif title_type == 'madrasser' %}
+      <title> Madrasser | Køb din Næste Madras hos Sengefabrikken | Fri Fragt!  </title>
+    {% elsif title_type == 'dyner' %}
+      <title> Dyner | Køb en Kvalitets Dyne hos Sengefabrikken | Fri Fragt! </title>
+    {% elsif title_type == 'rullemadrasser' %}
+      <title> Rullemadrasser | Se vores udvalg af kvalitets rullemadrasser </title>
+    {% elsif title_type == 'kuvertlagner' %}
+      <title> Kuvertlagner | Stort Udvalg Online Hos Sengefabrikken | Fri Fragt </title>
+    {% elsif title_type == 'faconlagner' %}
+      <title> Faconlagner | Køb Lagner til Boxmadras Online her | Fri Fragt! </title>
+    {% elsif title_type == 'alle-lagner' %}
+      <title> Lagner | Køb et Kvalitets Lagen Hos Sengefabrikken | Fri Fragt! </title>
+    {% else %}
+       <title> Madrasser | Stort udvalg af kvalitets madrasser </title>
+     {% endif %}
+   {% else %}
+    <title>{{ page_title }}</title>
+   {% endif %}
+  {% else %}
+  <title>{{ page_title }}</title>
+{% endif %}
+

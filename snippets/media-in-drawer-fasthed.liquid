@@ -1,0 +1,38 @@
+<div class="media-in-drawer-wrapper">
+    <div class="media-in-drawer-video-container">
+        <video controls width="100%" style="border-radius: 4px;" poster="https://cdn.shopify.com/s/files/1/0710/4563/files/fasthed_thumbnail.jpg?v=1715762444">
+            <source src="https://cdn.shopify.com/videos/c/o/v/07b18ad03cce4d169ea03da9a9f9fd94.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="media-in-drawer-text-container">
+        <h2 style="font-size: 16px; color: #2F1300; font-weight: 500;">Bliv klogere på valg af fasthed</h2>
+        <p style="font-size: 14px; color: #806F63;">0:35</p>
+    </div>
+</div>
+
+
+<style>
+.media-in-drawer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.media-in-drawer-video-container, .media-in-drawer-text-container {
+    flex: 1;
+    min-width: 0; /* Adds flex-shrink to allow both columns to fit on mobile screens */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .media-in-drawer-wrapper {
+        flex-direction: row; /* Maintains the row layout on mobile */
+    }
+
+    .media-in-drawer-video-container video {
+        width: 100%;  /* Ensure video scales correctly on smaller screens */
+    }
+}
+</style>

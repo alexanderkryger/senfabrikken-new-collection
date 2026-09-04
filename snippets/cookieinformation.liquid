@@ -1,0 +1,17 @@
+
+<link rel="preconnect" href="//policy.app.cookieinformation.com/uc.js" crossorigin />
+<script id="CookieConsent" src="https://policy.app.cookieinformation.com/uc.js" data-culture="DA" type="text/javascript" defer></script>
+
+    <script>
+      window.addEventListener('CookieInformationConsentGiven', function(event) {
+        var consentMarketing = window.CookieInformation.getConsentGivenFor('cookie_cat_marketing');
+        var consentStatistic = window.CookieInformation.getConsentGivenFor('cookie_cat_statistic');
+
+        if (consentMarketing !== undefined && consentStatistic !== undefined) {
+          window.Shopify.analytics.publish("consent_update", {
+            ad_storage: consentMarketing,
+            analytics_storage: consentStatistic
+          });
+        }
+      });
+    </script>

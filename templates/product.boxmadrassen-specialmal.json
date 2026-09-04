@@ -1,0 +1,684 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "price": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "collapse_content": false,
+            "show_below_gallery": false
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "selector_type": "block",
+            "color_selector_type": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": false,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "description",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons"
+      ],
+      "settings": {
+        "container_size": "xl",
+        "product_info_size": 40,
+        "show_sticky_add_to_cart": false,
+        "center_basic_info": false,
+        "desktop_media_layout": "carousel_thumbnails_bottom",
+        "desktop_media_grid_gap": 4,
+        "mobile_controls": "thumbnails",
+        "enable_media_autoplay": false,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3
+      }
+    },
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-dansk-flag",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Danskproducerede senge",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-garanti",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "25 års garanti",
+            "content": ""
+          }
+        },
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-trustpilot",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "[trustscore] på Trustpilot",
+            "content": ""
+          }
+        },
+        "42d6c851-d149-4627-924e-90d392395f2a": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-use-truck",
+            "icon_width": 24,
+            "mobile_icon_width": 24,
+            "title": "Gratis levering & returnering",
+            "content": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-1",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-2",
+        "template--19989117305180__97c6027e-a579-42e4-8fa7-fec2f6510f95-item-3",
+        "42d6c851-d149-4627-924e-90d392395f2a"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    },
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Boxmadrassen - Specialmål",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__b5123a9c-54fe-49e4-91fb-606cd202dc0f-heading-1"
+      ],
+      "settings": {
+        "custom_id": "boxmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "#f3f9f2",
+        "background_gradient": "linear-gradient(0deg, rgba(255, 248, 242, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "4fce2e9c-74df-4aea-a1a6-16bda2da4336": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "992e9bb4-0d2d-4c64-8e5a-40edaa341027": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Komfort_Box_Box_Badge.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "992e9bb4-0d2d-4c64-8e5a-40edaa341027"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Denne boksmadras er et godt sted at hvile kroppen, da vi inde i den 26 cm høje træramme har placeret to individuelle fjederlag. Det nederste lag består af 150 mini bonellfjedre pr. m2, mens det øverste lag består af 220 pocketfjedre pr. m2, der tilmed er inddelt i syv komfortzoner. De to fjederlag er polstret med 25 mm komfortskum.</p>",
+        "content_border_top": false,
+        "content_border_bottom": true,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "<p><strong>5 facts om Boxmadrassen</strong></p><ul><li>150 bonellfjedre pr. m2.</li><li>220 pocketfjedre pr. m2.</li><li>Inddelt i syv komfortzoner.</li><li>Polstret med 25 mm komfortskum.</li><li>25 års garanti på fjedre.</li></ul>",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#fff8f2",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/traeramme.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/01.-Trykaflastende_Boxmadras(1).mp4",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Kvalitet hele vejen rundt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Når du køber hos Sengefabrikken, kan du være helt sikker på, at du modtager et højkvalitetsprodukt. Denne boksmadras består derfor af en massiv ramme i fyrretræ fra Sverige med 11 lameller. Indeni rammen finder du to fjederlag af hhv. bonell- og  pocketfjedre, hvor pocketfjedrene er inddelt i syv komfortzoner. Fjedrene er polstret med 25 mm komfortskum, der er et ventilerende, fleksibelt og meget holdbart materiale. Boksmadrassen er til sidst betrukket i et OEKO-TEX®-certificeret møbeltekstil.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#fff8f2",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "76ddf418-e3f0-4ba3-a4d4-7226013b21f3": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "2dfe5e49-3e4c-4c49-922c-3a5a2d987edc": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Komfort_Box_Poly.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "2dfe5e49-3e4c-4c49-922c-3a5a2d987edc"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/boxmadras_video.mp4",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Et komfortabel fjeder-duo",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Boxmadrassens nederste fjederlag består af bonellfjedre, der har til formål at skabe et stærkt fundament. Boksmadrassens primære komfort kommer derimod fra det øverste lag af pocketfjedre. Pocketfjedrene, der er inddelt i syv komfortzoner, giver en god, dyb og ergonomisk korrekt støtte til kroppen, da fjedrene fungerer som individuelle trykpunkter, der løbende justerer sig efter kroppens bevægelser og dermed tryk på madrassen.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "#fff8f2",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556": {
+      "type": "rich-text",
+      "blocks": {
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1": {
+          "type": "heading",
+          "settings": {
+            "text": "Topmadras",
+            "heading_tag": "h1"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__dc719c6b-29aa-4cab-a42c-ba415a6db556-heading-1"
+      ],
+      "settings": {
+        "custom_id": "topmadras",
+        "remove_padding": true,
+        "content_width": "sm",
+        "text_position": "center",
+        "remove_vertical_spacing": false,
+        "seasonal_background": false,
+        "background": "rgba(0,0,0,0)",
+        "background_gradient": "linear-gradient(180deg, rgba(255, 248, 242, 1), rgba(254, 253, 249, 1) 100%)"
+      }
+    },
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Komfort_Box_Top_Badge.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__0a5570bd-5009-44c5-a790-d7ca90db12d6-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "end",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Oversigt",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Din søvn fuldendes af den helt rette topmadras. Sådan en overflade der giver dig den komfort, du har brug for. Du kan vælge frit mellem vores topmadras med 40 mm åndbar latex og vores topmadras med 40 mm trykaflastende memory skum. </p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "<p><strong>Vælg mellem</strong></p><ul><li>40 mm åndbar latex</li><li>40 mm trykaflastende memory skum. </li></ul>",
+        "content_border_below_top": true,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "rgba(0,0,0,0)",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/visco_skum.jpg",
+            "rotation": 0,
+            "hide_mobile": true
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__f10705be-7b92-4508-bd80-6a0023a7e5ee-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "before_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/topmadras_memoryskum_kugle.mp4",
+        "hide_mobile": false,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "40 mm trykaflastende memory skum. ",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Hvis du sætter pris på blød komfort og en overflade, der tilpasser sig din krops form, er en topmadras med memory skum det rette valg for dig. Memory skum reagerer på din kropsvarme og former sig derefter, hvilket giver en personlig og støttende soveoplevelse. Denne type topmadras er ideel for dig, der ønsker at ligge på en overflade, der omslutter og støtter din krop optimalt, hvilket kan forbedre din søvnkvalitet ved at mindske trykpunkter.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "rgba(0,0,0,0)",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3": {
+      "type": "multiple-media-with-text",
+      "blocks": {
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Latex_Polstring.jpg",
+            "rotation": 0,
+            "hide_mobile": false
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3-image-1"
+      ],
+      "settings": {
+        "custom_id": "",
+        "reveal_on_scroll": true,
+        "media_position_desktop": "after_text",
+        "media_position_mobile": "before_text",
+        "media_layout": "overlap",
+        "media_alignment": "center",
+        "media_alignment_offset": 0,
+        "media_mobile_alignment_offset": 0,
+        "video": "shopify://files/videos/Kugle_Latex_Slowed.mp4",
+        "hide_mobile": true,
+        "text_alignment": "center",
+        "subheading": "",
+        "title": "Unik elasticitet og god komfort",
+        "show_icon": false,
+        "show_color_swatch": false,
+        "content": "<p>Latex-topmadrassen er det bedste valg for dig, der foretrækker en mere fast og støttende komfort. Latex-materialet tilbyder en progressiv komfort, der \"skubber igen\" og sikrer en jævn og stabil soveflade. Denne type topmadras er kendt for sin høje ventilation og åndbarhed, hvilket gør den til et fremragende valg for dem, der ønsker at undgå varmeophobning om natten. Latex-topmadrasser er ideelle for dig, der søger en fast støtte, samtidig med at de giver en behagelig og kølende søvnoplevelse.</p>",
+        "content_border_top": false,
+        "content_border_bottom": false,
+        "content_color": "#2f1300",
+        "content_border_color": "#e0dcd9",
+        "content_below": "",
+        "content_border_below_top": false,
+        "content_border_below_bottom": false,
+        "content_below_color": "#2f1300",
+        "content_border_below_color": "#e0dcd9",
+        "button_1_text": "",
+        "button_1_link": "",
+        "button_1_style": "solid",
+        "button_2_text": "",
+        "button_2_link": "",
+        "button_2_style": "solid",
+        "telefon": "",
+        "email": "",
+        "chat": "",
+        "background": "rgba(0,0,0,0)",
+        "button_background": "",
+        "button_text_color": ""
+      }
+    },
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f": {
+      "type": "bed-specifications",
+      "blocks": {
+        "59ee6765-203f-4f1a-8e4d-4df17cbd6d55": {
+          "type": "accordion",
+          "settings": {
+            "title": "Generelt",
+            "content": "<ul><li>Farve: Sort.</li></ul><p><strong>Totalhøjde: ca. 52 cm.</strong></p><ul><li>Sengeben: 19 cm.</li><li>Boxmadras: 26 cm.</li><li>Topmadras: 7 cm.</li></ul><p><strong>Garanti</strong></p><ul><li>15 års fabriksgaranti imod ramme- og fjedrebrud.</li><li>Alle tekstiler er Oeko Tex Certificeret. </li></ul>"
+          }
+        },
+        "90961eb7-7a54-4fe7-92b9-ba1b379ae702": {
+          "type": "accordion",
+          "settings": {
+            "title": "Opbygning",
+            "content": "<ul><li>Træramme (Højde): 8 cm.</li><li>Materiale: Massivt svensk fyrretræ.</li><li>Bundlameller: 11 stk.</li><li>* Nederst: 150 mini bonell fjedre pr. m2.</li><li>* Øverst: 220 pocket fjedre pr. m2. </li><li>Komfortzoner: 7.</li><li>Polstring: 25 mm. skum. </li><li>Anti Skrid: Indbygget.</li><li>Bolster: Møbeltekstil med kuvertsyning og skumlaminering.</li></ul>"
+          }
+        },
+        "6feffdc2-99c1-4af3-8b61-9d3fceb30710": {
+          "type": "accordion",
+          "settings": {
+            "title": "Topmadras",
+            "content": "<p><strong>Valgfri (Latex el. Celcius)</strong></p><ul><li>Totalhøjde: ca. 70 mm.</li><li>Kernehøjde: 40 mm.</li><li>Aftageligt og vaskbart betræk.</li></ul>"
+          }
+        }
+      },
+      "block_order": [
+        "59ee6765-203f-4f1a-8e4d-4df17cbd6d55",
+        "90961eb7-7a54-4fe7-92b9-ba1b379ae702",
+        "6feffdc2-99c1-4af3-8b61-9d3fceb30710"
+      ],
+      "settings": {
+        "title": "Boxmadrassens specifikationer",
+        "content": "<p>Tag et deep-dive ned i Boxmadrassen. Vi står inde for kvaliteten og spiller med helt åbne kort, så du ved, hvad du får. </p>",
+        "background": "#fff8f2",
+        "text_color": "#2f1300",
+        "border_color": "#e0dcd9",
+        "image": "shopify://shop_images/boxmadras_140x200_92108e8c-8eb0-47b2-8e4b-80c815f1153f.svg"
+      }
+    },
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a": {
+      "type": "faq",
+      "blocks": {
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad betyder 100 dages prøve?",
+            "answer": "<p>Med vores koncept \"100 dages prøve\" i ryggen er du sikker på at gøre en god og tryg handel. Hvis du ikke er tilfreds, så kommer vi og henter varen igen på din adresse - og refunderer dig hele købsbeløbet. </p><p>Det kan være svært at vælge ny seng, dyne eller topmadras. Derfor giver vi dig 100 nætter til at prøve produktet af - hvis du ikke er tilfreds, så kan du enten ombytte til noget andet kvit og frit eller returnere. Nemt, trygt og sikkert. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2": {
+          "type": "question",
+          "settings": {
+            "question": "Har I en butik eller et showroom?",
+            "answer": "<p>Nej, vi er 100% online - og har ingen butikker eller showrooms. Dette er et helt bevidst valg, da vi ved at holde vores faste omkostninger på et absolut minimum, har mulighed for at optimere både fleksibilitet og priser. </p><p>Hvis du, imod forventning, får valgt et produkt der ikke passer til dig, så tilbyder vi 100 dages gratis retur samt 100 dages gratis ombytning af fasthed på alle vores senge. </p>"
+          }
+        },
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3": {
+          "type": "question",
+          "settings": {
+            "question": "Hvad koster levering?",
+            "answer": "<p>Leveringsprisen afhænger af den valgte leveringsform samt leveringsadressen, og den endelige pris vises altid tydeligt på bestillingssiden, inden du gennemfører dit køb.</p> <p>Mindre varer, herunder sengetøj, dyner og puder, leveres til din adresse med GLS, mens større varer som senge og madrasser leveres med DSV.</p> <p>Standardlevering sker til kantsten. Ønsker du en mere bekvem levering, har du mulighed for at tilkøbe ekstra serviceydelser, så leveringen tilpasses dine behov. Vi tilbyder blandt andet opbæring/indbæring, montering samt bortskaffelse af din nuværende seng. Alle tilkøb kan vælges direkte på bestillingssiden.</p>"
+          }
+        },
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2": {
+          "type": "question",
+          "settings": {
+            "question": "Hvor lang er jeres leveringstid?",
+            "answer": "<p>Leveringstiden på vores produkter spænder vidt og bredt. Leveringstiden på et produkt vil altid fremgå af produktsiden samt på din ordrebekræftelse. </p><p>Som udgangspunkt vil små varer, som dyner, puder og sengetøj, altid kunne leveres indenfor 1-3 hverdage. Senge, vi har færdigproduceret og stående klar på lager, vil typisk have en leveringstid på op til 15 hverdage, imens senge i ukurante størrelser samt specialmål har en leveringstid på 3-7 uger. </p>"
+          }
+        },
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg ønske levering en bestemt dag?",
+            "answer": "<p>Ja, det kan du. Hvis du ønsker levering en bestemt dag, så skal du blot notere det som ordrekommentar. Herefter vil vi videreformidle den ønskede dag til både vores pakkeri samt det eksterne leveringsfirma, der står for den endelige levering. </p><p>Vi kan ikke garantere levering den ønskede dag, men vi vil altid forsøge at imødekomme det bedst muligt - og det lykkes heldigvis også i 95% af alle tilfælde. Skulle vi mod forventning ikke være i stand til at levere den ønskede dag, så vil leveringen som regel finde sted dagen efter i stedet.</p><p>Uanset hvad, så vil din ordre aldrig blive leveret, uden at du har godkendt leveringsdag og tidsinterval over SMS. </p>"
+          }
+        },
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586": {
+          "type": "question",
+          "settings": {
+            "question": "Kan jeg afdrage beløbet over en periode?",
+            "answer": "<p>At investere i en ny seng er en stor udgift i de flestes privatøkonomi. Derfor tilbyder vi finansiering gennem Anyday, hvor du kan splitte din betaling op i 4 lige store rater – helt uden renter og gebyrer.</p><p>Du ser altid de præcise omkostninger, inden du gennemfører købet, og der tilføjes ingen skjulte gebyrer.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-1",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-2",
+        "template--19989117305180__78801eb1-9b56-4f3b-a259-bf3eecd9fc3a-question-3",
+        "18c90078-abc6-45bd-810d-3ca49c5f8ee2",
+        "6cf20ea2-23da-4652-80b6-ceba3f5f9021",
+        "a4c59bfd-31c9-472f-89c8-7891eec6d586"
+      ],
+      "settings": {
+        "show_categories": false,
+        "subheading": "",
+        "title": "Ofte stillede spørgsmål",
+        "content": "<p>Har du brug for hjælp til valget af ny seng, topmadras eller noget helt tredje? Vores kompetente team af sengevejledere, søvnspecialister og syvsovere sidder klar til at hjælpe digalle ugens dage fra 08.00 - 23.00. Vi er online, når du har tid.</p>"
+      }
+    },
+    "521a67c7-8c08-4f21-a20f-76217086071b": {
+      "type": "text-with-icons",
+      "blocks": {
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-delivery-truck",
+            "custom_icon": "shopify://shop_images/ordre-modtaget.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Bestilt</strong>",
+            "content": "<p>Når du har lavet en ordre via vores hjemmeside, går vi straks i gang med at forberede afsendelsen. Leveringstiden oplyses altid af hjemmesiden og din ordrebekræftelse. </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "custom_icon": "shopify://shop_images/Home-alt-2_dfd1c0c1-ff90-43f3-b420-ac164c7e9077.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Afsendt</strong>",
+            "content": "<p>Når din ordre er produceret og pakket, sender vi den til fragtfirmaet, der tager direkte kontakt til dig med henblik på at aftale en leveringsdag og et tidsinterval (over SMS). </p>"
+          }
+        },
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-shield",
+            "custom_icon": "shopify://shop_images/Layers.svg",
+            "icon_width": 96,
+            "mobile_icon_width": 96,
+            "title": "<strong>Leveret</strong>",
+            "content": "<p>På leveringsdagen vil fragtfirmaet sende dig en SMS ca. 30 minutter før ankomst. Intervallet vil typisk være 2-4 timer. Bemærk at mindre pakker sendes med GLS. </p>"
+          }
+        }
+      },
+      "block_order": [
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-1",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-2",
+        "template--19989117305180__521a67c7-8c08-4f21-a20f-76217086071b-item-3"
+      ],
+      "settings": {
+        "stack_on_mobile": false,
+        "icon_color": "",
+        "text_color": "",
+        "text_alignment": "center"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "97c6027e-a579-42e4-8fa7-fec2f6510f95",
+    "b5123a9c-54fe-49e4-91fb-606cd202dc0f",
+    "4fce2e9c-74df-4aea-a1a6-16bda2da4336",
+    "8241730f-2a5a-4b9a-bcfa-8dc7b3c942fe",
+    "76ddf418-e3f0-4ba3-a4d4-7226013b21f3",
+    "dc719c6b-29aa-4cab-a42c-ba415a6db556",
+    "0a5570bd-5009-44c5-a790-d7ca90db12d6",
+    "f10705be-7b92-4508-bd80-6a0023a7e5ee",
+    "189d4ca3-9d0c-4b14-96d6-e8d9a583b2d3",
+    "a7beb54b-427c-4924-afe8-fbd75ab8bd5f",
+    "78801eb1-9b56-4f3b-a259-bf3eecd9fc3a",
+    "521a67c7-8c08-4f21-a20f-76217086071b"
+  ]
+}
