@@ -70,6 +70,40 @@ Supported variables
 {%- endcapture -%}
 
 {%- comment -%}
+  Captured once so the price row can place it next to either the price or the sold out notice without repeating it.
+{%- endcomment -%}
+{%- capture swatch_row -%}
+  {%- if swatch_products != blank -%}
+    <div class="story-card__swatches color-swatch-wrapper">
+      {%- for swatch_product in swatch_products -%}
+        {%- assign farve_object = swatch_product.metafields.custom.farve_filter.value -%}
+        {%- assign is_current = false -%}
+        {%- if swatch_product.handle == product.handle -%}
+          {%- assign is_current = true -%}
+        {%- endif -%}
+
+        {%- comment -%}
+          A button rather than the product page's link: the point here is to stay on the collection and swap the face.
+          The product is still reachable through the title, the image and the call to action.
+        {%- endcomment -%}
+        <button
+          type="button"
+          class="story-card__swatch"
+          data-color-target="{{ swatch_product.handle | escape }}"
+          aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
+        >
+          <span
+            class="color-swatch {% if farve_object.farve_navn.value == 'Hvid' %}color-swatch-white{% endif %}"
+            style="background-color: {{ farve_object.swatch.value }};"
+          ></span>
+          <span class="sr-only">{{ farve_object.farve_navn.value | default: swatch_product.title | escape }}</span>
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- comment -%}
   Sold out is a property of the colour, not of the card, so the modifier sits on the face. Its rule is written as a
   descendant selector, so it still finds the figure from here.
 {%- endcomment -%}
@@ -172,43 +206,24 @@ Supported variables
       {%- endif -%}
     </div>
 
-    {%- if swatch_products != blank -%}
-      <div class="story-card__swatches color-swatch-wrapper">
-        {%- for swatch_product in swatch_products -%}
-          {%- assign farve_object = swatch_product.metafields.custom.farve_filter.value -%}
-          {%- assign is_current = false -%}
-          {%- if swatch_product.handle == product.handle -%}
-            {%- assign is_current = true -%}
-          {%- endif -%}
-
-          {%- comment -%}
-            A button rather than the product page's link: the point here is to stay on the collection and swap the face.
-            The product is still reachable through the title, the image and the call to action.
-          {%- endcomment -%}
-          <button
-            type="button"
-            class="story-card__swatch"
-            data-color-target="{{ swatch_product.handle | escape }}"
-            aria-pressed="{% if is_current %}true{% else %}false{% endif %}"
-          >
-            <span
-              class="color-swatch {% if farve_object.farve_navn.value == 'Hvid' %}color-swatch-white{% endif %}"
-              style="background-color: {{ farve_object.swatch.value }};"
-            ></span>
-            <span class="sr-only">{{ farve_object.farve_navn.value | default: swatch_product.title | escape }}</span>
-          </button>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-
     <div class="story-card__footer v-stack gap-3">
-      {%- if product.available -%}
-        {%- render 'price-list', product: product, context: 'card', show_compare_at_text: true -%}
+      {%- comment -%}
+        The swatches share the price's line and sit at its end, so they read as a property of the bed being priced
+        rather than as their own block. Both states of the price get them, so the row does not jump on a sold out colour.
+      {%- endcomment -%}
+      <div class="story-card__price-row">
+        {%- if product.available -%}
+          {%- render 'price-list', product: product, context: 'card', show_compare_at_text: true -%}
+        {%- else -%}
+          <p class="h5 heading text-subdued">Udsolgt</p>
+        {%- endif -%}
 
+        {{- swatch_row -}}
+      </div>
+
+      {%- if product.available -%}
         {%- render 'button', href: product.url, content: cta_text, stretch: true -%}
       {%- else -%}
-        <p class="h5 heading text-subdued">Udsolgt</p>
-
         {%- render 'button', href: product.url, content: cta_text, style: 'outline', stretch: true -%}
       {%- endif -%}
     </div>

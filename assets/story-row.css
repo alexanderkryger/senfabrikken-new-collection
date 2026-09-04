@@ -629,10 +629,19 @@
   display: none;
 }
 
+/* The price keeps the start of the line and the swatches close it, dropping to the price's baseline */
+.story-card__price-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .story-card__swatches {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  justify-content: flex-end;
+  gap: 0.375rem;
 }
 
 .story-card__swatch {
@@ -641,6 +650,15 @@
   background: none;
   line-height: 0;
   cursor: pointer;
+}
+
+/**
+ * theme.css draws the swatch as a 54x14 bar, which is sized for the product page where it has a line of its own.
+ * Sharing the price's line here, it has to be smaller.
+ */
+.story-card__swatch .color-swatch {
+  width: 28px;
+  height: 10px;
 }
 
 /* Same outline the product page draws on the current colour, taken from the variable rather than its hardcoded hex */
