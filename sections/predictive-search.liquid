@@ -45,7 +45,7 @@ Supported variables: none
     to 20 in practice. For most overlay UX this is enough — the merchant's
     products_to_show setting (max 30) controls how many we actually display.
   {%- endcomment -%}
-  {%- paginate search.results by: 50 -%}
+  {%- paginate search.results by nil -%}
   {%- liquid
     assign active_values_count = 0
     assign allowed_filters_count = 0
@@ -356,3 +356,13 @@ Supported variables: none
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- paginate search.results by: 50 -%}"
+  to: "{%- paginate search.results by nil -%}"
+  position: 2292..2330
+{% endcomment %}
